@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Domain</OriginalElement>
+  <nodes>
+    <node x="0.0" y="101.0">Domain.FinancialManager</node>
+    <node x="114.5" y="0.0">Domain.User</node>
+    <node x="161.0" y="101.0">Domain.AdministrationDepartmentManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Domain.FinancialManager" target="Domain.User">
+      <point x="0.0" y="-14.5" />
+      <point x="70.5" y="76.0" />
+      <point x="146.75" y="76.0" />
+      <point x="-32.25" y="25.5" />
+    </edge>
+    <edge source="Domain.AdministrationDepartmentManager" target="Domain.User">
+      <point x="0.0" y="-14.5" />
+      <point x="287.5" y="76.0" />
+      <point x="211.25" y="76.0" />
+      <point x="32.25" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="30.0" y="14.5" />
+  <SelectedNodes>
+    <node>Domain.User</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
