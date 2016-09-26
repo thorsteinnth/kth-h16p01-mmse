@@ -15,4 +15,5 @@ public class EventRequest
     public int NumberOfAttendees;
     public String PreferencesDescription;
     public BigDecimal Budget;
+    public String Comments;
 }

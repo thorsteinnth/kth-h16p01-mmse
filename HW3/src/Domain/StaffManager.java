@@ -1,5 +1,6 @@
 package Domain;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -8,4 +9,6 @@ import java.util.ArrayList;
 public class StaffManager extends User
 {
     public ArrayList<RecruitmentRequest> RecruitmentRequests;
+    public ArrayList<TaskRequest> TaskRequests;
+    public ArrayList<FinancialRequest> FinancialRequests;
 }

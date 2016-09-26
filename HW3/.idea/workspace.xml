@@ -30,226 +30,295 @@
               <ID>JAVA</ID>
               <OriginalElement>Domain</OriginalElement>
               <nodes>
-                <node x="428.0" y="785.0">Domain.SubTeamEmployeeAssignment</node>
-                <node x="234.0" y="785.0">Domain.Client</node>
-                <node x="480.0" y="439.0">Domain.ClientAndEventStatisticsReport</node>
-                <node x="694.5" y="557.0">Domain.SubTeam</node>
-                <node x="224.0" y="947.0">Domain.RecruitmentRequest</node>
-                <node x="1923.0" y="153.0">Domain.VicePresident</node>
-                <node x="1195.0" y="153.0">Domain.SeniorHRManager</node>
-                <node x="0.0" y="557.0">Domain.EventRequest</node>
-                <node x="1596.0" y="142.0">Domain.CustomerServiceOfficer</node>
-                <node x="2059.0" y="153.0">Domain.MarketingAssistant</node>
-                <node x="727.0" y="450.0">Domain.EmployeeReport</node>
-                <node x="684.0000000000001" y="142.0">Domain.FinancialManager</node>
-                <node x="1402.0" y="0.0">Domain.User</node>
-                <node x="211.5" y="254.0">Domain.ServiceManager</node>
-                <node x="299.0" y="450.0">Domain.EventEarningsReport</node>
-                <node x="149.0" y="450.0">Domain.ClientReport</node>
-                <node x="2233.0" y="131.0">Domain.SubTeamEmployee</node>
-                <node x="697.0" y="785.0">Domain.SubTeamEmployeeSchedule</node>
-                <node x="773.0" y="680.0">Domain.SubTeamProductionDept</node>
-                <node x="1037.0" y="153.0">Domain.MarketingOfficer</node>
-                <node x="295.0" y="557.0">Domain.Event</node>
-                <node x="590.0" y="680.0">Domain.SubTeamServiceDept</node>
-                <node x="0.0" y="142.0">Domain.StaffManager</node>
-                <node x="1357.0" y="153.0">Domain.SeniorCustomerServiceOfficer</node>
-                <node x="427.0" y="947.0">Domain.FinancialRequest</node>
-                <node x="2679.0" y="153.0">Domain.HRAssistant</node>
-                <node x="0.0" y="785.0">Domain.Applicant</node>
-                <node x="430.5" y="328.0">Domain.Report</node>
-                <node x="0.0" y="947.0">Domain.FinancialReportRequest</node>
-                <node x="610.0" y="947.0">Domain.TaskRequest</node>
-                <node x="38.5" y="254.0">Domain.ProductionManager</node>
-                <node x="880.0" y="461.0">Domain.EmployeeUtilizationReport</node>
-                <node x="411.0000000000001" y="153.0">Domain.AdministrationDepartmentManager</node>
-                <node x="0.0" y="461.0">Domain.FinancialReport</node>
+                <node x="2644.0000000000005" y="77.0">Domain.SubTeamEmployeeAssignment</node>
+                <node x="327.47916666666674" y="295.0">Domain.Client</node>
+                <node x="7.44818376068406" y="492.0">Domain.ClientAndEventStatisticsReport</node>
+                <node x="2493.2500000000005" y="492.0">Domain.SubTeam</node>
+                <node x="3178.0000000000005" y="88.0">Domain.RecruitmentRequest</node>
+                <node x="1572.791666666667" y="339.0">Domain.VicePresident</node>
+                <node x="2018.7500000000005" y="339.0">Domain.SeniorHRManager</node>
+                <node x="431.97916666666674" y="0.0">Domain.EventRequest</node>
+                <node x="563.2083333333335" y="328.0">Domain.CustomerServiceOfficer</node>
+                <node x="2180.7500000000005" y="339.0">Domain.MarketingAssistant</node>
+                <node x="1223.541666666667" y="503.0">Domain.EmployeeReport</node>
+                <node x="1705.940705128206" y="626.0">Domain.FinancialManager</node>
+                <node x="1807.0000000000005" y="77.0">Domain.User</node>
+                <node x="2892.1773504273506" y="514.0">Domain.ServiceManager</node>
+                <node x="292.3023504273506" y="503.0">Domain.EventEarningsReport</node>
+                <node x="519.8648504273506" y="503.0">Domain.ClientReport</node>
+                <node x="2354.7500000000005" y="317.0">Domain.SubTeamEmployee</node>
+                <node x="2419.0000000000005" y="88.0">Domain.SubTeamEmployeeSchedule</node>
+                <node x="2376.7500000000005" y="637.0">Domain.SubTeamProductionDept</node>
+                <node x="1730.7500000000005" y="339.0">Domain.MarketingOfficer</node>
+                <node x="141.97916666666674" y="0.0">Domain.Event</node>
+                <node x="2583.7500000000005" y="637.0">Domain.SubTeamServiceDept</node>
+                <node x="2837.6250000000005" y="306.0">Domain.StaffManager</node>
+                <node x="1333.791666666667" y="339.0">Domain.SeniorCustomerServiceOfficer</node>
+                <node x="2888.0000000000005" y="88.0">Domain.FinancialRequest</node>
+                <node x="1888.7500000000005" y="339.0">Domain.HRAssistant</node>
+                <node x="0.0" y="733.0">Domain.Applicant</node>
+                <node x="890.2083333333335" y="328.0">Domain.Report</node>
+                <node x="234.0" y="733.0">Domain.FinancialReportRequest</node>
+                <node x="3046.0000000000005" y="88.0">Domain.TaskRequest</node>
+                <node x="3041.1773504273506" y="514.0">Domain.ProductionManager</node>
+                <node x="856.541666666667" y="514.0">Domain.EmployeeUtilizationReport</node>
+                <node x="1085.243055555556" y="615.0">Domain.AdministrationDepartmentManager</node>
+                <node x="1074.541666666667" y="514.0">Domain.FinancialReport</node>
               </nodes>
               <notes />
               <edges>
                 <edge source="Domain.SubTeamEmployee" target="Domain.SubTeamEmployeeSchedule">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="-36.5" />
+                  <point x="2567.7500000000005" y="275.0" />
+                  <point x="2521.5000000000005" y="275.0" />
+                  <point x="0.0" y="14.5" />
                 </edge>
                 <edge source="Domain.SubTeamProductionDept" target="Domain.SubTeam">
                   <point x="0.0" y="-14.5" />
-                  <point x="866.5" y="655.0" />
-                  <point x="806.25" y="655.0" />
-                  <point x="37.25" y="36.5" />
+                  <point x="2470.2500000000005" y="595.0" />
+                  <point x="2530.5000000000005" y="595.0" />
+                  <point x="-37.25" y="36.5" />
+                </edge>
+                <edge source="Domain.Client" target="Domain.Event">
+                  <point x="-70.875" y="-58.5" />
+                  <point x="351.10416666666674" y="275.0" />
+                  <point x="310.72916666666674" y="275.0" />
+                  <point x="33.75" y="102.5" />
                 </edge>
                 <edge source="Domain.CustomerServiceOfficer" target="Domain.EventRequest">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="-25.5" />
+                  <point x="716.7083333333335" y="275.0" />
+                  <point x="668.2291666666667" y="275.0" />
+                  <point x="101.25" y="102.5" />
+                </edge>
+                <edge source="Domain.AdministrationDepartmentManager" target="Domain.ClientReport">
+                  <point x="-120.33333333333326" y="-36.5" />
+                  <point x="1145.409722222223" y="595.0" />
+                  <point x="584.8648504273506" y="595.0" />
+                  <point x="0.0" y="25.5" />
                 </edge>
                 <edge source="Domain.MarketingAssistant" target="Domain.User">
                   <point x="0.0" y="-14.5" />
-                  <point x="2136.0" y="91.0" />
-                  <point x="1501.6818181818185" y="91.0" />
-                  <point x="35.181818181818244" y="25.5" />
+                  <point x="2257.7500000000005" y="245.0" />
+                  <point x="1909.1250000000005" y="245.0" />
+                  <point x="37.625" y="25.5" />
                 </edge>
                 <edge source="Domain.MarketingOfficer" target="Domain.User">
                   <point x="0.0" y="-14.5" />
-                  <point x="1106.0" y="101.0" />
-                  <point x="1443.0454545454545" y="101.0" />
-                  <point x="-23.454545454545496" y="25.5" />
+                  <point x="1799.7500000000005" y="275.0" />
+                  <point x="1866.1250000000005" y="275.0" />
+                  <point x="-5.375" y="25.5" />
                 </edge>
                 <edge source="Domain.SubTeamEmployee" target="Domain.User">
-                  <point x="0.0" y="-36.5" />
-                  <point x="2446.0" y="81.0" />
-                  <point x="1513.409090909091" y="81.0" />
-                  <point x="46.90909090909099" y="25.5" />
+                  <point x="-142.0" y="-36.5" />
+                  <point x="2425.7500000000005" y="235.0" />
+                  <point x="1919.8750000000005" y="235.0" />
+                  <point x="48.375" y="25.5" />
                 </edge>
                 <edge source="Domain.FinancialManager" target="Domain.FinancialReport">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="-83.25" y="-25.5" />
+                  <point x="1789.190705128206" y="585.0" />
+                  <point x="1139.041666666667" y="585.0" />
+                  <point x="0.0" y="14.5" />
                 </edge>
                 <edge source="Domain.VicePresident" target="Domain.User">
                   <point x="0.0" y="-14.5" />
-                  <point x="1981.0" y="101.0" />
-                  <point x="1489.9545454545455" y="101.0" />
-                  <point x="23.454545454545496" y="25.5" />
+                  <point x="1630.791666666667" y="255.0" />
+                  <point x="1844.6250000000005" y="255.0" />
+                  <point x="-26.875" y="25.5" />
                 </edge>
                 <edge source="Domain.ClientReport" target="Domain.Report">
-                  <point x="0.0" y="-25.5" />
-                  <point x="214.0" y="409.0" />
-                  <point x="458.5" y="409.0" />
-                  <point x="-28.0" y="25.5" />
+                  <point x="32.5" y="-25.5" />
+                  <point x="617.3648504273506" y="472.0" />
+                  <point x="936.8750000000001" y="472.0" />
+                  <point x="-9.333333333333371" y="25.5" />
                 </edge>
                 <edge source="Domain.ClientAndEventStatisticsReport" target="Domain.Report">
-                  <point x="0.0" y="-36.5" />
-                  <point x="593.5" y="419.0" />
-                  <point x="495.8333333333333" y="419.0" />
-                  <point x="9.333333333333314" y="25.5" />
+                  <point x="75.66666666666669" y="-36.5" />
+                  <point x="196.6148504273508" y="452.0" />
+                  <point x="899.5416666666669" y="452.0" />
+                  <point x="-46.66666666666663" y="25.5" />
                 </edge>
                 <edge source="Domain.HRAssistant" target="Domain.User">
                   <point x="0.0" y="-14.5" />
-                  <point x="2733.5" y="71.0" />
-                  <point x="1525.1363636363635" y="71.0" />
-                  <point x="58.63636363636351" y="25.5" />
+                  <point x="1943.2500000000005" y="275.0" />
+                  <point x="1876.8750000000005" y="275.0" />
+                  <point x="5.375" y="25.5" />
                 </edge>
                 <edge source="Domain.Event" target="Domain.Client">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="101.25" y="102.5" />
+                  <point x="378.22916666666674" y="275.0" />
+                  <point x="398.35416666666674" y="275.0" />
+                  <point x="-23.625" y="-58.5" />
                 </edge>
                 <edge source="Domain.SubTeam" target="Domain.SubTeamEmployee">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="-36.5" />
+                  <point x="0.0" y="36.5" />
                 </edge>
                 <edge source="Domain.CustomerServiceOfficer" target="Domain.User">
-                  <point x="0.0" y="-25.5" />
-                  <point x="1749.5" y="111.0" />
-                  <point x="1478.227272727273" y="111.0" />
-                  <point x="11.727272727272748" y="25.5" />
+                  <point x="102.33333333333337" y="-25.5" />
+                  <point x="819.0416666666669" y="225.0" />
+                  <point x="1812.3750000000005" y="225.0" />
+                  <point x="-59.125" y="25.5" />
+                </edge>
+                <edge source="Domain.Client" target="Domain.EventRequest">
+                  <point x="23.625" y="-58.5" />
+                  <point x="445.60416666666674" y="275.0" />
+                  <point x="465.72916666666674" y="275.0" />
+                  <point x="-101.25" y="102.5" />
                 </edge>
                 <edge source="Domain.ClientAndEventStatisticsReport" target="Domain.Event">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="-75.66666666666674" y="-36.5" />
+                  <point x="45.28151709401732" y="472.0" />
+                  <point x="0.0" y="472.0" />
+                  <point x="0.0" y="275.0" />
+                  <point x="175.72916666666674" y="275.0" />
+                  <point x="-101.25" y="102.5" />
                 </edge>
                 <edge source="Domain.ClientReport" target="Domain.Client">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="-32.5" y="-25.5" />
+                  <point x="552.3648504273506" y="442.0" />
+                  <point x="469.22916666666674" y="442.0" />
+                  <point x="47.25" y="58.5" />
                 </edge>
                 <edge source="Domain.StaffManager" target="Domain.RecruitmentRequest">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="161.625" y="-47.5" />
+                  <point x="3214.7500000000005" y="275.0" />
+                  <point x="3257.0000000000005" y="275.0" />
+                  <point x="0.0" y="14.5" />
                 </edge>
                 <edge source="Domain.ProductionManager" target="Domain.StaffManager">
                   <point x="0.0" y="-14.5" />
-                  <point x="115.0" y="229.0" />
-                  <point x="97.75" y="229.0" />
-                  <point x="-97.75" y="25.5" />
+                  <point x="3117.6773504273506" y="472.0" />
+                  <point x="3160.8750000000005" y="472.0" />
+                  <point x="107.75" y="47.5" />
+                </edge>
+                <edge source="Domain.StaffManager" target="Domain.TaskRequest">
+                  <point x="53.875" y="-47.5" />
+                  <point x="3107.0000000000005" y="275.0" />
+                  <point x="3102.0000000000005" y="275.0" />
+                  <point x="0.0" y="14.5" />
                 </edge>
                 <edge source="Domain.SubTeamEmployee" target="Domain.SubTeamEmployeeAssignment">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="142.0" y="-36.5" />
+                  <point x="2709.7500000000005" y="275.0" />
+                  <point x="2756.0000000000005" y="275.0" />
+                  <point x="0.0" y="25.5" />
                 </edge>
                 <edge source="Domain.FinancialManager" target="Domain.User">
-                  <point x="0.0" y="-25.5" />
-                  <point x="850.5000000000001" y="91.0" />
-                  <point x="1431.318181818182" y="91.0" />
-                  <point x="-35.181818181818244" y="25.5" />
+                  <point x="83.25" y="-25.5" />
+                  <point x="1955.690705128206" y="595.0" />
+                  <point x="2008.2500000000005" y="595.0" />
+                  <point x="2008.2500000000005" y="265.0" />
+                  <point x="1887.6250000000005" y="265.0" />
+                  <point x="16.125" y="25.5" />
                 </edge>
                 <edge source="Domain.ServiceManager" target="Domain.StaffManager">
                   <point x="0.0" y="-14.5" />
-                  <point x="276.0" y="229.0" />
-                  <point x="293.25" y="229.0" />
-                  <point x="97.75" y="25.5" />
+                  <point x="2956.6773504273506" y="472.0" />
+                  <point x="2945.3750000000005" y="472.0" />
+                  <point x="-107.75" y="47.5" />
                 </edge>
                 <edge source="Domain.AdministrationDepartmentManager" target="Domain.User">
-                  <point x="0.0" y="-14.5" />
-                  <point x="537.5000000000001" y="81.0" />
-                  <point x="1419.590909090909" y="81.0" />
-                  <point x="-46.90909090909099" y="25.5" />
+                  <point x="120.33333333333326" y="-36.5" />
+                  <point x="1386.0763888888896" y="595.0" />
+                  <point x="1699.291666666667" y="595.0" />
+                  <point x="1699.291666666667" y="265.0" />
+                  <point x="1855.3750000000005" y="265.0" />
+                  <point x="-16.125" y="25.5" />
+                </edge>
+                <edge source="Domain.StaffManager" target="Domain.FinancialRequest">
+                  <point x="-53.875" y="-47.5" />
+                  <point x="2999.2500000000005" y="275.0" />
+                  <point x="2957.0000000000005" y="275.0" />
+                  <point x="0.0" y="14.5" />
                 </edge>
                 <edge source="Domain.EventRequest" target="Domain.Client">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="-33.75" y="102.5" />
+                  <point x="533.2291666666667" y="275.0" />
+                  <point x="492.85416666666674" y="275.0" />
+                  <point x="70.875" y="-58.5" />
                 </edge>
                 <edge source="Domain.FinancialReport" target="Domain.Report">
                   <point x="0.0" y="-14.5" />
-                  <point x="64.5" y="399.0" />
-                  <point x="439.8333333333333" y="399.0" />
-                  <point x="-46.666666666666686" y="25.5" />
+                  <point x="1139.041666666667" y="472.0" />
+                  <point x="974.2083333333335" y="472.0" />
+                  <point x="28.0" y="25.5" />
                 </edge>
                 <edge source="Domain.SeniorHRManager" target="Domain.User">
                   <point x="0.0" y="-14.5" />
-                  <point x="1266.0" y="111.0" />
-                  <point x="1454.7727272727275" y="111.0" />
-                  <point x="-11.727272727272748" y="25.5" />
+                  <point x="2089.7500000000005" y="255.0" />
+                  <point x="1898.3750000000005" y="255.0" />
+                  <point x="26.875" y="25.5" />
                 </edge>
                 <edge source="Domain.StaffManager" target="Domain.User">
-                  <point x="0.0" y="-25.5" />
-                  <point x="195.5" y="71.0" />
-                  <point x="1407.8636363636365" y="71.0" />
-                  <point x="-58.63636363636374" y="25.5" />
+                  <point x="-161.625" y="-47.5" />
+                  <point x="2891.5000000000005" y="225.0" />
+                  <point x="1930.6250000000005" y="225.0" />
+                  <point x="59.125" y="25.5" />
                 </edge>
                 <edge source="Domain.EmployeeReport" target="Domain.User">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="33.25" y="-25.5" />
+                  <point x="1323.291666666667" y="235.0" />
+                  <point x="1823.1250000000005" y="235.0" />
+                  <point x="-48.375" y="25.5" />
                 </edge>
                 <edge source="Domain.EventEarningsReport" target="Domain.Event">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="-40.25" y="-25.5" />
+                  <point x="332.5523504273506" y="432.0" />
+                  <point x="249.41666666666674" y="432.0" />
+                  <point x="249.41666666666674" y="275.0" />
+                  <point x="243.22916666666674" y="275.0" />
+                  <point x="-33.75" y="102.5" />
                 </edge>
                 <edge source="Domain.SeniorCustomerServiceOfficer" target="Domain.User">
                   <point x="0.0" y="-14.5" />
-                  <point x="0.0" y="25.5" />
+                  <point x="1443.291666666667" y="245.0" />
+                  <point x="1833.8750000000005" y="245.0" />
+                  <point x="-37.625" y="25.5" />
                 </edge>
                 <edge source="Domain.EmployeeReport" target="Domain.Report">
-                  <point x="0.0" y="-25.5" />
-                  <point x="793.5" y="409.0" />
-                  <point x="514.5" y="409.0" />
-                  <point x="28.0" y="25.5" />
+                  <point x="-33.25" y="-25.5" />
+                  <point x="1256.791666666667" y="462.0" />
+                  <point x="992.8750000000001" y="462.0" />
+                  <point x="46.66666666666663" y="25.5" />
                 </edge>
                 <edge source="Domain.EmployeeUtilizationReport" target="Domain.Report">
                   <point x="0.0" y="-14.5" />
-                  <point x="979.0" y="399.0" />
-                  <point x="533.1666666666666" y="399.0" />
-                  <point x="46.66666666666663" y="25.5" />
+                  <point x="9.333333333333371" y="25.5" />
                 </edge>
                 <edge source="Domain.ClientAndEventStatisticsReport" target="Domain.Client">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
+                  <point x="-1.4210854715202004E-14" y="-36.5" />
+                  <point x="120.94818376068406" y="442.0" />
+                  <point x="374.72916666666674" y="442.0" />
+                  <point x="-47.25" y="58.5" />
                 </edge>
                 <edge source="Domain.EventEarningsReport" target="Domain.Report">
-                  <point x="0.0" y="-25.5" />
-                  <point x="379.5" y="419.0" />
-                  <point x="477.1666666666667" y="419.0" />
-                  <point x="-9.333333333333314" y="25.5" />
+                  <point x="40.25" y="-25.5" />
+                  <point x="413.0523504273506" y="462.0" />
+                  <point x="918.2083333333335" y="462.0" />
+                  <point x="-28.0" y="25.5" />
+                </edge>
+                <edge source="Domain.AdministrationDepartmentManager" target="Domain.EmployeeReport">
+                  <point x="0.0" y="-36.5" />
+                  <point x="1265.743055555556" y="595.0" />
+                  <point x="1290.041666666667" y="595.0" />
+                  <point x="0.0" y="25.5" />
                 </edge>
                 <edge source="Domain.SubTeamServiceDept" target="Domain.SubTeam">
                   <point x="0.0" y="-14.5" />
-                  <point x="671.5" y="655.0" />
-                  <point x="731.75" y="655.0" />
-                  <point x="-37.25" y="36.5" />
+                  <point x="2665.2500000000005" y="595.0" />
+                  <point x="2605.0000000000005" y="595.0" />
+                  <point x="37.25" y="36.5" />
                 </edge>
               </edges>
-              <settings layout="Hierarchic Group" zoom="0.5503685503685504" x="1007.5" y="680.5558035714286" />
+              <settings layout="Hierarchic Group" zoom="1.0" x="-157.5" y="119.5" />
               <SelectedNodes>
-                <node>Domain.SubTeamEmployeeAssignment</node>
+                <node>Domain.RecruitmentRequest</node>
               </SelectedNodes>
               <Categories>
                 <Category>Fields</Category>
+                <Category>Constructors</Category>
               </Categories>
               <SCOPE>All</SCOPE>
               <VISIBILITY>private</VISIBILITY>
@@ -257,13 +326,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Domain/Event.java">
+      <file leaf-file-name="CustomerServiceOfficer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Domain/CustomerServiceOfficer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="240">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#238#239#0" expanded="true" />
+                <element signature="e#279#280#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -272,11 +342,33 @@
       <file leaf-file-name="EventRequest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Domain/EventRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+            <state relative-caret-position="225">
+              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Domain/Event.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Domain/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -299,7 +391,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Domain/User.java" />
-        <option value="$PROJECT_DIR$/src/Domain/AdministrationDepartmentManager.java" />
         <option value="$PROJECT_DIR$/src/Domain/SeniorCustomerServiceOfficer.java" />
         <option value="$PROJECT_DIR$/src/Domain/ServiceManager.java" />
         <option value="$PROJECT_DIR$/src/Domain/ProductionManager.java" />
@@ -307,7 +398,6 @@
         <option value="$PROJECT_DIR$/src/Domain/HRAssistant.java" />
         <option value="$PROJECT_DIR$/src/Domain/SeniorHRManager.java" />
         <option value="$PROJECT_DIR$/src/Domain/RecruitmentRequest.java" />
-        <option value="$PROJECT_DIR$/src/Domain/StaffManager.java" />
         <option value="$PROJECT_DIR$/src/Domain/SubTeamServiceDept.java" />
         <option value="$PROJECT_DIR$/src/Domain/SubTeamProductionDept.java" />
         <option value="$PROJECT_DIR$/src/Domain/MarketingOfficer.java" />
@@ -322,12 +412,14 @@
         <option value="$PROJECT_DIR$/src/Domain/SubTeamEmployee.java" />
         <option value="$PROJECT_DIR$/src/Domain/SubTeamEmployeeAssignment.java" />
         <option value="$PROJECT_DIR$/src/Domain/ClientReport.java" />
+        <option value="$PROJECT_DIR$/src/Domain/ClientAndEventStatisticsReport.java" />
+        <option value="$PROJECT_DIR$/src/Domain/EmployeeReport.java" />
+        <option value="$PROJECT_DIR$/src/Domain/StaffManager.java" />
+        <option value="$PROJECT_DIR$/src/Domain/AdministrationDepartmentManager.java" />
         <option value="$PROJECT_DIR$/src/Domain/EventRequest.java" />
         <option value="$PROJECT_DIR$/src/Domain/Event.java" />
         <option value="$PROJECT_DIR$/src/Domain/Client.java" />
         <option value="$PROJECT_DIR$/src/Domain/CustomerServiceOfficer.java" />
-        <option value="$PROJECT_DIR$/src/Domain/ClientAndEventStatisticsReport.java" />
-        <option value="$PROJECT_DIR$/src/Domain/EmployeeReport.java" />
       </list>
     </option>
   </component>
@@ -340,7 +432,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="10" />
     <option name="y" value="33" />
-    <option name="width" value="1493" />
+    <option name="width" value="1660" />
     <option name="height" value="1003" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -897,15 +989,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474833189069</updated>
-      <workItem from="1474833193232" duration="8261000" />
+      <workItem from="1474833193232" duration="9585000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8261000" />
+    <option name="totallyTimeSpent" value="9585000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="33" width="1493" height="1003" extended-state="0" />
+    <frame x="10" y="33" width="1660" height="1003" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -917,7 +1009,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24983256" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2246988" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -969,14 +1061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/StaffManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1045,14 +1129,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/AdministrationDepartmentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Domain/ProductionManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1085,30 +1161,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/SubTeamProductionDept.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/SubTeamServiceDept.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/SubTeamEmployee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Domain/FinancialRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1121,14 +1173,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/CustomerServiceOfficer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1205,14 +1249,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/FinancialManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Domain/FinancialReport.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1245,18 +1281,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/Client.java">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/FinancialManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/SubTeamEmployee.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/SubTeamProductionDept.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/SubTeamServiceDept.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/AdministrationDepartmentManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/StaffManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Domain/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1265,19 +1353,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Domain/EventRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+        <state relative-caret-position="225">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="file://$PROJECT_DIR$/src/Domain/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/CustomerServiceOfficer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#238#239#0" expanded="true" />
+            <element signature="e#279#280#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1287,226 +1386,295 @@
           <ID>JAVA</ID>
           <OriginalElement>Domain</OriginalElement>
           <nodes>
-            <node x="428.0" y="785.0">Domain.SubTeamEmployeeAssignment</node>
-            <node x="234.0" y="785.0">Domain.Client</node>
-            <node x="480.0" y="439.0">Domain.ClientAndEventStatisticsReport</node>
-            <node x="694.5" y="557.0">Domain.SubTeam</node>
-            <node x="224.0" y="947.0">Domain.RecruitmentRequest</node>
-            <node x="1923.0" y="153.0">Domain.VicePresident</node>
-            <node x="1195.0" y="153.0">Domain.SeniorHRManager</node>
-            <node x="0.0" y="557.0">Domain.EventRequest</node>
-            <node x="1596.0" y="142.0">Domain.CustomerServiceOfficer</node>
-            <node x="2059.0" y="153.0">Domain.MarketingAssistant</node>
-            <node x="727.0" y="450.0">Domain.EmployeeReport</node>
-            <node x="684.0000000000001" y="142.0">Domain.FinancialManager</node>
-            <node x="1402.0" y="0.0">Domain.User</node>
-            <node x="211.5" y="254.0">Domain.ServiceManager</node>
-            <node x="299.0" y="450.0">Domain.EventEarningsReport</node>
-            <node x="149.0" y="450.0">Domain.ClientReport</node>
-            <node x="2233.0" y="131.0">Domain.SubTeamEmployee</node>
-            <node x="697.0" y="785.0">Domain.SubTeamEmployeeSchedule</node>
-            <node x="773.0" y="680.0">Domain.SubTeamProductionDept</node>
-            <node x="1037.0" y="153.0">Domain.MarketingOfficer</node>
-            <node x="295.0" y="557.0">Domain.Event</node>
-            <node x="590.0" y="680.0">Domain.SubTeamServiceDept</node>
-            <node x="0.0" y="142.0">Domain.StaffManager</node>
-            <node x="1357.0" y="153.0">Domain.SeniorCustomerServiceOfficer</node>
-            <node x="427.0" y="947.0">Domain.FinancialRequest</node>
-            <node x="2679.0" y="153.0">Domain.HRAssistant</node>
-            <node x="0.0" y="785.0">Domain.Applicant</node>
-            <node x="430.5" y="328.0">Domain.Report</node>
-            <node x="0.0" y="947.0">Domain.FinancialReportRequest</node>
-            <node x="610.0" y="947.0">Domain.TaskRequest</node>
-            <node x="38.5" y="254.0">Domain.ProductionManager</node>
-            <node x="880.0" y="461.0">Domain.EmployeeUtilizationReport</node>
-            <node x="411.0000000000001" y="153.0">Domain.AdministrationDepartmentManager</node>
-            <node x="0.0" y="461.0">Domain.FinancialReport</node>
+            <node x="2644.0000000000005" y="77.0">Domain.SubTeamEmployeeAssignment</node>
+            <node x="327.47916666666674" y="295.0">Domain.Client</node>
+            <node x="7.44818376068406" y="492.0">Domain.ClientAndEventStatisticsReport</node>
+            <node x="2493.2500000000005" y="492.0">Domain.SubTeam</node>
+            <node x="3178.0000000000005" y="88.0">Domain.RecruitmentRequest</node>
+            <node x="1572.791666666667" y="339.0">Domain.VicePresident</node>
+            <node x="2018.7500000000005" y="339.0">Domain.SeniorHRManager</node>
+            <node x="431.97916666666674" y="0.0">Domain.EventRequest</node>
+            <node x="563.2083333333335" y="328.0">Domain.CustomerServiceOfficer</node>
+            <node x="2180.7500000000005" y="339.0">Domain.MarketingAssistant</node>
+            <node x="1223.541666666667" y="503.0">Domain.EmployeeReport</node>
+            <node x="1705.940705128206" y="626.0">Domain.FinancialManager</node>
+            <node x="1807.0000000000005" y="77.0">Domain.User</node>
+            <node x="2892.1773504273506" y="514.0">Domain.ServiceManager</node>
+            <node x="292.3023504273506" y="503.0">Domain.EventEarningsReport</node>
+            <node x="519.8648504273506" y="503.0">Domain.ClientReport</node>
+            <node x="2354.7500000000005" y="317.0">Domain.SubTeamEmployee</node>
+            <node x="2419.0000000000005" y="88.0">Domain.SubTeamEmployeeSchedule</node>
+            <node x="2376.7500000000005" y="637.0">Domain.SubTeamProductionDept</node>
+            <node x="1730.7500000000005" y="339.0">Domain.MarketingOfficer</node>
+            <node x="141.97916666666674" y="0.0">Domain.Event</node>
+            <node x="2583.7500000000005" y="637.0">Domain.SubTeamServiceDept</node>
+            <node x="2837.6250000000005" y="306.0">Domain.StaffManager</node>
+            <node x="1333.791666666667" y="339.0">Domain.SeniorCustomerServiceOfficer</node>
+            <node x="2888.0000000000005" y="88.0">Domain.FinancialRequest</node>
+            <node x="1888.7500000000005" y="339.0">Domain.HRAssistant</node>
+            <node x="0.0" y="733.0">Domain.Applicant</node>
+            <node x="890.2083333333335" y="328.0">Domain.Report</node>
+            <node x="234.0" y="733.0">Domain.FinancialReportRequest</node>
+            <node x="3046.0000000000005" y="88.0">Domain.TaskRequest</node>
+            <node x="3041.1773504273506" y="514.0">Domain.ProductionManager</node>
+            <node x="856.541666666667" y="514.0">Domain.EmployeeUtilizationReport</node>
+            <node x="1085.243055555556" y="615.0">Domain.AdministrationDepartmentManager</node>
+            <node x="1074.541666666667" y="514.0">Domain.FinancialReport</node>
           </nodes>
           <notes />
           <edges>
             <edge source="Domain.SubTeamEmployee" target="Domain.SubTeamEmployeeSchedule">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="0.0" y="-36.5" />
+              <point x="2567.7500000000005" y="275.0" />
+              <point x="2521.5000000000005" y="275.0" />
+              <point x="0.0" y="14.5" />
             </edge>
             <edge source="Domain.SubTeamProductionDept" target="Domain.SubTeam">
               <point x="0.0" y="-14.5" />
-              <point x="866.5" y="655.0" />
-              <point x="806.25" y="655.0" />
-              <point x="37.25" y="36.5" />
+              <point x="2470.2500000000005" y="595.0" />
+              <point x="2530.5000000000005" y="595.0" />
+              <point x="-37.25" y="36.5" />
+            </edge>
+            <edge source="Domain.Client" target="Domain.Event">
+              <point x="-70.875" y="-58.5" />
+              <point x="351.10416666666674" y="275.0" />
+              <point x="310.72916666666674" y="275.0" />
+              <point x="33.75" y="102.5" />
             </edge>
             <edge source="Domain.CustomerServiceOfficer" target="Domain.EventRequest">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="0.0" y="-25.5" />
+              <point x="716.7083333333335" y="275.0" />
+              <point x="668.2291666666667" y="275.0" />
+              <point x="101.25" y="102.5" />
+            </edge>
+            <edge source="Domain.AdministrationDepartmentManager" target="Domain.ClientReport">
+              <point x="-120.33333333333326" y="-36.5" />
+              <point x="1145.409722222223" y="595.0" />
+              <point x="584.8648504273506" y="595.0" />
+              <point x="0.0" y="25.5" />
             </edge>
             <edge source="Domain.MarketingAssistant" target="Domain.User">
               <point x="0.0" y="-14.5" />
-              <point x="2136.0" y="91.0" />
-              <point x="1501.6818181818185" y="91.0" />
-              <point x="35.181818181818244" y="25.5" />
+              <point x="2257.7500000000005" y="245.0" />
+              <point x="1909.1250000000005" y="245.0" />
+              <point x="37.625" y="25.5" />
             </edge>
             <edge source="Domain.MarketingOfficer" target="Domain.User">
               <point x="0.0" y="-14.5" />
-              <point x="1106.0" y="101.0" />
-              <point x="1443.0454545454545" y="101.0" />
-              <point x="-23.454545454545496" y="25.5" />
+              <point x="1799.7500000000005" y="275.0" />
+              <point x="1866.1250000000005" y="275.0" />
+              <point x="-5.375" y="25.5" />
             </edge>
             <edge source="Domain.SubTeamEmployee" target="Domain.User">
-              <point x="0.0" y="-36.5" />
-              <point x="2446.0" y="81.0" />
-              <point x="1513.409090909091" y="81.0" />
-              <point x="46.90909090909099" y="25.5" />
+              <point x="-142.0" y="-36.5" />
+              <point x="2425.7500000000005" y="235.0" />
+              <point x="1919.8750000000005" y="235.0" />
+              <point x="48.375" y="25.5" />
             </edge>
             <edge source="Domain.FinancialManager" target="Domain.FinancialReport">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="-83.25" y="-25.5" />
+              <point x="1789.190705128206" y="585.0" />
+              <point x="1139.041666666667" y="585.0" />
+              <point x="0.0" y="14.5" />
             </edge>
             <edge source="Domain.VicePresident" target="Domain.User">
               <point x="0.0" y="-14.5" />
-              <point x="1981.0" y="101.0" />
-              <point x="1489.9545454545455" y="101.0" />
-              <point x="23.454545454545496" y="25.5" />
+              <point x="1630.791666666667" y="255.0" />
+              <point x="1844.6250000000005" y="255.0" />
+              <point x="-26.875" y="25.5" />
             </edge>
             <edge source="Domain.ClientReport" target="Domain.Report">
-              <point x="0.0" y="-25.5" />
-              <point x="214.0" y="409.0" />
-              <point x="458.5" y="409.0" />
-              <point x="-28.0" y="25.5" />
+              <point x="32.5" y="-25.5" />
+              <point x="617.3648504273506" y="472.0" />
+              <point x="936.8750000000001" y="472.0" />
+              <point x="-9.333333333333371" y="25.5" />
             </edge>
             <edge source="Domain.ClientAndEventStatisticsReport" target="Domain.Report">
-              <point x="0.0" y="-36.5" />
-              <point x="593.5" y="419.0" />
-              <point x="495.8333333333333" y="419.0" />
-              <point x="9.333333333333314" y="25.5" />
+              <point x="75.66666666666669" y="-36.5" />
+              <point x="196.6148504273508" y="452.0" />
+              <point x="899.5416666666669" y="452.0" />
+              <point x="-46.66666666666663" y="25.5" />
             </edge>
             <edge source="Domain.HRAssistant" target="Domain.User">
               <point x="0.0" y="-14.5" />
-              <point x="2733.5" y="71.0" />
-              <point x="1525.1363636363635" y="71.0" />
-              <point x="58.63636363636351" y="25.5" />
+              <point x="1943.2500000000005" y="275.0" />
+              <point x="1876.8750000000005" y="275.0" />
+              <point x="5.375" y="25.5" />
             </edge>
             <edge source="Domain.Event" target="Domain.Client">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="101.25" y="102.5" />
+              <point x="378.22916666666674" y="275.0" />
+              <point x="398.35416666666674" y="275.0" />
+              <point x="-23.625" y="-58.5" />
             </edge>
             <edge source="Domain.SubTeam" target="Domain.SubTeamEmployee">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="0.0" y="-36.5" />
+              <point x="0.0" y="36.5" />
             </edge>
             <edge source="Domain.CustomerServiceOfficer" target="Domain.User">
-              <point x="0.0" y="-25.5" />
-              <point x="1749.5" y="111.0" />
-              <point x="1478.227272727273" y="111.0" />
-              <point x="11.727272727272748" y="25.5" />
+              <point x="102.33333333333337" y="-25.5" />
+              <point x="819.0416666666669" y="225.0" />
+              <point x="1812.3750000000005" y="225.0" />
+              <point x="-59.125" y="25.5" />
+            </edge>
+            <edge source="Domain.Client" target="Domain.EventRequest">
+              <point x="23.625" y="-58.5" />
+              <point x="445.60416666666674" y="275.0" />
+              <point x="465.72916666666674" y="275.0" />
+              <point x="-101.25" y="102.5" />
             </edge>
             <edge source="Domain.ClientAndEventStatisticsReport" target="Domain.Event">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="-75.66666666666674" y="-36.5" />
+              <point x="45.28151709401732" y="472.0" />
+              <point x="0.0" y="472.0" />
+              <point x="0.0" y="275.0" />
+              <point x="175.72916666666674" y="275.0" />
+              <point x="-101.25" y="102.5" />
             </edge>
             <edge source="Domain.ClientReport" target="Domain.Client">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="-32.5" y="-25.5" />
+              <point x="552.3648504273506" y="442.0" />
+              <point x="469.22916666666674" y="442.0" />
+              <point x="47.25" y="58.5" />
             </edge>
             <edge source="Domain.StaffManager" target="Domain.RecruitmentRequest">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="161.625" y="-47.5" />
+              <point x="3214.7500000000005" y="275.0" />
+              <point x="3257.0000000000005" y="275.0" />
+              <point x="0.0" y="14.5" />
             </edge>
             <edge source="Domain.ProductionManager" target="Domain.StaffManager">
               <point x="0.0" y="-14.5" />
-              <point x="115.0" y="229.0" />
-              <point x="97.75" y="229.0" />
-              <point x="-97.75" y="25.5" />
+              <point x="3117.6773504273506" y="472.0" />
+              <point x="3160.8750000000005" y="472.0" />
+              <point x="107.75" y="47.5" />
+            </edge>
+            <edge source="Domain.StaffManager" target="Domain.TaskRequest">
+              <point x="53.875" y="-47.5" />
+              <point x="3107.0000000000005" y="275.0" />
+              <point x="3102.0000000000005" y="275.0" />
+              <point x="0.0" y="14.5" />
             </edge>
             <edge source="Domain.SubTeamEmployee" target="Domain.SubTeamEmployeeAssignment">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="142.0" y="-36.5" />
+              <point x="2709.7500000000005" y="275.0" />
+              <point x="2756.0000000000005" y="275.0" />
+              <point x="0.0" y="25.5" />
             </edge>
             <edge source="Domain.FinancialManager" target="Domain.User">
-              <point x="0.0" y="-25.5" />
-              <point x="850.5000000000001" y="91.0" />
-              <point x="1431.318181818182" y="91.0" />
-              <point x="-35.181818181818244" y="25.5" />
+              <point x="83.25" y="-25.5" />
+              <point x="1955.690705128206" y="595.0" />
+              <point x="2008.2500000000005" y="595.0" />
+              <point x="2008.2500000000005" y="265.0" />
+              <point x="1887.6250000000005" y="265.0" />
+              <point x="16.125" y="25.5" />
             </edge>
             <edge source="Domain.ServiceManager" target="Domain.StaffManager">
               <point x="0.0" y="-14.5" />
-              <point x="276.0" y="229.0" />
-              <point x="293.25" y="229.0" />
-              <point x="97.75" y="25.5" />
+              <point x="2956.6773504273506" y="472.0" />
+              <point x="2945.3750000000005" y="472.0" />
+              <point x="-107.75" y="47.5" />
             </edge>
             <edge source="Domain.AdministrationDepartmentManager" target="Domain.User">
-              <point x="0.0" y="-14.5" />
-              <point x="537.5000000000001" y="81.0" />
-              <point x="1419.590909090909" y="81.0" />
-              <point x="-46.90909090909099" y="25.5" />
+              <point x="120.33333333333326" y="-36.5" />
+              <point x="1386.0763888888896" y="595.0" />
+              <point x="1699.291666666667" y="595.0" />
+              <point x="1699.291666666667" y="265.0" />
+              <point x="1855.3750000000005" y="265.0" />
+              <point x="-16.125" y="25.5" />
+            </edge>
+            <edge source="Domain.StaffManager" target="Domain.FinancialRequest">
+              <point x="-53.875" y="-47.5" />
+              <point x="2999.2500000000005" y="275.0" />
+              <point x="2957.0000000000005" y="275.0" />
+              <point x="0.0" y="14.5" />
             </edge>
             <edge source="Domain.EventRequest" target="Domain.Client">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="-33.75" y="102.5" />
+              <point x="533.2291666666667" y="275.0" />
+              <point x="492.85416666666674" y="275.0" />
+              <point x="70.875" y="-58.5" />
             </edge>
             <edge source="Domain.FinancialReport" target="Domain.Report">
               <point x="0.0" y="-14.5" />
-              <point x="64.5" y="399.0" />
-              <point x="439.8333333333333" y="399.0" />
-              <point x="-46.666666666666686" y="25.5" />
+              <point x="1139.041666666667" y="472.0" />
+              <point x="974.2083333333335" y="472.0" />
+              <point x="28.0" y="25.5" />
             </edge>
             <edge source="Domain.SeniorHRManager" target="Domain.User">
               <point x="0.0" y="-14.5" />
-              <point x="1266.0" y="111.0" />
-              <point x="1454.7727272727275" y="111.0" />
-              <point x="-11.727272727272748" y="25.5" />
+              <point x="2089.7500000000005" y="255.0" />
+              <point x="1898.3750000000005" y="255.0" />
+              <point x="26.875" y="25.5" />
             </edge>
             <edge source="Domain.StaffManager" target="Domain.User">
-              <point x="0.0" y="-25.5" />
-              <point x="195.5" y="71.0" />
-              <point x="1407.8636363636365" y="71.0" />
-              <point x="-58.63636363636374" y="25.5" />
+              <point x="-161.625" y="-47.5" />
+              <point x="2891.5000000000005" y="225.0" />
+              <point x="1930.6250000000005" y="225.0" />
+              <point x="59.125" y="25.5" />
             </edge>
             <edge source="Domain.EmployeeReport" target="Domain.User">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="33.25" y="-25.5" />
+              <point x="1323.291666666667" y="235.0" />
+              <point x="1823.1250000000005" y="235.0" />
+              <point x="-48.375" y="25.5" />
             </edge>
             <edge source="Domain.EventEarningsReport" target="Domain.Event">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="-40.25" y="-25.5" />
+              <point x="332.5523504273506" y="432.0" />
+              <point x="249.41666666666674" y="432.0" />
+              <point x="249.41666666666674" y="275.0" />
+              <point x="243.22916666666674" y="275.0" />
+              <point x="-33.75" y="102.5" />
             </edge>
             <edge source="Domain.SeniorCustomerServiceOfficer" target="Domain.User">
               <point x="0.0" y="-14.5" />
-              <point x="0.0" y="25.5" />
+              <point x="1443.291666666667" y="245.0" />
+              <point x="1833.8750000000005" y="245.0" />
+              <point x="-37.625" y="25.5" />
             </edge>
             <edge source="Domain.EmployeeReport" target="Domain.Report">
-              <point x="0.0" y="-25.5" />
-              <point x="793.5" y="409.0" />
-              <point x="514.5" y="409.0" />
-              <point x="28.0" y="25.5" />
+              <point x="-33.25" y="-25.5" />
+              <point x="1256.791666666667" y="462.0" />
+              <point x="992.8750000000001" y="462.0" />
+              <point x="46.66666666666663" y="25.5" />
             </edge>
             <edge source="Domain.EmployeeUtilizationReport" target="Domain.Report">
               <point x="0.0" y="-14.5" />
-              <point x="979.0" y="399.0" />
-              <point x="533.1666666666666" y="399.0" />
-              <point x="46.66666666666663" y="25.5" />
+              <point x="9.333333333333371" y="25.5" />
             </edge>
             <edge source="Domain.ClientAndEventStatisticsReport" target="Domain.Client">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
+              <point x="-1.4210854715202004E-14" y="-36.5" />
+              <point x="120.94818376068406" y="442.0" />
+              <point x="374.72916666666674" y="442.0" />
+              <point x="-47.25" y="58.5" />
             </edge>
             <edge source="Domain.EventEarningsReport" target="Domain.Report">
-              <point x="0.0" y="-25.5" />
-              <point x="379.5" y="419.0" />
-              <point x="477.1666666666667" y="419.0" />
-              <point x="-9.333333333333314" y="25.5" />
+              <point x="40.25" y="-25.5" />
+              <point x="413.0523504273506" y="462.0" />
+              <point x="918.2083333333335" y="462.0" />
+              <point x="-28.0" y="25.5" />
+            </edge>
+            <edge source="Domain.AdministrationDepartmentManager" target="Domain.EmployeeReport">
+              <point x="0.0" y="-36.5" />
+              <point x="1265.743055555556" y="595.0" />
+              <point x="1290.041666666667" y="595.0" />
+              <point x="0.0" y="25.5" />
             </edge>
             <edge source="Domain.SubTeamServiceDept" target="Domain.SubTeam">
               <point x="0.0" y="-14.5" />
-              <point x="671.5" y="655.0" />
-              <point x="731.75" y="655.0" />
-              <point x="-37.25" y="36.5" />
+              <point x="2665.2500000000005" y="595.0" />
+              <point x="2605.0000000000005" y="595.0" />
+              <point x="37.25" y="36.5" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.5503685503685504" x="1007.5" y="680.5558035714286" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="-157.5" y="119.5" />
           <SelectedNodes>
-            <node>Domain.SubTeamEmployeeAssignment</node>
+            <node>Domain.RecruitmentRequest</node>
           </SelectedNodes>
           <Categories>
             <Category>Fields</Category>
+            <Category>Constructors</Category>
           </Categories>
           <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
