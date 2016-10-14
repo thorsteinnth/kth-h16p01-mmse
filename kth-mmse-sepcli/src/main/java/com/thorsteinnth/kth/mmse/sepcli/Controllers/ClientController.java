@@ -22,7 +22,7 @@ class ClientController extends BaseController
         CliHandler.write("This is the client management page");
         CliHandler.write("Please select one of the following operations:");
         CliHandler.write("1. Create client record");
-        CliHandler.write("2. View client records");
+        CliHandler.write("2. Browse client records");
         CliHandler.write("3. Back");
         ArrayList<String> validInputs = new ArrayList<String>();
         validInputs.add("1");
@@ -34,7 +34,7 @@ class ClientController extends BaseController
         if (input.equals("1"))
             createClient();
         else if (input.equals("2"))
-            viewClientRecords();
+            browseClientRecords();
         else if (input.equals("3"))
             back();
         else
@@ -59,12 +59,20 @@ class ClientController extends BaseController
         displayPage();
     }
 
-    private void viewClientRecords()
+    private void browseClientRecords()
     {
         CliHandler.write("Client records");
-        for (Client client : AppData.clients)
+
+        if (AppData.clients.isEmpty())
         {
-            CliHandler.write(client.toString());
+            CliHandler.write("No client records in system");
+        }
+        else
+        {
+            for (Client client : AppData.clients)
+            {
+                CliHandler.write(client.toString());
+            }
         }
 
         displayPage();
