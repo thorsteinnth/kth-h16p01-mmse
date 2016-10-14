@@ -51,7 +51,8 @@ class ClientController extends BaseController
         String email = CliHandler.getInput("Email:");
         String phoneNumber = CliHandler.getInput("Phone number:");
 
-        Client newClient = new ClientService().createClient(name, address, email, phoneNumber);
+        String clientId = Integer.toString(AppData.clients.size() + 1);
+        Client newClient = new ClientService().createClient(clientId, name, address, email, phoneNumber);
 
         AppData.clients.add(newClient);
         CliHandler.write("Client created: " + newClient.toString());
@@ -71,11 +72,11 @@ class ClientController extends BaseController
         {
             for (Client client : AppData.clients)
             {
-                CliHandler.write(client.toString());
+                CliHandler.write(client.toStringShort());
             }
         }
 
-        displayPage();
+        viewClientRecort();
     }
 
     private void viewClientRecord()
