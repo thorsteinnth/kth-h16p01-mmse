@@ -1,5 +1,6 @@
 package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
+import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
@@ -15,6 +16,7 @@ public class LoginController extends BaseController
 
     public void login()
     {
+        CliHelper.newLine();
         CliHelper.write("Please enter your login information.");
 
         String email = CliHelper.getInput("Email:");
@@ -36,7 +38,10 @@ public class LoginController extends BaseController
 
     public void logout()
     {
+        CliHelper.newLine();
+        CliHelper.write("Logging out user: " + AppData.loggedInUser.email);
         new UserService(new UserRepository()).logout();
+        CliHelper.write("User logged out");
         login();
     }
 }
