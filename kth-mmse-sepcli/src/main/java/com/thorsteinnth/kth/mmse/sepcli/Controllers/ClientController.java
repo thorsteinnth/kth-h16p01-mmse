@@ -45,6 +45,7 @@ class ClientController extends BaseController
     // TODO Restrict access to specific roles
     private void createClient()
     {
+        CliHandler.newLine();
         CliHandler.write("Create client");
         String name = CliHandler.getInput("Name:");
         String address = CliHandler.getInput("Address:");
@@ -62,6 +63,7 @@ class ClientController extends BaseController
 
     private void browseClientRecords()
     {
+        CliHandler.newLine();
         CliHandler.write("Client records");
 
         if (AppData.clients.isEmpty())
@@ -76,7 +78,7 @@ class ClientController extends BaseController
             }
         }
 
-        viewClientRecort();
+        viewClientRecord();
     }
 
     private void back()
