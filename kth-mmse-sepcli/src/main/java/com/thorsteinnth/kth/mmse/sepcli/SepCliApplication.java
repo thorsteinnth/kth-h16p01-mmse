@@ -1,8 +1,7 @@
-package com.thorsteinnth.kth.mmse.sep.cli;
+package com.thorsteinnth.kth.mmse.sepcli;
 
-import com.beust.jcommander.*;
-import com.thorsteinnth.kth.mmse.sep.cli.Controllers.HomePageController;
-import com.thorsteinnth.kth.mmse.sep.cli.Controllers.LoginController;
+import com.thorsteinnth.kth.mmse.sepcli.Controllers.HomePageController;
+import com.thorsteinnth.kth.mmse.sepcli.Controllers.LoginController;
 
 public class SepCliApplication
 {
@@ -10,9 +9,7 @@ public class SepCliApplication
 
     public static void main (String [] arguments)
     {
-        // JCommander tests
-        //Settings settings = new Settings();
-        //new JCommander(settings, input);
+        AppData appData = new AppData();
 
         LoginController loginController = new LoginController();
         loginController.login();

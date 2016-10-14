@@ -1,4 +1,4 @@
-package com.thorsteinnth.kth.mmse.sep.cli;
+package com.thorsteinnth.kth.mmse.sepcli;
 
 import java.util.ArrayList;
 import java.util.Scanner;
