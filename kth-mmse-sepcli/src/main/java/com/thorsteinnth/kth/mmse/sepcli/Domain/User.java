@@ -24,6 +24,11 @@ public class User
         AdministrationDepartmentManager,
         HRAssistant,
         HRManager,
+        MarketingOfficer,
+        MarketingAssistant,
+        ProductionManager,
+        ServiceDepartmentManager,
+        VicePresident,
         GeneralUser
     }
 

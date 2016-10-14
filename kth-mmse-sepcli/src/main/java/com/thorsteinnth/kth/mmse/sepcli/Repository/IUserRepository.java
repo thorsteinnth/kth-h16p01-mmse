@@ -7,6 +7,6 @@ import java.util.ArrayList;
 public interface IUserRepository
 {
     void addUser(User user);
-    User getUserById(String id);
+    User getUserByEmail(String email);
     ArrayList<User> getAllUsers();
 }
