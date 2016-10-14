@@ -62,6 +62,7 @@ class ClientController extends BaseController
 
     private void browseClientRecords()
     {
+        CliHelper.newLine();
         CliHelper.write("Client records");
 
         if (clientService.getAllClients().isEmpty())
