@@ -1,8 +1,8 @@
 package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
-import com.thorsteinnth.kth.mmse.sepcli.AppData;
-import com.thorsteinnth.kth.mmse.sepcli.CliHandler;
+import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.ClientRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.ClientService;
 
 import java.util.ArrayList;
@@ -10,26 +10,28 @@ import java.util.ArrayList;
 class ClientController extends BaseController
 {
     private BaseController previousController;
+    private ClientService clientService;
 
     ClientController(BaseController previousController)
     {
+        this.clientService = new ClientService(new ClientRepository());
         this.previousController = previousController;
     }
 
     public void displayPage()
     {
-        CliHandler.newLine();
-        CliHandler.write("This is the client management page");
-        CliHandler.write("Please select one of the following operations:");
-        CliHandler.write("1. Create client record");
-        CliHandler.write("2. Browse client records");
-        CliHandler.write("3. Back");
+        CliHelper.newLine();
+        CliHelper.write("This is the client management page");
+        CliHelper.write("Please select one of the following operations:");
+        CliHelper.write("1. Create client record");
+        CliHelper.write("2. Browse client records");
+        CliHelper.write("3. Back");
         ArrayList<String> validInputs = new ArrayList<String>();
         validInputs.add("1");
         validInputs.add("2");
         validInputs.add("3");
 
-        String input = CliHandler.getInput("Select an operation (1-3)", validInputs);
+        String input = CliHelper.getInput("Select an operation (1-3)", validInputs);
 
         if (input.equals("1"))
             createClient();
@@ -45,43 +47,79 @@ class ClientController extends BaseController
     // TODO Restrict access to specific roles
     private void createClient()
     {
-        CliHandler.write("Create client");
-        String name = CliHandler.getInput("Name:");
-        String address = CliHandler.getInput("Address:");
-        String email = CliHandler.getInput("Email:");
-        String phoneNumber = CliHandler.getInput("Phone number:");
+        CliHelper.write("Create client");
+        String name = CliHelper.getInput("Name:");
+        String address = CliHelper.getInput("Address:");
+        String email = CliHelper.getInput("Email:");
+        String phoneNumber = CliHelper.getInput("Phone number:");
 
-        String clientId = Integer.toString(AppData.clients.size() + 1);
-        Client newClient = new ClientService().createClient(clientId, name, address, email, phoneNumber);
+        Client newClient = new ClientService(new ClientRepository()).createClient(name, address, email, phoneNumber);
 
-        AppData.clients.add(newClient);
-        CliHandler.write("Client created: " + newClient.toString());
+        CliHelper.write("Client created: " + newClient.toString());
 
         displayPage();
     }
 
     private void browseClientRecords()
     {
-        CliHandler.write("Client records");
+        CliHelper.write("Client records");
 
-        if (AppData.clients.isEmpty())
+        if (clientService.getAllClients().isEmpty())
         {
-            CliHandler.write("No client records in system");
+            CliHelper.write("No client records in system");
         }
         else
         {
-            for (Client client : AppData.clients)
+            for (Client client : clientService.getAllClients())
             {
-                CliHandler.write(client.toStringShort());
+                CliHelper.write(client.toStringShort());
             }
+
+            viewClientRecord();
         }
 
-        viewClientRecort();
+        displayPage();
     }
 
     private void viewClientRecord()
     {
-        CliHandler.write("Select a client ID to ");
+        CliHelper.newLine();
+
+        ArrayList<String> validInputs = new ArrayList<String>();
+        validInputs.add("0");
+
+        for (Client client : clientService.getAllClients())
+        {
+            validInputs.add(client.id);
+        }
+
+        final String selectedId = CliHelper.getInput(
+                "Select a client ID to view details, or select 0 to go back",
+                validInputs);
+
+        if (selectedId.equals(0))
+        {
+            displayPage();
+        }
+        else
+        {
+            Client client = clientService.getClientById(selectedId);
+
+            if (client == null)
+            {
+                CliHelper.write("ERROR: Could not find client with ID: " + selectedId);
+            }
+            else
+            {
+                printClientRecord(client);
+            }
+        }
+    }
+
+    private void printClientRecord(Client client)
+    {
+        // TODO Format this differently
+        CliHelper.write(client.toString());
     }
 
     private void back()

@@ -3,7 +3,7 @@ package com.thorsteinnth.kth.mmse.sepcli;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CliHandler
+public class CliHelper
 {
     public static String getInput(String messageToUser)
     {
