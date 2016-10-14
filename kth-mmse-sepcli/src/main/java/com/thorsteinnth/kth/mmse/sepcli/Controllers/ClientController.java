@@ -119,8 +119,16 @@ class ClientController extends BaseController
 
     private void printClientRecord(Client client)
     {
-        // TODO Format this differently
-        CliHelper.write(client.toString());
+        CliHelper.newLine();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:\t\t\t\t" + client.id + System.getProperty("line.separator"));
+        sb.append("Name:\t\t\t" + client.name + System.getProperty("line.separator"));
+        sb.append("Address:\t\t" + client.address + System.getProperty("line.separator"));
+        sb.append("Email:\t\t\t" + client.email + System.getProperty("line.separator"));
+        sb.append("Phone number:\t" + client.phoneNumber + System.getProperty("line.separator"));
+
+        CliHelper.write(sb.toString());
     }
 
     private void back()
