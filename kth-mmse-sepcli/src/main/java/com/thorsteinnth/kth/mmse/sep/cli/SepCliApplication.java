@@ -1,23 +1,23 @@
 package com.thorsteinnth.kth.mmse.sep.cli;
 
 import com.beust.jcommander.*;
-import com.thorsteinnth.kth.mmse.sep.cli.Service.UserService;
-import com.thorsteinnth.kth.mmse.sep.cli.Domain.User;
+import com.thorsteinnth.kth.mmse.sep.cli.Controllers.HomePageController;
+import com.thorsteinnth.kth.mmse.sep.cli.Controllers.LoginController;
 
 public class SepCliApplication
 {
+    public static AppData AppData;
+
     public static void main (String [] arguments)
     {
-        System.out.println("Welcome to the SEP client.");
-
-        String email = CliHandler.getInput("Email:");
-        String password = CliHandler.getInput("Password:");
-
-        User user = new UserService().Login(email, password);
-        System.out.println(user);
-
+        // JCommander tests
         //Settings settings = new Settings();
         //new JCommander(settings, input);
 
+        LoginController loginController = new LoginController();
+        loginController.login();
+
+        HomePageController homePageController = new HomePageController();
+        homePageController.displayHomePage();
     }
 }

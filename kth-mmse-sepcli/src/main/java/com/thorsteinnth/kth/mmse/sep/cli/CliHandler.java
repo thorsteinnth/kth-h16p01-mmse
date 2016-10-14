@@ -1,27 +1,49 @@
 package com.thorsteinnth.kth.mmse.sep.cli;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CliHandler
 {
     public static String getInput(String messageToUser)
     {
-        System.out.println(messageToUser);
-
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
 
-        /*String[] inputSplit = input.split(" ");
+        System.out.println(messageToUser);
+        return scanner.nextLine();
+    }
 
-        System.out.println("ECHOING:");
-        for (String i : inputSplit)
+    public static String getInput(String messageToUser, ArrayList<String> validInputs)
+    {
+        boolean haveValidInput = false;
+        String input = "";
+
+        while (!haveValidInput)
         {
-            System.out.println(i);
+            input = getInput(messageToUser);
+
+            if (isValidInput(input, validInputs))
+                haveValidInput = true;
+            else
+                System.out.println("Error: Invalid input");
         }
 
-        return inputSplit;
-        */
-
         return input;
+    }
+
+    private static boolean isValidInput(String input, ArrayList<String> validInputs)
+    {
+        for (String vi : validInputs)
+        {
+            if (vi.equals(input))
+                return true;
+        }
+
+        return false;
+    }
+
+    public static void write(String message)
+    {
+        System.out.println(message);
     }
 }

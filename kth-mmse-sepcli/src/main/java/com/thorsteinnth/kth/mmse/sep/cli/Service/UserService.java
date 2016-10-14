@@ -4,7 +4,7 @@ import com.thorsteinnth.kth.mmse.sep.cli.Domain.User;
 
 public class UserService
 {
-    public User Login(String email, String password)
+    public User login(String email, String password)
     {
         // TODO Get from repository
 
