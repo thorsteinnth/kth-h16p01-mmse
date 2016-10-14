@@ -78,6 +78,11 @@ class ClientController extends BaseController
         displayPage();
     }
 
+    private void viewClientRecord()
+    {
+        CliHandler.write("Select a client ID to ");
+    }
+
     private void back()
     {
         this.previousController.displayPage();
