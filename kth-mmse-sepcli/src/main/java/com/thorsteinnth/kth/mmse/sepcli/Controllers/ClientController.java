@@ -18,6 +18,7 @@ class ClientController extends BaseController
 
     public void displayPage()
     {
+        CliHandler.newLine();
         CliHandler.write("This is the client management page");
         CliHandler.write("Please select one of the following operations:");
         CliHandler.write("1. Create client record");
@@ -53,13 +54,20 @@ class ClientController extends BaseController
         Client newClient = new ClientService().createClient(name, address, email, phoneNumber);
 
         AppData.clients.add(newClient);
-
         CliHandler.write("Client created: " + newClient.toString());
+
+        displayPage();
     }
 
     private void viewClientRecords()
     {
-        CliHandler.write("Create client");
+        CliHandler.write("Client records");
+        for (Client client : AppData.clients)
+        {
+            CliHandler.write(client.toString());
+        }
+
+        displayPage();
     }
 
     private void back()

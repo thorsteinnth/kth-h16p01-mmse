@@ -7,6 +7,7 @@ public class LoginController extends BaseController
 {
     public void displayPage()
     {
+        CliHandler.newLine();
         CliHandler.write("Welcome to the SEP client");
         login();
     }

@@ -46,4 +46,9 @@ public class CliHandler
     {
         System.out.println(message);
     }
+
+    public static void newLine()
+    {
+        System.out.println("");
+    }
 }

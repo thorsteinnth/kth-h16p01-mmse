@@ -9,6 +9,7 @@ public class HomePageController extends BaseController
 {
     public void displayPage()
     {
+        CliHandler.newLine();
         CliHandler.write("This is the homepage for user: " + AppData.loggedInUser.email);
         CliHandler.write("Please select one of the following operations:");
         CliHandler.write("1. Client management");
@@ -44,5 +45,6 @@ public class HomePageController extends BaseController
     private void closeApplication()
     {
         // Do nothing, process will terminate
+        CliHandler.write("Closing application");
     }
 }
