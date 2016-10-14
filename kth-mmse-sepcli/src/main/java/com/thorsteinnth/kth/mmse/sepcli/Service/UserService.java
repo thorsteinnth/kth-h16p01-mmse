@@ -1,13 +1,20 @@
 package com.thorsteinnth.kth.mmse.sepcli.Service;
 
+import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 
 public class UserService
 {
-    public User login(String email, String password)
+    public boolean login(String email, String password)
     {
         // TODO Get from repository
+        User user = new User(email, password, User.Role.GeneralUser);
+        AppData.loggedInUser = user;
+        return true;
+    }
 
-        return new User(email, password, User.Role.GeneralUser);
+    public void logout()
+    {
+        AppData.loggedInUser = null;
     }
 }

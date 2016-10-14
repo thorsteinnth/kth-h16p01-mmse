@@ -11,10 +11,6 @@ public class SepCliApplication
     {
         AppData appData = new AppData();
 
-        LoginController loginController = new LoginController();
-        loginController.login();
-
-        HomePageController homePageController = new HomePageController();
-        homePageController.displayHomePage();
+        new LoginController().displayPage();
     }
 }
