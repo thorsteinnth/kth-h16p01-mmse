@@ -25,7 +25,7 @@ public class HelloWorldCommands implements CommandMarker {
 			return false;
 		}
 	}
-		
+	
 	@CliCommand(value = "hw simple", help = "Print a simple hello world message")
 	public String simple(
 		@CliOption(key = { "message" }, mandatory = true, help = "The hello world message") final String message,
