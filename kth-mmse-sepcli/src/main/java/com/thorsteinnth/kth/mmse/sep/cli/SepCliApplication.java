@@ -1,6 +1,8 @@
 package com.thorsteinnth.kth.mmse.sep.cli;
 
 import com.beust.jcommander.*;
+import com.thorsteinnth.kth.mmse.sep.cli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sep.cli.Domain.User;
 
 public class SepCliApplication
 {
@@ -8,9 +10,14 @@ public class SepCliApplication
     {
         System.out.println("Welcome to the SEP client.");
 
-        //Settings settings = new Settings();
-        //new JCommander(settings, arguments);
+        String email = CliHandler.getInput("Email:");
+        String password = CliHandler.getInput("Password:");
 
-        CliHandler.getInput("GIMME SOME INPUT");
+        User user = new UserService().Login(email, password);
+        System.out.println(user);
+
+        //Settings settings = new Settings();
+        //new JCommander(settings, input);
+
     }
 }

@@ -10,7 +10,18 @@ public class CliHandler
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        System.out.println("ECHOING: " + input);
+
+        /*String[] inputSplit = input.split(" ");
+
+        System.out.println("ECHOING:");
+        for (String i : inputSplit)
+        {
+            System.out.println(i);
+        }
+
+        return inputSplit;
+        */
+
         return input;
     }
 }
