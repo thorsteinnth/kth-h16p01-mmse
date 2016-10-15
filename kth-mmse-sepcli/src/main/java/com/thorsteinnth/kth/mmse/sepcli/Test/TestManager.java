@@ -24,6 +24,12 @@ public class TestManager
             success = false;
         }
 
+        if (!ClientTest.testGetClientById())
+        {
+            System.out.println("ClientTest.testGetClientById() FAILED");
+            success = false;
+        }
+
         if (success)
             System.out.println("TestManager - SUCCESS");
         else
