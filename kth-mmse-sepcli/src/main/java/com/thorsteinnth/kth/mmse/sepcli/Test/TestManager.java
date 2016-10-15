@@ -14,11 +14,15 @@ public class TestManager
             success = false;
         }
 
+        AppData.clear();
+
         if (!UserTest.testLoginFailed())
         {
             System.out.println("UserTest.testLoginFailed() FAILED");
             success = false;
         }
+
+        AppData.clear();
 
         if (!UserTest.testLoginSuccess())
         {
@@ -26,15 +30,27 @@ public class TestManager
             success = false;
         }
 
+        AppData.clear();
+
         if (!UserTest.testLogout())
         {
             System.out.println("UserTest.testLogout() FAILED");
             success = false;
         }
 
+        AppData.clear();
+
         if (!ClientTest.testCreateClient())
         {
             System.out.println("ClientTest.testCreateClient() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        if (!ClientTest.testGetClientById())
+        {
+            System.out.println("ClientTest.testGetClientById() FAILED");
             success = false;
         }
 
