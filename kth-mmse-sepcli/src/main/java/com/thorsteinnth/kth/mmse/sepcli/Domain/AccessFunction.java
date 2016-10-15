@@ -10,6 +10,7 @@ public enum AccessFunction
     approveEventRequest,
     rejectEventRequest,
     createTaskRequest,
+    editTaskRequest,
     createFinancialRequest,
     approveFinancialRequest,
     rejectFinancialRequest,
