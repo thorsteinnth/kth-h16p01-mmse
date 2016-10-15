@@ -1,6 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli;
 
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.TaskRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 
@@ -13,12 +14,14 @@ public class AppData
     public static ArrayList<Client> clients;
 
     public static ArrayList<EventRequest> eventRequests;
+    public static ArrayList<TaskRequest> taskRequests;
 
     public AppData()
     {
         users = new ArrayList<>();
         clients = new ArrayList<>();
         eventRequests = new ArrayList<>();
+        taskRequests = new ArrayList<>();
     }
 
     public static void clear()
@@ -27,5 +30,6 @@ public class AppData
         users.clear();
         clients.clear();
         eventRequests.clear();
+        taskRequests.clear();
     }
 }

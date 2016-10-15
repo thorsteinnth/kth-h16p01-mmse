@@ -127,6 +127,14 @@ public class TestManager
 
         AppData.clear();
 
+        // Task request test
+
+        if(!TaskRequestTest.testCreateTaskRequest())
+        {
+            System.out.println("TaskRequestTest.testCreateTaskRequest() FAILED");
+            success = false;
+        }
+
         // Access control test
 
         if (!AccessTest.testHasAccess())
