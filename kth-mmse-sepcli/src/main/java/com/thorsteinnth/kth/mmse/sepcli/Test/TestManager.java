@@ -119,6 +119,14 @@ public class TestManager
 
         AppData.clear();
 
+        if (!EventRequestTest.testAddEventRequest())
+        {
+            System.out.println("EventRequestTest.testAddEventRequest() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Access control test
 
         if (!AccessTest.testHasAccess())

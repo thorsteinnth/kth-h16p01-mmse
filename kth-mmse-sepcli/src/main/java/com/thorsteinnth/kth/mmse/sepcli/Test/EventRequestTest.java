@@ -103,4 +103,24 @@ public class EventRequestTest
             return false;
         }
     }
+
+    public static boolean testAddEventRequest()
+    {
+        EventRequestService srv = getService();
+        EventRequest testEventRequest = getTestEventRequest();
+        srv.addEventRequest(testEventRequest);
+
+        try
+        {
+            assert srv.getAllEventRequests().size() == 1;
+            // NOTE: list.contains uses the equals() method
+            assert srv.getAllEventRequests().contains(testEventRequest);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddEventRequest() - failed");
+            return false;
+        }
+    }
 }
