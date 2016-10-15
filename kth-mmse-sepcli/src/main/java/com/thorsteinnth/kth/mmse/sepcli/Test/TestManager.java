@@ -24,6 +24,12 @@ public class TestManager
             success = false;
         }
 
+        if (!ClientTest.testCreateClient())
+        {
+            System.out.println("ClientTest.testCreateClient() FAILED");
+            success = false;
+        }
+
         if (success)
             System.out.println("TestManager - SUCCESS");
         else
