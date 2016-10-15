@@ -4,6 +4,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Controllers.HomePageController;
 import com.thorsteinnth.kth.mmse.sepcli.Controllers.LoginController;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.Test.TestManager;
 
 public class SepCliApplication
 {
@@ -12,6 +13,10 @@ public class SepCliApplication
     public static void main (String [] arguments)
     {
         AppData appData = new AppData();
+
+        // Run tests
+        // TODO This should be separate from the program
+        TestManager.runTests();
 
         UserService userService = new UserService(new UserRepository());
         userService.createUsers();
