@@ -10,6 +10,14 @@ public class TestManager
 
         // User tests
 
+        if (!UserTest.testCreateUser())
+        {
+            System.out.println("UserTest.testCreateUser() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         if (!UserTest.testAddGetUser())
         {
             System.out.println("UserTest.testAddGetUser() FAILED");

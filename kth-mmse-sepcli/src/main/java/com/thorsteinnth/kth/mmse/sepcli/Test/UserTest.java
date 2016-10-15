@@ -12,6 +12,22 @@ public class UserTest
         return new UserService(new UserRepository());
     }
 
+    public static boolean testCreateUser()
+    {
+        try
+        {
+            User user1 = new User("email", "password", User.Role.AdministrationDepartmentManager);
+            User user2 = getService().createUser("email", "password", User.Role.AdministrationDepartmentManager);
+            assert user1.equals(user2);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testCreateUser() - user1 not equal to user2");
+            return false;
+        }
+    }
+
     public static boolean testAddGetUser()
     {
         UserService userService = getService();
@@ -21,7 +37,7 @@ public class UserTest
 
         try
         {
-            assert  userGet.equals(user1);
+            assert userGet.equals(user1);
             return true;
         }
         catch (AssertionError ae)
