@@ -53,6 +53,11 @@ public class EventRequestTest
         return er;
     }
 
+    /**
+     * Create event request and check that it gets created correctly
+     * (also gets saved to DB, not tested here)
+     * @return true if successful, false if not
+     */
     public static boolean testCreateEventRequest()
     {
         EventRequestService srv = getService();
@@ -104,7 +109,11 @@ public class EventRequestTest
         }
     }
 
-    public static boolean testAddEventRequest()
+    /**
+     * Create event request and test that it gets saved to DB
+     * @return true if successful, false if not
+     */
+    public static boolean testCreateEventRequestDB()
     {
         EventRequestService srv = getService();
         EventRequest testEventRequest = createTestEventRequest();
