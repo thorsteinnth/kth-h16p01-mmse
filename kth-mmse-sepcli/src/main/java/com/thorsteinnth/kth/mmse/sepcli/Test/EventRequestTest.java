@@ -22,7 +22,7 @@ public class EventRequestTest
         return new EventRequestService(new EventRequestRepository());
     }
 
-    private static EventRequest getTestEventRequest()
+    private static EventRequest createTestEventRequest()
     {
         EventRequestService srv = getService();
         ClientService clientService = new ClientService(new ClientRepository());
@@ -107,8 +107,7 @@ public class EventRequestTest
     public static boolean testAddEventRequest()
     {
         EventRequestService srv = getService();
-        EventRequest testEventRequest = getTestEventRequest();
-        srv.addEventRequest(testEventRequest);
+        EventRequest testEventRequest = createTestEventRequest();
 
         try
         {

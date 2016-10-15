@@ -31,7 +31,7 @@ public class EventRequestService
             Client client
     )
     {
-        return new EventRequest(
+        EventRequest er = new EventRequest(
                 this.repository.getNextId(),
                 title,
                 description,
@@ -43,11 +43,9 @@ public class EventRequestService
                 client,
                 AppData.loggedInUser
         );
-    }
 
-    public void addEventRequest(EventRequest eventRequest)
-    {
-        this.repository.addEventRequest(eventRequest);
+        this.repository.addEventRequest(er);
+        return er;
     }
 
     public ArrayList<EventRequest> getAllEventRequests()

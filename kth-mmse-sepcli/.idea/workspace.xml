@@ -54,8 +54,8 @@
           <file leaf-file-name="EventRequestTest.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Test/EventRequestTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="347">
-                  <caret line="95" column="7" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
+                <state relative-caret-position="782">
+                  <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#863#864#0" expanded="true" />
@@ -128,16 +128,14 @@
           <file leaf-file-name="EventRequestService.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Service/EventRequestService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="497">
-                  <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+                <state relative-caret-position="677">
+                  <caret line="46" column="44" selection-start-line="46" selection-start-column="44" selection-end-line="46" selection-end-column="44" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#616#617#0" expanded="true" />
                     <element signature="e#660#661#0" expanded="true" />
-                    <element signature="e#1445#1446#0" expanded="true" />
-                    <element signature="e#1506#1507#0" expanded="true" />
-                    <element signature="e#1570#1571#0" expanded="true" />
-                    <element signature="e#1630#1631#0" expanded="true" />
+                    <element signature="e#1519#1520#0" expanded="true" />
+                    <element signature="e#1579#1580#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -223,8 +221,8 @@
           <file leaf-file-name="IEventRequestRepository.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Repository/IEventRequestRepository.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="20" />
+                <state relative-caret-position="135">
+                  <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -580,7 +578,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Domain/RequestComment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/TextFormatHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Test/TestManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Test/EventRequestTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/AppData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Domain/EventRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Domain/Client.java" />
@@ -591,6 +588,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Repository/IClientRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Repository/ClientRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Service/ClientService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Test/EventRequestTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Service/EventRequestService.java" />
       </list>
     </option>
@@ -1207,12 +1205,12 @@
       <option name="presentableId" value="Default" />
       <updated>1476435244911</updated>
       <workItem from="1476435246933" duration="18425000" />
-      <workItem from="1476531790621" duration="17284000" />
+      <workItem from="1476531790621" duration="17801000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35709000" />
+    <option name="totallyTimeSpent" value="36226000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1234,7 +1232,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32295483" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="525" y="49" width="529" height="954" />
@@ -1571,18 +1569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Test/EventRequestTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="95" column="7" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#863#864#0" expanded="true" />
-            <element signature="e#939#940#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Controllers/ClientController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
@@ -1619,28 +1605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Repository/EventRequestRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#523#524#0" expanded="true" />
-            <element signature="e#578#579#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Repository/IEventRequestRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Repository/IClientRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1668,18 +1632,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Repository/EventRequestRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Repository/IEventRequestRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Service/EventRequestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        <state relative-caret-position="677">
+          <caret line="46" column="44" selection-start-line="46" selection-start-column="44" selection-end-line="46" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#616#617#0" expanded="true" />
             <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#1445#1446#0" expanded="true" />
-            <element signature="e#1506#1507#0" expanded="true" />
-            <element signature="e#1570#1571#0" expanded="true" />
-            <element signature="e#1630#1631#0" expanded="true" />
+            <element signature="e#1519#1520#0" expanded="true" />
+            <element signature="e#1579#1580#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thorsteinnth/kth/mmse/sepcli/Test/EventRequestTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#863#864#0" expanded="true" />
+            <element signature="e#939#940#0" expanded="true" />
           </folding>
         </state>
       </provider>
