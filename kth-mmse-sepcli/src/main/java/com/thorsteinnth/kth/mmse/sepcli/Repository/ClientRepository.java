@@ -10,6 +10,13 @@ public class ClientRepository implements IClientRepository
     public ClientRepository()
     {}
 
+    @Override
+    public int getNextId()
+    {
+        // NOTE: We will never delete any clients in our implementation, so size+1 works
+        return getAllClients().size() + 1;
+    }
+
     public void addClient(Client client)
     {
         AppData.clients.add(client);

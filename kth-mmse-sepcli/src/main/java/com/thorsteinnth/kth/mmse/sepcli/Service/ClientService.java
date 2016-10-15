@@ -16,9 +16,7 @@ public class ClientService
 
     public Client createClient(String name, String address, String email, String phoneNumber)
     {
-        // NOTE: We will never delete any clients in our implementation, so size+1 works
-        int clientId = this.repository.getAllClients().size() + 1;
-        Client newClient = new Client(clientId, name, address, email, phoneNumber);
+        Client newClient = new Client(this.repository.getNextId(), name, address, email, phoneNumber);
         this.repository.addClient(newClient);
         return newClient;
     }

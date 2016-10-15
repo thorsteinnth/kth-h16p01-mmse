@@ -34,11 +34,8 @@ public class EventRequestService
             Client client
     )
     {
-        // NOTE: We will never delete any requests in our implementation, so size+1 works
-        int requestId = getAllEventRequests().size() + 1;
-
         return new EventRequest(
-                requestId,
+                this.repository.getNextId(),
                 title,
                 description,
                 startDateTime,

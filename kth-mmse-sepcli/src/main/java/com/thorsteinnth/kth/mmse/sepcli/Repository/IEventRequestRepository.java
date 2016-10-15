@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public interface IEventRequestRepository
 {
+    int getNextId();
     void addEventRequest(EventRequest eventRequest);
     ArrayList<EventRequest> getAllEventRequests();
 }

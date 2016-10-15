@@ -7,6 +7,12 @@ import java.util.ArrayList;
 
 public class EventRequestRepository implements IEventRequestRepository
 {
+    public int getNextId()
+    {
+        // NOTE: We will never delete any requests in our implementation, so size+1 works
+        return getAllEventRequests().size() + 1;
+    }
+
     @Override
     public void addEventRequest(EventRequest eventRequest)
     {
