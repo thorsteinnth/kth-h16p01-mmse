@@ -1,7 +1,6 @@
 package com.thorsteinnth.kth.mmse.sepcli.Test;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 
 public class TestManager
 {
