@@ -6,6 +6,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.IEventRequestRepository;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class EventRequestService
@@ -39,5 +40,15 @@ public class EventRequestService
                 client,
                 AppData.loggedInUser
         );
+    }
+
+    public void addEventRequest(EventRequest eventRequest)
+    {
+        this.repository.addEventRequest(eventRequest);
+    }
+
+    public ArrayList<EventRequest> getAllEventRequests()
+    {
+        return this.repository.getAllEventRequests();
     }
 }
