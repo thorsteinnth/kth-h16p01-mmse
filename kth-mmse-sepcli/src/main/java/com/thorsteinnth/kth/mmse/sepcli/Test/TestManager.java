@@ -18,6 +18,12 @@ public class TestManager
             success = false;
         }
 
+        if (!UserTest.testLoginSuccess())
+        {
+            System.out.println("UserTest.testLoginSuccess() FAILED");
+            success = false;
+        }
+
         if (success)
             System.out.println("TestManager - SUCCESS");
         else
