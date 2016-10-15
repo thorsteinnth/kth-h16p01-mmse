@@ -5,6 +5,8 @@ import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
 
+import java.util.ArrayList;
+
 public class UserTest
 {
     private static UserService getService()
@@ -200,5 +202,48 @@ public class UserTest
         }
 
         return true;
+    }
+
+    public static boolean testGetAllUsers()
+    {
+        UserService userService = getService();
+
+        ArrayList<User> users = new ArrayList<>();
+
+        User user1 = new User("testemail1", "testpassword1", User.Role.AdministrationDepartmentManager);
+        userService.addUser(user1);
+        users.add(user1);
+
+        User user2 = new User("testemail2", "testpassword2", User.Role.VicePresident);
+        userService.addUser(user2);
+        users.add(user2);
+
+        User user3 = new User("testemail3", "testpassword3", User.Role.HRManager);
+        userService.addUser(user3);
+        users.add(user3);
+
+        ArrayList<User> getAllUsers = userService.getAllUsers();
+
+        try
+        {
+            assert users.size() == getAllUsers.size();
+
+            int cnt = 0;
+
+            for(User u: users)
+            {
+                User getUser = getAllUsers.get(cnt);
+                assert getUser.equals(u);
+
+                cnt++;
+            }
+
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testGetAllUsers() - users not equal to the getAllUsers");
+            return false;
+        }
     }
 }

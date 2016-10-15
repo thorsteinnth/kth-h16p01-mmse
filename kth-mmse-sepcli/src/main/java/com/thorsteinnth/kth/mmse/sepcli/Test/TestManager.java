@@ -67,6 +67,14 @@ public class TestManager
 
         AppData.clear();
 
+        if(!UserTest.testGetAllUsers())
+        {
+            System.out.println("UserTest.testGetAllUsers() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Client test
 
         if (!ClientTest.testCreateClient())
