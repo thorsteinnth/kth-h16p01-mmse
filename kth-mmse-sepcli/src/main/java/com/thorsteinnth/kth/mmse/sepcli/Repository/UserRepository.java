@@ -16,6 +16,11 @@ public class UserRepository implements  IUserRepository
         AppData.users.add(user);
     }
 
+    public void deleteUser(User userToDelete)
+    {
+        AppData.users.removeIf(u -> u.email.equals(userToDelete.email));
+    }
+
     public User getUserByEmail(String email)
     {
         User user = null;

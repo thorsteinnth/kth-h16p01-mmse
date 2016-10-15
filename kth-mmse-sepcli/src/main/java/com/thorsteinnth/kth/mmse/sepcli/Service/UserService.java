@@ -55,14 +55,9 @@ public class UserService
         return new User(email, password, role);
     }
 
-    public ArrayList<User> deleteUser(ArrayList<User> userList, User user)
+    public void deleteUser(User user)
     {
-        if(userList.contains(user))
-        {
-            userList.remove(user);
-        }
-
-        return  userList;
+        this.repository.deleteUser(user);
     }
 
     public void addUser(User user)

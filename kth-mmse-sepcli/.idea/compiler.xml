@@ -19,8 +19,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="kth-mmse-sepcli_main" target="1.5" />
-      <module name="kth-mmse-sepcli_test" target="1.5" />
+      <module name="kth-mmse-sepcli_main" target="1.8" />
+      <module name="kth-mmse-sepcli_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

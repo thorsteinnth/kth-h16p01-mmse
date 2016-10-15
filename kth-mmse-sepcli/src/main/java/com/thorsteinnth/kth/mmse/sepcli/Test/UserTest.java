@@ -28,6 +28,22 @@ public class UserTest
         }
     }
 
+    public static boolean testAddInitialUsers()
+    {
+        try
+        {
+            UserService srv = getService();
+            srv.addInitialUsers();
+            assert srv.getAllUsers().size() == 11;
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddInitialUsers() - Number of users not correct");
+            return false;
+        }
+    }
+
     public static boolean testAddGetUser()
     {
         UserService userService = getService();
@@ -45,6 +61,50 @@ public class UserTest
             System.out.println("testAddGetUser() - userGet not equal to user1");
             return false;
         }
+    }
+
+    public static boolean testAddDeleteUser()
+    {
+        UserService srv = getService();
+        srv.addUser(srv.createUser("maria@sep.se", "maria123", User.Role.HRAssistant));
+
+        // Verify that the user is indeed present
+        // (there is another test for this but doing it again here to avoid coupling)
+        try
+        {
+            assert srv.getUserByEmail("maria@sep.se") != null;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddDeleteUser() - Failed to add user to then delete");
+            return false;
+        }
+
+        int userCountBeforeDelete = srv.getAllUsers().size();
+        User userToDelete = srv.createUser("maria@sep.se", "maria123", User.Role.HRAssistant);
+        srv.deleteUser(userToDelete);
+
+        try
+        {
+            assert srv.getAllUsers().size() == userCountBeforeDelete-1;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddDeleteUser() - User count same as before delete operation");
+            return false;
+        }
+
+        try
+        {
+            assert srv.getUserByEmail("maria@sep.se") == null;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddDeleteUser() - User still present after delete");
+            return false;
+        }
+
+        return true;
     }
 
     public static boolean testLoginFailed()
@@ -140,21 +200,5 @@ public class UserTest
         }
 
         return true;
-    }
-
-    public static boolean testAddInitialUsers()
-    {
-        try
-        {
-            UserService srv = getService();
-            srv.addInitialUsers();
-            assert srv.getAllUsers().size() == 11;
-            return true;
-        }
-        catch (AssertionError ae)
-        {
-            System.out.println("testAddInitialUsers() - Number of users not correct");
-            return false;
-        }
     }
 }

@@ -26,6 +26,14 @@ public class TestManager
 
         AppData.clear();
 
+        if (!UserTest.testAddDeleteUser())
+        {
+            System.out.println("UserTest.testAddDeleteUser() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         if (!UserTest.testLoginFailed())
         {
             System.out.println("UserTest.testLoginFailed() FAILED");
