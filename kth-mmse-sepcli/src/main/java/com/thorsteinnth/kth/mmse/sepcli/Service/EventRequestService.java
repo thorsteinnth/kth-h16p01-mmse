@@ -13,10 +13,7 @@ public class EventRequestService
 {
     private IEventRequestRepository repository;
 
-    // TODO Add IDs on event requests
     // TODO Stop using separate create and add functions in the services
-    // TODO Use integers for IDs
-    // TODO The ID generation should be in the repos
 
     public EventRequestService(IEventRequestRepository repository)
     {
