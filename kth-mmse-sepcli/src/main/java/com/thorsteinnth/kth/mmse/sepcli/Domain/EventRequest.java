@@ -24,7 +24,7 @@ public class EventRequest
     // TODO public ArrayList<FinancialRequest> financialRequests;
 
     public Client client;
-    public User createdBy;
+    public User createdByUser;
 
     public enum Status
     {
@@ -44,7 +44,7 @@ public class EventRequest
             String preferenceDescription,
             BigDecimal expectedBudget,
             Client client,
-            User createdBy
+            User createdByUser
     )
     {
         this.title = title;
@@ -55,7 +55,7 @@ public class EventRequest
         this.preferenceDescription = preferenceDescription;
         this.expectedBudget = expectedBudget;
         this.client = client;
-        this.createdBy = createdBy;
+        this.createdByUser = createdByUser;
 
         this.comments = new ArrayList<RequestComment>();
         this.createdDateTime = new Date();
@@ -132,9 +132,9 @@ public class EventRequest
         return client;
     }
 
-    public User getCreatedBy()
+    public User getCreatedByUser()
     {
-        return createdBy;
+        return createdByUser;
     }
 
     public Date getCreatedDateTime()
@@ -164,7 +164,7 @@ public class EventRequest
         if (createdDateTime != null ? !createdDateTime.equals(that.createdDateTime) : that.createdDateTime != null)
             return false;
         if (client != null ? !client.equals(that.client) : that.client != null) return false;
-        return createdBy != null ? createdBy.equals(that.createdBy) : that.createdBy == null;
+        return createdByUser != null ? createdByUser.equals(that.createdByUser) : that.createdByUser == null;
 
     }
 
@@ -181,7 +181,7 @@ public class EventRequest
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (createdDateTime != null ? createdDateTime.hashCode() : 0);
         result = 31 * result + (client != null ? client.hashCode() : 0);
-        result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
+        result = 31 * result + (createdByUser != null ? createdByUser.hashCode() : 0);
         return result;
     }
 
@@ -199,7 +199,7 @@ public class EventRequest
                 ", status=" + status +
                 ", createdDateTime=" + createdDateTime +
                 ", client=" + client +
-                ", createdBy=" + createdBy +
+                ", createdByUser=" + createdByUser +
                 '}';
     }
 }

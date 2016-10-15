@@ -93,7 +93,7 @@ public class EventRequestTest
                     && er.getComments().equals(new ArrayList<RequestComment>())
                     && er.getStatus().equals(EventRequest.Status.Pending)
                     && er.client.equals(testClient)
-                    && er.createdBy.equals(AppData.loggedInUser);
+                    && er.createdByUser.equals(AppData.loggedInUser);
 
             return true;
         }
