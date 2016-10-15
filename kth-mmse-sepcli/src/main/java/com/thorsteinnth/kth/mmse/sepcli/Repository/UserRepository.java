@@ -41,4 +41,15 @@ public class UserRepository implements  IUserRepository
     {
         return AppData.users;
     }
+
+    public User updateUser(User user, String newEmail, String newPassword, User.Role newRole)
+    {
+        // NOTE:
+        // Since we just have an in memory data store there is no need to save the user explicitly
+        // after updating it
+        user.email = newEmail;
+        user.password = newPassword;
+        user.role = newRole;
+        return user;
+    }
 }

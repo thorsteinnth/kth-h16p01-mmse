@@ -1,7 +1,6 @@
 package com.thorsteinnth.kth.mmse.sepcli.Test;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 
 public class TestManager
 {
@@ -70,6 +69,14 @@ public class TestManager
         if(!UserTest.testGetAllUsers())
         {
             System.out.println("UserTest.testGetAllUsers() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        if(!UserTest.testEditUser())
+        {
+            System.out.println("UserTest.testEditUser() FAILED");
             success = false;
         }
 

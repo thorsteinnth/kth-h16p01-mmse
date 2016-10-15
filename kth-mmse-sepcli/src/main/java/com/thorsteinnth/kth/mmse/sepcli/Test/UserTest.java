@@ -249,4 +249,30 @@ public class UserTest
             return false;
         }
     }
+
+    public static boolean testEditUser()
+    {
+        UserService srv = getService();
+
+        User user = srv.createUser("emailbeforeedit", "passwordbeforeedit", User.Role.GeneralUser);
+
+        String newEmail = "newemail";
+        String newPassword = "newpassword";
+        User.Role newRole = User.Role.VicePresident;
+
+        User editedUser = srv.updateUser(user, newEmail, newPassword, newRole);
+
+        try
+        {
+            assert editedUser.email.equals(newEmail)
+                    && editedUser.password.equals(newPassword)
+                    && editedUser.role.equals(newRole);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testEditUser() - user fields not correct after edit");
+            return false;
+        }
+    }
 }
