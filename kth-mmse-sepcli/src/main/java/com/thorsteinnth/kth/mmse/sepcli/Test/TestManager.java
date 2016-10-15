@@ -19,9 +19,9 @@ public class TestManager
 
         AppData.clear();
 
-        if (!UserTest.testAddGetUser())
+        if (!UserTest.testAddGetUserByEmail())
         {
-            System.out.println("UserTest.testAddGetUser() FAILED");
+            System.out.println("UserTest.testAddGetUserByEmail() FAILED");
             success = false;
         }
 

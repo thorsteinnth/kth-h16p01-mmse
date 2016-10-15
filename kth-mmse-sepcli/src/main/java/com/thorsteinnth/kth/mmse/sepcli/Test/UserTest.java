@@ -44,7 +44,7 @@ public class UserTest
         }
     }
 
-    public static boolean testAddGetUser()
+    public static boolean testAddGetUserByEmail()
     {
         UserService userService = getService();
         User user1 = userService.createUser("email", "password", User.Role.AdministrationDepartmentManager);
@@ -61,7 +61,7 @@ public class UserTest
         }
         catch (AssertionError ae)
         {
-            System.out.println("testAddGetUser() - userGet not equal to user1");
+            System.out.println("testAddGetUserByEmail() - userGet not equal to user1");
             return false;
         }
     }
@@ -113,7 +113,7 @@ public class UserTest
     public static boolean testLoginFailed()
     {
         UserService userService = getService();
-        User user1 = new User("testemail", "testpassword", User.Role.AdministrationDepartmentManager);
+        User user1 = userService.createUser("testemail", "testpassword", User.Role.AdministrationDepartmentManager);
         userService.addUser(user1);
 
         boolean loginSuccess = userService.login("testemail", "nonsense");
@@ -144,7 +144,7 @@ public class UserTest
     public static boolean testLoginSuccess()
     {
         UserService userService = getService();
-        User user1 = new User("correctemail", "correctpassword", User.Role.AdministrationDepartmentManager);
+        User user1 = userService.createUser("correctemail", "correctpassword", User.Role.AdministrationDepartmentManager);
         userService.addUser(user1);
 
         boolean loginSuccess = userService.login("correctemail", "correctpassword");
