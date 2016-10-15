@@ -16,4 +16,11 @@ public class AppData
         users = new ArrayList<User>();
         clients = new ArrayList<Client>();
     }
+
+    public static void clear()
+    {
+        loggedInUser = null;
+        users.clear();
+        clients.clear();
+    }
 }

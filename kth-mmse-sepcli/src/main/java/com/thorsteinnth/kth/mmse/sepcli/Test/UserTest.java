@@ -61,4 +61,68 @@ public class UserTest
 
         return true;
     }
+
+    public static boolean testLoginSuccess()
+    {
+        UserService userService = getService();
+        User user1 = new User("correctemail", "correctpassword", User.Role.AdministrationDepartmentManager);
+        userService.addUser(user1);
+
+        boolean loginSuccess = userService.login("correctemail", "correctpassword");
+
+        try
+        {
+            assert loginSuccess;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testLoginSuccess() - Login failure when it should have been successful");
+            return false;
+        }
+
+        try
+        {
+            assert AppData.loggedInUser.equals(user1);
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testLoginSuccess() - AppData.loggedInUser not equal to user that logged in");
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean testLogout()
+    {
+        if (!testLoginSuccess())
+        {
+            System.out.println("testLogout() - Could not log in user for logout test");
+            return false;
+        }
+
+        try
+        {
+            assert AppData.loggedInUser != null;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testLogout() - No user logged in to log out");
+            return false;
+        }
+
+        try
+        {
+            UserService userService = getService();
+            userService.logout();
+            assert AppData.loggedInUser == null;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testLogout() - Logged in user not null");
+            return false;
+        }
+
+        return true;
+    }
 }
