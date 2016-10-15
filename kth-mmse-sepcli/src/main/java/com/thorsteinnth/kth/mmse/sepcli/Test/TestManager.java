@@ -75,7 +75,7 @@ public class TestManager
 
         AppData.clear();
 
-        // Client test
+        // Client tests
 
         if (!ClientTest.testCreateClient())
         {
@@ -98,6 +98,24 @@ public class TestManager
             System.out.println("ClientTest.testGetAllClients() FAILED");
             success = false;
         }
+
+        AppData.clear();
+
+        if(!AccessTest.testHasAccess())
+        {
+            System.out.println("AccessTest.testHasAccess() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        if(!AccessTest.testAccessDenied())
+        {
+            System.out.println("AccessTest.testAccessDenied() FAILED");
+            success = false;
+        }
+
+        //Access tests
 
         if (success)
             System.out.println("TestManager - SUCCESS");

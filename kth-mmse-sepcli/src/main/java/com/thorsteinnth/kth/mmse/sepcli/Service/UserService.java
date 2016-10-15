@@ -42,7 +42,7 @@ public class UserService
         addUser(createUser("alice@sep.se", "alice123", User.Role.FinancialManager));
         addUser(createUser("mike@sep.se", "mike123", User.Role.AdministrationDepartmentManager));
         addUser(createUser("maria@sep.se", "maria123", User.Role.HRAssistant));
-        addUser(createUser("simon@sep.se", "simon123", User.Role.HRManager));
+        addUser(createUser("simon@sep.se", "simon123", User.Role.SeniorHRManager));
         addUser(createUser("david@sep.se", "david123", User.Role.MarketingOfficer));
         addUser(createUser("emma@sep.se", "emma123", User.Role.MarketingAssistant));
         addUser(createUser("jack@sep.se", "jack123", User.Role.ProductionManager));

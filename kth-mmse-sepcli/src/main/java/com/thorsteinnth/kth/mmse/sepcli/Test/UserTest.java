@@ -221,7 +221,7 @@ public class UserTest
         userService.addUser(user2);
         users.add(user2);
 
-        User user3 = new User("testemail3", "testpassword3", User.Role.HRManager);
+        User user3 = new User("testemail3", "testpassword3", User.Role.SeniorHRManager);
         userService.addUser(user3);
         users.add(user3);
 
