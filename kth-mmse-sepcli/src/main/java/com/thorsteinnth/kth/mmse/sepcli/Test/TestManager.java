@@ -83,7 +83,7 @@ public class TestManager
 
         AppData.clear();
 
-        // Client test
+        // Client tests
 
         if (!ClientTest.testCreateClient())
         {
@@ -101,7 +101,7 @@ public class TestManager
 
         AppData.clear();
 
-        if(!ClientTest.testGetAllClients())
+        if (!ClientTest.testGetAllClients())
         {
             System.out.println("ClientTest.testGetAllClients() FAILED");
             success = false;
@@ -114,6 +114,24 @@ public class TestManager
         if (!EventRequestTest.testCreateEventRequest())
         {
             System.out.println("EventRequestTest.testCreateEventRequest() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        // Access control test
+
+        if (!AccessTest.testHasAccess())
+        {
+            System.out.println("AccessTest.testHasAccess() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        if (!AccessTest.testAccessDenied())
+        {
+            System.out.println("AccessTest.testAccessDenied() FAILED");
             success = false;
         }
 

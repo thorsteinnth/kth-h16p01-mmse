@@ -23,7 +23,7 @@ public class User
         SeniorCustomerServiceOfficer,
         AdministrationDepartmentManager,
         HRAssistant,
-        HRManager,
+        SeniorHRManager,
         MarketingOfficer,
         MarketingAssistant,
         ProductionManager,
