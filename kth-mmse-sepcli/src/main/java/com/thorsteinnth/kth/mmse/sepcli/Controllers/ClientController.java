@@ -91,7 +91,7 @@ class ClientController extends BaseController
 
         for (Client client : clientService.getAllClients())
         {
-            validInputs.add(client.id);
+            validInputs.add(Integer.toString(client.id));
         }
 
         final String selectedId = CliHelper.getInput(

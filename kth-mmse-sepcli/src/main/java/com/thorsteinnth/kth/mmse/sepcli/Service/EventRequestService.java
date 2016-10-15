@@ -13,6 +13,8 @@ public class EventRequestService
 {
     private IEventRequestRepository repository;
 
+    // TODO Stop using separate create and add functions in the services
+
     public EventRequestService(IEventRequestRepository repository)
     {
         this.repository = repository;
@@ -29,7 +31,8 @@ public class EventRequestService
             Client client
     )
     {
-        return new EventRequest(
+        EventRequest er = new EventRequest(
+                this.repository.getNextId(),
                 title,
                 description,
                 startDateTime,
@@ -40,11 +43,9 @@ public class EventRequestService
                 client,
                 AppData.loggedInUser
         );
-    }
 
-    public void addEventRequest(EventRequest eventRequest)
-    {
-        this.repository.addEventRequest(eventRequest);
+        this.repository.addEventRequest(er);
+        return er;
     }
 
     public ArrayList<EventRequest> getAllEventRequests()

@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 // TODO Refactor - add abstract request class?
 public class EventRequest
 {
+    private final int id;
     private String title;
     private String description;
     private GregorianCalendar startDateTime;
@@ -36,6 +37,7 @@ public class EventRequest
     }
 
     public EventRequest(
+            int id,
             String title,
             String description,
             GregorianCalendar startDateTime,
@@ -47,6 +49,7 @@ public class EventRequest
             User createdByUser
     )
     {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.startDateTime = startDateTime;
@@ -60,6 +63,11 @@ public class EventRequest
         this.comments = new ArrayList<RequestComment>();
         this.createdDateTime = new Date();
         this.status = Status.Pending;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 
     public void addComment(RequestComment comment)
@@ -149,6 +157,7 @@ public class EventRequest
 
         EventRequest that = (EventRequest) o;
 
+        if (id != that.id) return false;
         if (numberOfAttendees != that.numberOfAttendees) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
@@ -170,7 +179,8 @@ public class EventRequest
 
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (startDateTime != null ? startDateTime.hashCode() : 0);
         result = 31 * result + (endDateTime != null ? endDateTime.hashCode() : 0);
@@ -188,7 +198,8 @@ public class EventRequest
     @Override
     public String toString() {
         return "EventRequest{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", startDateTime=" + getStartDateTimeString() +
                 ", endDateTime=" + getEndDateTimeString() +

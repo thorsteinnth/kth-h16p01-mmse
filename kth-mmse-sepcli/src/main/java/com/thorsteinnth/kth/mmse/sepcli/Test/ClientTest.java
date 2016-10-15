@@ -15,7 +15,7 @@ public class ClientTest
 
     public static boolean testCreateClient()
     {
-        Client client = new Client("1", "TestClient", "Test address", "test@test.com", "12345678");
+        Client client = new Client(1, "TestClient", "Test address", "test@test.com", "12345678");
 
         //The first client that we create should have Id = 1
         Client createClient = getService().createClient(
