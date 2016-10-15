@@ -25,7 +25,7 @@ public class ClientTest
         }
         catch (AssertionError ae)
         {
-            System.out.println("ClientTest.testCreateClientError FAILED");
+            System.out.println("testCreateClient() - client not equal to the service created client");
             return false;
         }
 
