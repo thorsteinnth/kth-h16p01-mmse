@@ -104,6 +104,8 @@ public class ClientTest
 
         try
         {
+            assert clients.size() == getAllClients.size();
+
             int cnt = 0;
 
             for(Client c: clients)
@@ -116,7 +118,7 @@ public class ClientTest
 
             return true;
         }
-        catch (Exception ex)
+        catch (AssertionError ae)
         {
             System.out.println("testGetAllClients() - clients not equal to the getAllClients");
             return false;
