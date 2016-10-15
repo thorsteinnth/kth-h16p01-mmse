@@ -24,6 +24,12 @@ public class TestManager
             success = false;
         }
 
+        if (!UserTest.testLogout())
+        {
+            System.out.println("UserTest.testLogout() FAILED");
+            success = false;
+        }
+
         if (!ClientTest.testCreateClient())
         {
             System.out.println("ClientTest.testCreateClient() FAILED");

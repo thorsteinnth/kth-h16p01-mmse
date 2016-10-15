@@ -92,4 +92,37 @@ public class UserTest
 
         return true;
     }
+
+    public static boolean testLogout()
+    {
+        if (!testLoginSuccess())
+        {
+            System.out.println("testLogout() - Could not log in user for logout test");
+            return false;
+        }
+
+        try
+        {
+            assert AppData.loggedInUser != null;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testLogout() - No user logged in to log out");
+            return false;
+        }
+
+        try
+        {
+            UserService userService = getService();
+            userService.logout();
+            assert AppData.loggedInUser == null;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testLogout() - Logged in user not null");
+            return false;
+        }
+
+        return true;
+    }
 }
