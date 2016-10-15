@@ -1,6 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Test;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 
 public class TestManager
 {
@@ -106,13 +107,22 @@ public class TestManager
             success = false;
         }
 
+        AppData.clear();
+
+        // Event request test
+
+        if (!EventRequestTest.testCreateEventRequest())
+        {
+            System.out.println("EventRequestTest.testCreateEventRequest() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         if (success)
             System.out.println("TestManager - SUCCESS");
         else
             System.out.println("TestManager - FAILURE");
-
-        // Make sure AppData is cleared, after running the tests
-        AppData.clear();
 
         return success;
     }
