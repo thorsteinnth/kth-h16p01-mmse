@@ -12,14 +12,14 @@ public class SepCliApplication
 
     public static void main (String [] arguments)
     {
-        AppData appData = new AppData();
+        new AppData();
 
         // Run tests
         // TODO This should be separate from the program
         TestManager.runTests();
 
         UserService userService = new UserService(new UserRepository());
-        userService.createUsers();
+        userService.addInitialUsers();
 
         new LoginController().displayPage();
     }

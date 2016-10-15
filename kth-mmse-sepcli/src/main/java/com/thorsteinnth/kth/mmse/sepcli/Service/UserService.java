@@ -32,8 +32,10 @@ public class UserService
         AppData.loggedInUser = null;
     }
 
-    // Creates all the users that need to use the system
-    public void createUsers()
+    /**
+     * Adds all the users that need to use the system
+     */
+    public void addInitialUsers()
     {
         addUser(createUser("sarah@sep.se", "sarah123", User.Role.CustomerServiceOfficer));
         addUser(createUser("janet@sep.se", "janet123", User.Role.SeniorCustomerServiceOfficer));
