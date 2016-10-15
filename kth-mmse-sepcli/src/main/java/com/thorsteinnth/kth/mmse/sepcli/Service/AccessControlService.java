@@ -54,6 +54,9 @@ public class AccessControlService
                         AccessFunction.createRecruitmentRequest
                 ));
                 break;
+            case SubTeamEmployee:
+                accessList.add(AccessFunction.editEventRequest);
+                break;
             case MarketingAssistant:
                 accessList.add(AccessFunction.browseClientRecords);
                 break;
