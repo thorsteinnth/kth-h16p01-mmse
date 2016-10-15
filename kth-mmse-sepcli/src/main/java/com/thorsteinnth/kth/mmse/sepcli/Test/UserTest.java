@@ -125,4 +125,20 @@ public class UserTest
 
         return true;
     }
+
+    public static boolean testAddInitialUsers()
+    {
+        try
+        {
+            UserService srv = getService();
+            srv.addInitialUsers();
+            assert srv.getAllUsers().size() == 11;
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddInitialUsers() - Number of users not correct");
+            return false;
+        }
+    }
 }

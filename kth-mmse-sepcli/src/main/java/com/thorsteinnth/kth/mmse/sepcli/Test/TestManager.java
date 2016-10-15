@@ -8,6 +8,8 @@ public class TestManager
     {
         boolean success = true;
 
+        // User tests
+
         if (!UserTest.testAddGetUser())
         {
             System.out.println("UserTest.testAddGetUser() FAILED");
@@ -39,6 +41,16 @@ public class TestManager
         }
 
         AppData.clear();
+
+        if (!UserTest.testAddInitialUsers())
+        {
+            System.out.println("UserTest.testAddInitialUsers() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        // Client test
 
         if (!ClientTest.testCreateClient())
         {
