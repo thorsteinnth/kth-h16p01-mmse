@@ -1,6 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Test;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 
 public class TestManager
 {
@@ -51,6 +52,14 @@ public class TestManager
         if (!ClientTest.testGetClientById())
         {
             System.out.println("ClientTest.testGetClientById() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        if(!ClientTest.testGetAllClients())
+        {
+            System.out.println("ClientTest.testGetAllClients() FAILED");
             success = false;
         }
 
