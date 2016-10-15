@@ -47,12 +47,15 @@ public class UserTest
     public static boolean testAddGetUser()
     {
         UserService userService = getService();
-        User user1 = new User("email", "password", User.Role.AdministrationDepartmentManager);
+        User user1 = userService.createUser("email", "password", User.Role.AdministrationDepartmentManager);
         userService.addUser(user1);
         User userGet = userService.getUserByEmail(user1.email);
 
         try
         {
+            // NOTE:
+            // Since we just have an in memory data store
+            // the getUserByEmail() function just returns the same user object - if we find a user they will be equal
             assert userGet.equals(user1);
             return true;
         }
