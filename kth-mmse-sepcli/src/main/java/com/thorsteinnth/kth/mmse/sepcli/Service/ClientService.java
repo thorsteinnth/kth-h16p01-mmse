@@ -16,7 +16,8 @@ public class ClientService
 
     public Client createClient(String name, String address, String email, String phoneNumber)
     {
-        String clientId = Integer.toString(this.repository.getAllClients().size() + 1);
+        // NOTE: We will never delete any clients in our implementation, so size+1 works
+        int clientId = this.repository.getAllClients().size() + 1;
         Client newClient = new Client(clientId, name, address, email, phoneNumber);
         this.repository.addClient(newClient);
         return newClient;
@@ -24,7 +25,7 @@ public class ClientService
 
     public Client getClientById(String id)
     {
-        return this.repository.getClientById(id);
+        return this.repository.getClientById(Integer.parseInt(id));
     }
 
     public ArrayList<Client> getAllClients()

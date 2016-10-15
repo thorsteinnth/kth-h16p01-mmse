@@ -7,6 +7,6 @@ import java.util.ArrayList;
 public interface IClientRepository
 {
     void addClient(Client client);
-    Client getClientById(String id);
+    Client getClientById(int id);
     ArrayList<Client> getAllClients();
 }

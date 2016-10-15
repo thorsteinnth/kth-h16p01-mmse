@@ -15,13 +15,13 @@ public class ClientRepository implements IClientRepository
         AppData.clients.add(client);
     }
 
-    public Client getClientById(String id)
+    public Client getClientById(int id)
     {
         Client client = null;
 
         for (Client c : AppData.clients)
         {
-            if (c.id.equals(id))
+            if (c.id == id)
             {
                 client = c;
                 break;

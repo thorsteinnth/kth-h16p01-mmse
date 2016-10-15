@@ -13,6 +13,11 @@ public class EventRequestService
 {
     private IEventRequestRepository repository;
 
+    // TODO Add IDs on event requests
+    // TODO Stop using separate create and add functions in the services
+    // TODO Use integers for IDs
+    // TODO The ID generation should be in the repos
+
     public EventRequestService(IEventRequestRepository repository)
     {
         this.repository = repository;
@@ -29,7 +34,11 @@ public class EventRequestService
             Client client
     )
     {
+        // NOTE: We will never delete any requests in our implementation, so size+1 works
+        int requestId = getAllEventRequests().size() + 1;
+
         return new EventRequest(
+                requestId,
                 title,
                 description,
                 startDateTime,
