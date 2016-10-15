@@ -17,7 +17,6 @@ public class SepCliApplication
         // Run tests
         // TODO This should be separate from the program
         TestManager.runTests();
-        // TODO Clear AppData
 
         UserService userService = new UserService(new UserRepository());
         userService.createUsers();

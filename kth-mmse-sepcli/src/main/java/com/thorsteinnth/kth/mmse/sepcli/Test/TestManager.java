@@ -1,5 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Test;
 
+import com.thorsteinnth.kth.mmse.sepcli.AppData;
+
 public class TestManager
 {
     public static boolean runTests()
@@ -40,6 +42,9 @@ public class TestManager
             System.out.println("TestManager - SUCCESS");
         else
             System.out.println("TestManager - FAILURE");
+
+        // Make sure AppData is cleared, after running the tests
+        AppData.clear();
 
         return success;
     }
