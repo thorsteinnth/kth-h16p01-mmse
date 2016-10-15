@@ -46,21 +46,24 @@ public class UserTest
         }
     }
 
-    public static boolean testAddGetUser()
+    public static boolean testAddGetUserByEmail()
     {
         UserService userService = getService();
-        User user1 = new User("email", "password", User.Role.AdministrationDepartmentManager);
+        User user1 = userService.createUser("email", "password", User.Role.AdministrationDepartmentManager);
         userService.addUser(user1);
         User userGet = userService.getUserByEmail(user1.email);
 
         try
         {
+            // NOTE:
+            // Since we just have an in memory data store
+            // the getUserByEmail() function just returns the same user object - if we find a user they will be equal
             assert userGet.equals(user1);
             return true;
         }
         catch (AssertionError ae)
         {
-            System.out.println("testAddGetUser() - userGet not equal to user1");
+            System.out.println("testAddGetUserByEmail() - userGet not equal to user1");
             return false;
         }
     }
@@ -112,7 +115,7 @@ public class UserTest
     public static boolean testLoginFailed()
     {
         UserService userService = getService();
-        User user1 = new User("testemail", "testpassword", User.Role.AdministrationDepartmentManager);
+        User user1 = userService.createUser("testemail", "testpassword", User.Role.AdministrationDepartmentManager);
         userService.addUser(user1);
 
         boolean loginSuccess = userService.login("testemail", "nonsense");
@@ -143,7 +146,7 @@ public class UserTest
     public static boolean testLoginSuccess()
     {
         UserService userService = getService();
-        User user1 = new User("correctemail", "correctpassword", User.Role.AdministrationDepartmentManager);
+        User user1 = userService.createUser("correctemail", "correctpassword", User.Role.AdministrationDepartmentManager);
         userService.addUser(user1);
 
         boolean loginSuccess = userService.login("correctemail", "correctpassword");
