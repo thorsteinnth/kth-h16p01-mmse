@@ -29,7 +29,8 @@ public class User
         ProductionManager,
         ServiceDepartmentManager,
         VicePresident,
-        SubTeamEmployee,
+        ProductionDepartmentSubTeamEmployee,
+        ServiceDepartmentSubTeamEmployee,
         GeneralUser
     }
 
