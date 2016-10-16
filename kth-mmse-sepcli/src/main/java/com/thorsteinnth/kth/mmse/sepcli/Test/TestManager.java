@@ -145,6 +145,14 @@ public class TestManager
 
         AppData.clear();
 
+        // Financial request test
+
+        if(!FinancialRequestTest.testCreateFinancialRequest())
+        {
+            System.out.println("FinancialRequest.testCreateFinancialRequest() FAILED");
+            success = false;
+        }
+
         // Access control test
 
         if (!AccessTest.testHasAccess())
