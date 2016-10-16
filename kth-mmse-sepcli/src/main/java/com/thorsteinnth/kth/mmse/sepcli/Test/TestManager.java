@@ -119,9 +119,9 @@ public class TestManager
 
         AppData.clear();
 
-        if (!EventRequestTest.testAddEventRequest())
+        if (!EventRequestTest.testCreateEventRequestDB())
         {
-            System.out.println("EventRequestTest.testAddEventRequest() FAILED");
+            System.out.println("EventRequestTest.testCreateEventRequestDB() FAILED");
             success = false;
         }
 
