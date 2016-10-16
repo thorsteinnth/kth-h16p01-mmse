@@ -183,6 +183,16 @@ public class TestManager
 
         AppData.clear();
 
+        // Request mail test
+
+        if (!RequestMailTest.testSendGetRequestEnvelope())
+        {
+            System.out.println("RequestMailTest.testSendGetRequestEnvelope() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         if (success)
             System.out.println("TestManager - SUCCESS");
         else
