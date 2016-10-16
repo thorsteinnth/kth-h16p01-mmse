@@ -1,6 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Service;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.FinancialRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.TaskRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
@@ -21,7 +22,8 @@ public class FinancialRequestService
     public FinancialRequest createFinancialRequest(
             String title,
             String reasonForBudgetAdjustment,
-            BigDecimal requiredAmount
+            BigDecimal requiredAmount,
+            EventRequest eventRequest
     )
     {
         FinancialRequest.RequestingDepartment requestingDepartment = FinancialRequest.RequestingDepartment.Unknown;
@@ -36,6 +38,7 @@ public class FinancialRequestService
                 reasonForBudgetAdjustment,
                 requiredAmount,
                 requestingDepartment,
+                eventRequest,
                 AppData.loggedInUser
         );
 

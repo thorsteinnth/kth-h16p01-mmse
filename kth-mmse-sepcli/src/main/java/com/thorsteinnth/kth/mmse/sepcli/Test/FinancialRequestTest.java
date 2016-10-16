@@ -26,6 +26,7 @@ public class FinancialRequestTest
     public static boolean testCreateFinancialRequest()
     {
         FinancialRequestService service = getService();
+        EventRequest eventRequest = getTestEventRequest();
 
         UserService userService = new UserService(new UserRepository());
         userService.addInitialUsers();
@@ -35,10 +36,12 @@ public class FinancialRequestTest
         String testReason = "Test reason for the financial request";
         BigDecimal testRequiredAmount = new BigDecimal(5000);
 
+
         FinancialRequest fr = service.createFinancialRequest(
                 testTitle,
                 testReason,
-                testRequiredAmount
+                testRequiredAmount,
+                eventRequest
         );
 
         try
@@ -48,6 +51,7 @@ public class FinancialRequestTest
                     && fr.getRequiredAmount().equals(testRequiredAmount)
                     && fr.getRequestingDepartment().equals(FinancialRequest.RequestingDepartment.ProductionDepartment)
                     && fr.getStatus().equals(FinancialRequest.Status.Pending)
+                    && fr.getEventRequest().equals(eventRequest)
                     && fr.getCreatedByUser().equals(AppData.loggedInUser);
 
             return true;
