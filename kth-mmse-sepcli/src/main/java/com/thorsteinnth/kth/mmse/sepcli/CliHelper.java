@@ -130,6 +130,10 @@ public class CliHelper
         {
             return false;
         }
+        catch (ArrayIndexOutOfBoundsException ex)
+        {
+            return false;
+        }
     }
 
     public static String getInput(String messageToUser, ArrayList<String> validInputs)
