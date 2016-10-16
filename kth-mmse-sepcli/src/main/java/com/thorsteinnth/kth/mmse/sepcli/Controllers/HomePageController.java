@@ -41,13 +41,19 @@ public class HomePageController extends BaseController
 
         UIOperation.Command clientManagement = () -> clientManagement();
         UIOperation.Command createEventRequest = () -> createEventRequest();
+        UIOperation.Command createTaskRequest = () -> createTaskRequest();
+        UIOperation.Command createFinancialRequest = () -> createFinancialRequest();
+        UIOperation.Command createRecruitmentRequest = () -> createRecruitmentRequest();
         UIOperation.Command logout = () -> logout();
         UIOperation.Command quit = () -> closeApplication();
 
         operations.add(new UIOperation(1, "Client management", clientManagement));
         operations.add(new UIOperation(2, "Create event request", createEventRequest));
-        operations.add(new UIOperation(3, "Logout", logout));
-        operations.add(new UIOperation(4, "Quit", quit));
+        operations.add(new UIOperation(3, "Create task request", createTaskRequest));
+        operations.add(new UIOperation(4, "Create financial request", createFinancialRequest));
+        operations.add(new UIOperation(5, "Create recruitment request", createRecruitmentRequest));
+        operations.add(new UIOperation(6, "Logout", logout));
+        operations.add(new UIOperation(7, "Quit", quit));
 
         return operations;
     }
@@ -60,6 +66,21 @@ public class HomePageController extends BaseController
     private void createEventRequest()
     {
         new EventRequestController(this).displayPage();
+    }
+
+    private void createTaskRequest()
+    {
+        new TaskRequestController(this).displayPage();
+    }
+
+    private void createFinancialRequest()
+    {
+        new FinancialRequestController(this).displayPage();
+    }
+
+    private void createRecruitmentRequest()
+    {
+        new RecruitmentRequestController(this).displayPage();
     }
 
     private void logout()

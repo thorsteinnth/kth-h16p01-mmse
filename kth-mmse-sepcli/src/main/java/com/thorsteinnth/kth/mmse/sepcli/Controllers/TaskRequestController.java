@@ -63,6 +63,11 @@ public class TaskRequestController extends BaseController
         }
 
         EventRequest eventRequest = selectEventRequest();
+        if(eventRequest == null)
+        {
+            displayPage();
+        }
+
         String title = CliHelper.getInput("Title:");
         String description = CliHelper.getInput("Description:");
 
@@ -130,14 +135,21 @@ public class TaskRequestController extends BaseController
                 }
             }
 
-            CliHelper.newLine();
-            final String selectedSeqNumber = CliHelper.getInput(
-                    "Select event to link to the task request:",
-                    validInputs);
+            if(eventRequests.size() != 0)
+            {
+                CliHelper.newLine();
+                final String selectedSeqNumber = CliHelper.getInput(
+                        "Select event to link to the task request:",
+                        validInputs);
 
-            EventRequest eventRequest = eventRequests.get(selectedSeqNumber);
-
-            return eventRequest;
+                EventRequest eventRequest = eventRequests.get(selectedSeqNumber);
+                return eventRequest;
+            }
+            else
+            {
+                CliHelper.write("ERROR: No event available");
+                return null;
+            }
         }
     }
 
