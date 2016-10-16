@@ -63,6 +63,11 @@ public class TaskRequestController extends BaseController
         }
 
         EventRequest eventRequest = selectEventRequest();
+        if(eventRequest == null)
+        {
+            displayPage();
+        }
+
         String title = CliHelper.getInput("Title:");
         String description = CliHelper.getInput("Description:");
 
@@ -130,14 +135,21 @@ public class TaskRequestController extends BaseController
                 }
             }
 
-            CliHelper.newLine();
-            final String selectedSeqNumber = CliHelper.getInput(
-                    "Select event to link to the task request:",
-                    validInputs);
+            if(eventRequests.size() != 0)
+            {
+                CliHelper.newLine();
+                final String selectedSeqNumber = CliHelper.getInput(
+                        "Select event to link to the task request:",
+                        validInputs);
 
-            EventRequest eventRequest = eventRequests.get(selectedSeqNumber);
-
-            return eventRequest;
+                EventRequest eventRequest = eventRequests.get(selectedSeqNumber);
+                return eventRequest;
+            }
+            else
+            {
+                CliHelper.write("ERROR: No event available");
+                return null;
+            }
         }
     }
 
@@ -197,12 +209,13 @@ public class TaskRequestController extends BaseController
         CliHelper.newLine();
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Title:\t\t\t\t\t\t" + tr.getTitle() + System.getProperty("line.separator"));
-        sb.append("Description:\t\t\t\t" + tr.getDescription() + System.getProperty("line.separator"));
-        sb.append("Priority:\t\t\t\t\t" + tr.getPriority().toString() + System.getProperty("line.separator"));
-        sb.append("Event request:\t\t\t" + tr.getEventRequest().getTitle() + System.getProperty("line.separator"));
-        sb.append("Assignee:\t\t\t\t" + tr.getAssignee().email + System.getProperty("line.separator"));
-        sb.append("Created by:\t\t\t\t" + tr.getCreatedByUser().email + System.getProperty("line.separator"));
+        sb.append("ID:\t\t\t\t\t\t" + tr.getId() + System.getProperty("line.separator"));
+        sb.append("Title:\t\t\t\t\t" + tr.getTitle() + System.getProperty("line.separator"));
+        sb.append("Description:\t\t" + tr.getDescription() + System.getProperty("line.separator"));
+        sb.append("Priority:\t\t\t" + tr.getPriority().toString() + System.getProperty("line.separator"));
+        sb.append("Event request:\t" + tr.getEventRequest().getTitle() + System.getProperty("line.separator"));
+        sb.append("Assignee:\t\t\t" + tr.getAssignee().email + System.getProperty("line.separator"));
+        sb.append("Created by:\t\t" + tr.getCreatedByUser().email + System.getProperty("line.separator"));
 
         CliHelper.write(sb.toString());
     }

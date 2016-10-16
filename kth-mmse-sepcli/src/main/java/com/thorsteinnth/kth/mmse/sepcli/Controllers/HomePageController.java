@@ -58,6 +58,24 @@ public class HomePageController extends BaseController
 
         if (true)
         {
+            UIOperation.Command createTaskRequest = () -> createTaskRequest();
+            operations.add(new UIOperation(++operationCount, "Create task request", createTaskRequest));
+        }
+
+        if (true)
+        {
+            UIOperation.Command createFinancialRequest = () -> createFinancialRequest();
+            operations.add(new UIOperation(++operationCount, "Create financial request", createFinancialRequest));
+        }
+
+        if (true)
+        {
+            UIOperation.Command createRecruitmentRequest = () -> createRecruitmentRequest();
+            operations.add(new UIOperation(++operationCount, "Create recruitment request", createRecruitmentRequest));
+        }
+
+        if (true)
+        {
             UIOperation.Command logout = () -> logout();
             operations.add(new UIOperation(++operationCount, "Logout", logout));
         }
@@ -84,6 +102,21 @@ public class HomePageController extends BaseController
     private void createEventRequest()
     {
         new EventRequestController(this).displayPage();
+    }
+
+    private void createTaskRequest()
+    {
+        new TaskRequestController(this).displayPage();
+    }
+
+    private void createFinancialRequest()
+    {
+        new FinancialRequestController(this).displayPage();
+    }
+
+    private void createRecruitmentRequest()
+    {
+        new RecruitmentRequestController(this).displayPage();
     }
 
     private void logout()

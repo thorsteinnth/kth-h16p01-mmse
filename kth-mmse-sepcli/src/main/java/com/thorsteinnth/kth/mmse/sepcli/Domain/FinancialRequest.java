@@ -9,6 +9,7 @@ public class FinancialRequest extends Request
     private String reasonForBudgetAdjustment;
     private BigDecimal requiredAmount;
     private RequestingDepartment requestingDepartment;
+    private EventRequest eventRequest;
     private Status status;
 
     public enum RequestingDepartment
@@ -30,6 +31,7 @@ public class FinancialRequest extends Request
             String reasonForBudgetAdjustment,
             BigDecimal requiredAmount,
             RequestingDepartment requestingDepartment,
+            EventRequest eventRequest,
             User createdByUser)
     {
         super(createdByUser);
@@ -37,6 +39,7 @@ public class FinancialRequest extends Request
         this.reasonForBudgetAdjustment = reasonForBudgetAdjustment;
         this.requiredAmount = requiredAmount;
         this.requestingDepartment = requestingDepartment;
+        this.eventRequest = eventRequest;
         this.status = Status.Pending;
     }
 
@@ -58,6 +61,11 @@ public class FinancialRequest extends Request
     public RequestingDepartment getRequestingDepartment()
     {
         return this.requestingDepartment;
+    }
+
+    public EventRequest getEventRequest()
+    {
+        return eventRequest;
     }
 
     public Status getStatus()
@@ -84,6 +92,7 @@ public class FinancialRequest extends Request
                 ", reasonForBudgetAdjustment='" + reasonForBudgetAdjustment + '\'' +
                 ", requiredAmount=" + requiredAmount +
                 ", requestingDepartment=" + requestingDepartment +
+                ", eventRequest=" + eventRequest +
                 ", createdByUser=" + super.getCreatedByUser() +
                 '}';
     }
