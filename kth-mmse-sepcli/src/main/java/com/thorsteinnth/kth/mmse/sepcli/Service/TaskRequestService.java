@@ -23,7 +23,6 @@ public class TaskRequestService
             User assignee)
     {
         TaskRequest taskRequest = new TaskRequest(
-                Integer.toString(AppData.taskRequests.size() + 1),
                 title,
                 descrition,
                 priority,

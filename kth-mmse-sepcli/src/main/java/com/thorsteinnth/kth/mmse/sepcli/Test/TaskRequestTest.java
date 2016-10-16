@@ -48,8 +48,7 @@ public class TaskRequestTest
 
         try
         {
-            assert tr.getId().equals("1")
-                    && tr.getTitle().equals(testTitle)
+            assert tr.getTitle().equals(testTitle)
                     && tr.getDescription().equals(testDescription)
                     && tr.getPriority().equals(testPriority)
                     && tr.getEventRequest().equals(testEr)

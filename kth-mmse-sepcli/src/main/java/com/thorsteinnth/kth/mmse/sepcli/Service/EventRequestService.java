@@ -32,7 +32,6 @@ public class EventRequestService
     )
     {
         EventRequest er = new EventRequest(
-                this.repository.getNextId(),
                 title,
                 description,
                 startDateTime,
