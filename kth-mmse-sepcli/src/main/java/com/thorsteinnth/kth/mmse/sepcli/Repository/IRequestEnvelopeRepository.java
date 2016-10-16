@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public interface IRequestEnvelopeRepository
 {
-    void save(RequestEnvelope envelope);
+    RequestEnvelope save(RequestEnvelope envelope);
+    void delete(RequestEnvelope envelope);
     ArrayList<RequestEnvelope> getAllRequestEnvelopes();
     ArrayList<RequestEnvelope> getRequestEnvelopesForUser(User user);
 }

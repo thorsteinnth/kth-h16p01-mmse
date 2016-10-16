@@ -1,8 +1,5 @@
 package com.thorsteinnth.kth.mmse.sepcli.Domain;
 
-/**
- * Created by tts on 14/10/2016.
- */
 public class User
 {
     public String email;

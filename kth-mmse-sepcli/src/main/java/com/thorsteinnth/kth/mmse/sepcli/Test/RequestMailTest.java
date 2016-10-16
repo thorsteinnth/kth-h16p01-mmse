@@ -28,6 +28,8 @@ public class RequestMailTest
     {
         RequestMailService requestMailService = getService();
         UserService userService = new UserService(new UserRepository());
+        userService.addInitialUsers();
+        userService.login("charlie@sep.se","charlie123");
 
         EventRequest request1 = createTestEventRequest();
         EventRequest request2 = createTestEventRequest();
@@ -65,7 +67,54 @@ public class RequestMailTest
         }
         catch (AssertionError ae)
         {
-            System.out.println("testSendRequestEnvelope() - failed");
+            System.out.println("testSendGetRequestEnvelope() - failed");
+            return false;
+        }
+    }
+
+    public static boolean testRemoveRequestEnvelope()
+    {
+        RequestMailService requestMailService = getService();
+        UserService userService = new UserService(new UserRepository());
+        userService.addInitialUsers();
+        userService.login("charlie@sep.se","charlie123");
+
+        EventRequest request1 = createTestEventRequest();
+        EventRequest request2 = createTestEventRequest();
+        EventRequest request3 = createTestEventRequest();
+        User recipient1 = userService.getUserByEmail("alice@sep.se");
+        User recipient2 = userService.getUserByEmail("jack@sep.se");
+
+        try
+        {
+            RequestEnvelope re1 = requestMailService.sendRequest(request1, recipient1);
+            RequestEnvelope re2 = requestMailService.sendRequest(request2, recipient2);
+            RequestEnvelope re3 = requestMailService.sendRequest(request3, recipient1);
+
+            assert requestMailService.getAllRequestEnvelopes().size() == 3;
+            assert requestMailService.getRequestEnvelopesForUser(recipient1).size() == 2;
+            assert requestMailService.getRequestEnvelopesForUser(recipient2).size() == 1;
+
+            requestMailService.removeRequestEnvelope(re1);
+            assert requestMailService.getAllRequestEnvelopes().size() == 2;
+            assert requestMailService.getRequestEnvelopesForUser(recipient1).size() == 1;
+            assert requestMailService.getRequestEnvelopesForUser(recipient2).size() == 1;
+
+            requestMailService.removeRequestEnvelope(re3);
+            assert requestMailService.getAllRequestEnvelopes().size() == 1;
+            assert requestMailService.getRequestEnvelopesForUser(recipient1).size() == 0;
+            assert requestMailService.getRequestEnvelopesForUser(recipient2).size() == 1;
+
+            requestMailService.removeRequestEnvelope(re2);
+            assert requestMailService.getAllRequestEnvelopes().size() == 0;
+            assert requestMailService.getRequestEnvelopesForUser(recipient1).size() == 0;
+            assert requestMailService.getRequestEnvelopesForUser(recipient2).size() == 0;
+
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testRemoveRequestEnvelope() - failed");
             return false;
         }
     }
@@ -74,9 +123,6 @@ public class RequestMailTest
     {
         EventRequestService srv = new EventRequestService(new EventRequestRepository());
         ClientService clientService = new ClientService(new ClientRepository());
-        UserService userService = new UserService(new UserRepository());
-        userService.addInitialUsers();
-        userService.login("charlie@sep.se","charlie123");
 
         String title = "Test event request title";
         String description = "Test event request description";

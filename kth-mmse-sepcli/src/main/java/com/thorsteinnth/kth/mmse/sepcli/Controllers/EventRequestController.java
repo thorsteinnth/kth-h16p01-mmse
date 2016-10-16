@@ -3,10 +3,15 @@ package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.ClientRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.ClientService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
+import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
+import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,11 +21,15 @@ public class EventRequestController extends BaseController
 {
     private BaseController previousController;
     private ClientService clientService;
+    private UserService userService;
+    private RequestMailService requestMailService;
 
     public EventRequestController(BaseController previousController)
     {
         this.previousController = previousController;
         this.clientService = new ClientService(new ClientRepository());
+        this.userService = new UserService(new UserRepository());
+        this.requestMailService = new RequestMailService(new RequestEnvelopeRepository());
     }
 
     public void displayPage()
@@ -90,8 +99,60 @@ public class EventRequestController extends BaseController
         );
 
         printEventRequest(er);
+        sendRequest(er);
 
         displayPage();
+    }
+
+    private void sendRequest(EventRequest request)
+    {
+        CliHelper.newLine();
+        CliHelper.write("Send event request");
+        CliHelper.newLine();
+
+        if (userService.getAllUsers().isEmpty())
+        {
+            // NOTE: Should never happen
+            CliHelper.write("ERROR: No users in system");
+            return;
+        }
+        else
+        {
+            ArrayList<String> validInputs = new ArrayList<>();
+            ArrayList<String> emailList = new ArrayList<>();
+
+            int i = 1;
+            for (User user : userService.getAllUsers())
+            {
+                CliHelper.write(
+                        Integer.toString(i)
+                        + ".\t"
+                        + user.email
+                );
+                validInputs.add(Integer.toString(i));
+                emailList.add(user.email);
+                i++;
+            }
+
+            CliHelper.newLine();
+            String selectedNumber = CliHelper.getInput(
+                    "Select a user to send the request to:",
+                    validInputs);
+
+            String selectedEmail = emailList.get(Integer.parseInt(selectedNumber)-1);
+            User recipient = userService.getUserByEmail(selectedEmail);
+
+            if (recipient == null)
+            {
+                CliHelper.write("ERROR: Could not find user with email: " + selectedEmail);
+                return;
+            }
+
+            this.requestMailService.sendRequest(request, recipient);
+
+            CliHelper.newLine();
+            CliHelper.write("Request sent to: " + recipient.email);
+        }
     }
 
     private Client createEventRequestSelectClient()

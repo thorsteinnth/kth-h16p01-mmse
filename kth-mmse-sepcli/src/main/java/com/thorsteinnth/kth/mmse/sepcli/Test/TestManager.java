@@ -193,6 +193,16 @@ public class TestManager
 
         AppData.clear();
 
+        if (!RequestMailTest.testRemoveRequestEnvelope())
+        {
+            System.out.println("RequestMailTest.testRemoveRequestEnvelope() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        // End of tests
+
         if (success)
             System.out.println("TestManager - SUCCESS");
         else
