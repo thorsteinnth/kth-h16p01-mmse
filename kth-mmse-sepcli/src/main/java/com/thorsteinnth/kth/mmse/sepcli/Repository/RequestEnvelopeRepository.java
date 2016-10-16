@@ -6,14 +6,20 @@ import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RequestEnvelopeRepository implements IRequestEnvelopeRepository
 {
     @Override
-    public void save(RequestEnvelope envelope)
+    public RequestEnvelope save(RequestEnvelope envelope)
     {
         AppData.mailQueue.add(envelope);
+        return envelope;
+    }
+
+    @Override
+    public void delete(RequestEnvelope envelope)
+    {
+        AppData.mailQueue.removeIf(re -> re.equals(envelope));
     }
 
     @Override

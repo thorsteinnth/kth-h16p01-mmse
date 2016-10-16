@@ -17,12 +17,12 @@ public class RequestMailService
         this.repository = repository;
     }
 
-    public void sendRequest(Request request, User recipient)
+    public RequestEnvelope sendRequest(Request request, User recipient)
     {
         User sender = AppData.loggedInUser;
 
         RequestEnvelope envelope = new RequestEnvelope(request, sender, recipient);
-        this.repository.save(envelope);
+        return this.repository.save(envelope);
     }
 
     public ArrayList<RequestEnvelope> getAllRequestEnvelopes()
@@ -33,5 +33,10 @@ public class RequestMailService
     public ArrayList<RequestEnvelope> getRequestEnvelopesForUser(User user)
     {
         return this.repository.getRequestEnvelopesForUser(user);
+    }
+
+    public void removeRequestEnvelope(RequestEnvelope envelope)
+    {
+        this.repository.delete(envelope);
     }
 }
