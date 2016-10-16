@@ -21,10 +21,16 @@ public class FinancialRequestService
     public FinancialRequest createFinancialRequest(
             String title,
             String reasonForBudgetAdjustment,
-            BigDecimal requiredAmount,
-            FinancialRequest.RequestingDepartment requestingDepartment
+            BigDecimal requiredAmount
     )
     {
+        FinancialRequest.RequestingDepartment requestingDepartment = FinancialRequest.RequestingDepartment.Unknown;
+
+        if(AppData.loggedInUser.role == User.Role.ProductionManager)
+            requestingDepartment = FinancialRequest.RequestingDepartment.ProductionDepartment;
+        else if(AppData.loggedInUser.role == User.Role.ServiceDepartmentManager)
+            requestingDepartment = FinancialRequest.RequestingDepartment.ServiceDepartment;
+
         FinancialRequest financialRequest = new FinancialRequest(
                 title,
                 reasonForBudgetAdjustment,

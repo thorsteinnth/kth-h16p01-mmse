@@ -13,6 +13,7 @@ public class AppData
     public static ArrayList<EventRequest> eventRequests;
     public static ArrayList<TaskRequest> taskRequests;
     public static ArrayList<FinancialRequest> financialRequests;
+    public static ArrayList<RecruitmentRequest> recruitmentRequests;
 
     public AppData()
     {
@@ -21,6 +22,7 @@ public class AppData
         eventRequests = new ArrayList<>();
         taskRequests = new ArrayList<>();
         financialRequests = new ArrayList<>();
+        recruitmentRequests = new ArrayList<>();
     }
 
     public static void clear()
@@ -31,5 +33,6 @@ public class AppData
         eventRequests.clear();
         taskRequests.clear();
         financialRequests.clear();
+        recruitmentRequests.clear();
     }
 }

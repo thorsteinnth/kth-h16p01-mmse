@@ -34,13 +34,11 @@ public class FinancialRequestTest
         String testTitle = "Test financial request";
         String testReason = "Test reason for the financial request";
         BigDecimal testRequiredAmount = new BigDecimal(5000);
-        FinancialRequest.RequestingDepartment testReqDep = FinancialRequest.RequestingDepartment.ProductionDepartment;
 
         FinancialRequest fr = service.createFinancialRequest(
                 testTitle,
                 testReason,
-                testRequiredAmount,
-                testReqDep
+                testRequiredAmount
         );
 
         try
@@ -48,7 +46,7 @@ public class FinancialRequestTest
             assert fr.getTitle().equals(testTitle)
                     && fr.getReasonForBudgetAdjustment().equals(testReason)
                     && fr.getRequiredAmount().equals(testRequiredAmount)
-                    && fr.getRequestingDepartment().equals(testReqDep)
+                    && fr.getRequestingDepartment().equals(FinancialRequest.RequestingDepartment.ProductionDepartment)
                     && fr.getStatus().equals(FinancialRequest.Status.Pending)
                     && fr.getCreatedByUser().equals(AppData.loggedInUser);
 

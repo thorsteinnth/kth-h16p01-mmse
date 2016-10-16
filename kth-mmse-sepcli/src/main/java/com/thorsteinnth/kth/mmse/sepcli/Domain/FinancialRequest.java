@@ -13,6 +13,7 @@ public class FinancialRequest extends Request
 
     public enum RequestingDepartment
     {
+        Unknown,
         ProductionDepartment,
         ServiceDepartment
     }
