@@ -1,6 +1,8 @@
 package com.thorsteinnth.kth.mmse.sepcli;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class CliHelper
@@ -9,8 +11,125 @@ public class CliHelper
     {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(messageToUser);
+        write(messageToUser);
         return scanner.nextLine();
+    }
+
+    public static String getInputEmptyStringBanned(String messageToUser)
+    {
+        boolean haveValidInput = false;
+        String input = "";
+
+        while (!haveValidInput)
+        {
+            input = getInput(messageToUser);
+
+            if (!input.equals(""))
+                haveValidInput = true;
+            else
+                write("Error: Invalid input - cannot be empty");
+        }
+
+        return input;
+    }
+
+    public static String getInputNumber(String messageToUser)
+    {
+        boolean haveValidInput = false;
+        String input = "";
+
+        while (!haveValidInput)
+        {
+            input = getInputEmptyStringBanned(messageToUser);
+
+            if (isNumeric(input))
+                haveValidInput = true;
+            else
+                write("Error: Invalid input - should be a number");
+        }
+
+        return input;
+    }
+
+    public static String getInputCurrency(String messageToUser)
+    {
+        boolean haveValidInput = false;
+        String input = "";
+
+        while (!haveValidInput)
+        {
+            input = getInputNumber(messageToUser);
+
+            if (isValidCurrencyString(input))
+                haveValidInput = true;
+            else
+                write("Error: Invalid input - input should be a number that represents money");
+        }
+
+        return input;
+    }
+
+    private static boolean isValidCurrencyString(String currencyString)
+    {
+        try
+        {
+            new BigDecimal(currencyString);
+            return true;
+        }
+        catch (NumberFormatException ex)
+        {
+            return false;
+        }
+    }
+
+    public static String getInputDate(String messageToUser)
+    {
+        // Date should be entered into the system on the form YYYY-MM-DD-HH-MM
+
+        boolean haveValidInput = false;
+        String input = "";
+
+        while (!haveValidInput)
+        {
+            input = getInputEmptyStringBanned(messageToUser);
+
+            if (isValidDateString(input))
+                haveValidInput = true;
+            else
+                write("Error: Invalid input - should be a valid date on the form YYYY-MM-DD-HH-MM");
+        }
+
+        return input;
+    }
+
+    private static boolean isValidDateString(String dateString)
+    {
+        // YYYY-MM-DD-HH-MM
+
+        try
+        {
+            String[] dateParts = dateString.split("-");
+            int year = Integer.parseInt(dateParts[0]);
+            int month = Integer.parseInt(dateParts[1]);
+            int day = Integer.parseInt(dateParts[2]);
+            int hour = Integer.parseInt(dateParts[3]);
+            int minute = Integer.parseInt(dateParts[4]);
+
+            GregorianCalendar gcal = new GregorianCalendar();
+            gcal.setLenient(false);
+            gcal.set(year, month, day, hour, minute);
+            gcal.getTime(); // Should throw exception on wrong date
+
+            return true;
+        }
+        catch (NumberFormatException ex)
+        {
+            return false;
+        }
+        catch (IllegalArgumentException ex)
+        {
+            return false;
+        }
     }
 
     public static String getInput(String messageToUser, ArrayList<String> validInputs)
@@ -25,7 +144,7 @@ public class CliHelper
             if (isValidInput(input, validInputs))
                 haveValidInput = true;
             else
-                System.out.println("Error: Invalid input");
+                write("Error: Invalid input");
         }
 
         return input;
@@ -50,5 +169,19 @@ public class CliHelper
     public static void newLine()
     {
         System.out.println("");
+    }
+
+    public static boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch (NumberFormatException nfe)
+        {
+            return false;
+        }
+
+        return true;
     }
 }
