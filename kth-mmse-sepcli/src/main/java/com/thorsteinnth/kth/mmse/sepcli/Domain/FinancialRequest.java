@@ -71,6 +71,13 @@ public class FinancialRequest extends Request
     }
 
     @Override
+    public String toDisplayString()
+    {
+        // TODO
+        return "This should be a nice string to display to the user";
+    }
+
+    @Override
     public String toString() {
         return "FinancialRequest{" +
                 "title='" + title + '\'' +

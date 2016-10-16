@@ -1,6 +1,5 @@
 package com.thorsteinnth.kth.mmse.sepcli;
 
-import com.thorsteinnth.kth.mmse.sepcli.Controllers.HomePageController;
 import com.thorsteinnth.kth.mmse.sepcli.Controllers.LoginController;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.ClientRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;

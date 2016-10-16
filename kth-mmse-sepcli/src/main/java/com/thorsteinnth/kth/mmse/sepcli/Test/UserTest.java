@@ -46,6 +46,28 @@ public class UserTest
         }
     }
 
+    public static boolean testAddDuplicateUser()
+    {
+        // Users should be unique by email
+
+        try
+        {
+            UserService userService = getService();
+            User user1 = userService.createUser("email", "password", User.Role.AdministrationDepartmentManager);
+            User user2 = userService.createUser("email", "password", User.Role.AdministrationDepartmentManager);
+
+            assert userService.addUser(user1);
+            assert !userService.addUser(user2);
+
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddDuplicateUser() - failed");
+            return false;
+        }
+    }
+
     public static boolean testAddGetUserByEmail()
     {
         UserService userService = getService();

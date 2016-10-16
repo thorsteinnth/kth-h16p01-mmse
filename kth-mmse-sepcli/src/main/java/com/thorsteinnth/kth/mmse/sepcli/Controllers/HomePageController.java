@@ -22,34 +22,58 @@ public class HomePageController extends BaseController
         CliHelper.newLine();
         CliHelper.write("This is the homepage for user: " + AppData.loggedInUser.email);
 
+        if (requestMailService.userHasIncomingRequests())
+            CliHelper.write("You have incoming requests - go to the request management page to view them");
+
         ArrayList<UIOperation> operations = buildUIOperationList();
         UIOperation.Command onSelectedOperationError = () -> displayPage();
         displayUIOperations(operations, onSelectedOperationError);
     }
 
-    private boolean userHasIncomingRequests()
-    {
-        if (!this.requestMailService.getRequestEnvelopesForUser(AppData.loggedInUser).isEmpty())
-            return true;
-        else
-            return false;
-    }
-
     private ArrayList<UIOperation> buildUIOperationList()
     {
         ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
 
-        UIOperation.Command clientManagement = () -> clientManagement();
-        UIOperation.Command createEventRequest = () -> createEventRequest();
-        UIOperation.Command logout = () -> logout();
-        UIOperation.Command quit = () -> closeApplication();
+        // TODO Check access control and other stuff for what operations he should have access tp
 
-        operations.add(new UIOperation(1, "Client management", clientManagement));
-        operations.add(new UIOperation(2, "Create event request", createEventRequest));
-        operations.add(new UIOperation(3, "Logout", logout));
-        operations.add(new UIOperation(4, "Quit", quit));
+        // TODO When should the user have access to this?
+        if (true)
+        {
+            UIOperation.Command requestManagement = () -> requestManagement();
+            operations.add(new UIOperation(++operationCount, "Request management", requestManagement));
+        }
+
+        if (true)
+        {
+            UIOperation.Command clientManagement = () -> clientManagement();
+            operations.add(new UIOperation(++operationCount, "Client management", clientManagement));
+        }
+
+        if (true)
+        {
+            UIOperation.Command createEventRequest = () -> createEventRequest();
+            operations.add(new UIOperation(++operationCount, "Create event request", createEventRequest));
+        }
+
+        if (true)
+        {
+            UIOperation.Command logout = () -> logout();
+            operations.add(new UIOperation(++operationCount, "Logout", logout));
+        }
+
+        if (true)
+        {
+            UIOperation.Command quit = () -> closeApplication();
+            operations.add(new UIOperation(++operationCount, "Quit", quit));
+        }
 
         return operations;
+    }
+
+    private void requestManagement()
+    {
+        new RequestManagementController(this).displayPage();
     }
 
     private void clientManagement()
@@ -69,7 +93,6 @@ public class HomePageController extends BaseController
 
     private void closeApplication()
     {
-        // Do nothing, process will terminate
         CliHelper.write("Closing application");
     }
 }

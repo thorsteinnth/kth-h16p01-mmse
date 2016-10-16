@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface IUserRepository
 {
-    void addUser(User user);
+    boolean addUser(User user);
     void deleteUser(User user);
     User getUserByEmail(String email);
     ArrayList<User> getAllUsers();

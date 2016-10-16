@@ -147,6 +147,28 @@ public class EventRequest extends Request
         return createdDateTime;
     }
 
+    public String toDisplayString()
+    {
+        // TODO Finalize formatting
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:\t\t\t\t\t\t" + getId() + System.getProperty("line.separator"));
+        sb.append("Status:\t\t\t\t\t" + getStatus() + System.getProperty("line.separator"));
+        sb.append("Title:\t\t\t\t\t" + getTitle() + System.getProperty("line.separator"));
+        sb.append("Description:\t\t\t" + getDescription() + System.getProperty("line.separator"));
+        sb.append("Start date time:\t\t" + getStartDateTimeString() + System.getProperty("line.separator"));
+        sb.append("End date time:\t\t\t" + getEndDateTimeString() + System.getProperty("line.separator"));
+        sb.append("Number of attendees:\t" + getNumberOfAttendees() + System.getProperty("line.separator"));
+        sb.append("Preference description:\t" + getPreferenceDescription() + System.getProperty("line.separator"));
+        sb.append("Expected budget:\t\t" + getExpectedBudget() + System.getProperty("line.separator"));
+        sb.append("Client:\t\t\t\t\t" + getClient().name + System.getProperty("line.separator"));
+        sb.append("Created by:\t\t\t\t" + getCreatedByUser().email + System.getProperty("line.separator"));
+        sb.append("Created date time:\t\t" + getCreatedDateTime().toString() + System.getProperty("line.separator"));
+        sb.append("Comments:\t" + getComments().toString() + System.getProperty("line.separator"));
+
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

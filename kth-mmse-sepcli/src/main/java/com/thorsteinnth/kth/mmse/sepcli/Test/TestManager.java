@@ -19,6 +19,14 @@ public class TestManager
 
         AppData.clear();
 
+        if (!UserTest.testAddDuplicateUser())
+        {
+            System.out.println("UserTest.testAddDuplicateUser() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         if (!UserTest.testAddGetUserByEmail())
         {
             System.out.println("UserTest.testAddGetUserByEmail() FAILED");

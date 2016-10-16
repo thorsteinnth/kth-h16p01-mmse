@@ -39,4 +39,12 @@ public class RequestMailService
     {
         this.repository.delete(envelope);
     }
+
+    public boolean userHasIncomingRequests()
+    {
+        if (!getRequestEnvelopesForUser(AppData.loggedInUser).isEmpty())
+            return true;
+        else
+            return false;
+    }
 }

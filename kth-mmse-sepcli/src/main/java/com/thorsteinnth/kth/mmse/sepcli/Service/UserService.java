@@ -52,6 +52,7 @@ public class UserService
         addUser(createUser("charlie@sep.se", "charlie123", User.Role.VicePresident));
     }
 
+    // TODO Refactor so we only have createUser, not createUser and addUser
     public User createUser(String email, String password, User.Role role)
     {
         return new User(email, password, role);
@@ -62,9 +63,9 @@ public class UserService
         this.repository.deleteUser(user);
     }
 
-    public void addUser(User user)
+    public boolean addUser(User user)
     {
-        this.repository.addUser(user);
+        return this.repository.addUser(user);
     }
 
     public User getUserByEmail(String email)

@@ -82,6 +82,13 @@ public class TaskRequest extends Request
     }
 
     @Override
+    public String toDisplayString()
+    {
+        // TODO
+        return "This should be a nice string to display to the user";
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

@@ -196,26 +196,8 @@ public class EventRequestController extends BaseController
 
     private void printEventRequest(EventRequest er)
     {
-        // TODO Finalize formatting
-
         CliHelper.newLine();
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("ID:\t\t\t\t\t\t" + er.getId() + System.getProperty("line.separator"));
-        sb.append("Status:\t\t\t\t\t" + er.getStatus() + System.getProperty("line.separator"));
-        sb.append("Title:\t\t\t\t\t" + er.getTitle() + System.getProperty("line.separator"));
-        sb.append("Description:\t\t\t" + er.getDescription() + System.getProperty("line.separator"));
-        sb.append("Start date time:\t\t" + er.getStartDateTimeString() + System.getProperty("line.separator"));
-        sb.append("End date time:\t\t\t" + er.getEndDateTimeString() + System.getProperty("line.separator"));
-        sb.append("Number of attendees:\t" + er.getNumberOfAttendees() + System.getProperty("line.separator"));
-        sb.append("Preference description:\t" + er.getPreferenceDescription() + System.getProperty("line.separator"));
-        sb.append("Expected budget:\t\t" + er.getExpectedBudget() + System.getProperty("line.separator"));
-        sb.append("Client:\t\t\t\t\t" + er.getClient().name + System.getProperty("line.separator"));
-        sb.append("Created by:\t\t\t\t" + er.getCreatedByUser().email + System.getProperty("line.separator"));
-        sb.append("Created date time:\t\t" + er.getCreatedDateTime().toString() + System.getProperty("line.separator"));
-        sb.append("Comments:\t" + er.getComments().toString() + System.getProperty("line.separator"));
-
-        CliHelper.write(sb.toString());
+        CliHelper.write(er.toDisplayString());
     }
 
     private void back()

@@ -4,6 +4,7 @@ import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class UserRepository implements  IUserRepository
 {
@@ -11,9 +12,19 @@ public class UserRepository implements  IUserRepository
     {
     }
 
-    public void addUser(User user)
+    public boolean addUser(User user)
     {
+        // Keep users unique by email
+        if (!isUserUniqueByEmail(user))
+            return false;
+
         AppData.users.add(user);
+        return true;
+    }
+
+    private boolean isUserUniqueByEmail(User userToAdd)
+    {
+        return AppData.users.stream().filter(u -> u.email.equals(userToAdd.email)).count() == 0;
     }
 
     public void deleteUser(User userToDelete)

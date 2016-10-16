@@ -146,4 +146,23 @@ public class RequestMailTest
 
         return er;
     }
+
+    // UI test helpers (not unit tests)
+    // Load data into the system to make UI development easier
+
+    public static void uiTestHelperCreateAndSendEventRequests()
+    {
+        RequestMailService requestMailService = getService();
+        UserService userService = new UserService(new UserRepository());
+
+        EventRequest request1 = createTestEventRequest();
+        EventRequest request2 = createTestEventRequest();
+        EventRequest request3 = createTestEventRequest();
+        User recipient1 = userService.getUserByEmail("alice@sep.se");
+        User recipient2 = userService.getUserByEmail("jack@sep.se");
+
+        requestMailService.sendRequest(request1, recipient1);
+        requestMailService.sendRequest(request2, recipient2);
+        requestMailService.sendRequest(request3, recipient1);
+    }
 }

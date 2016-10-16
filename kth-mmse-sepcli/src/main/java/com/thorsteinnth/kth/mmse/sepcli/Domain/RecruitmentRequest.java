@@ -76,4 +76,11 @@ public class RecruitmentRequest extends Request
     {
         return this.status;
     }
+
+    @Override
+    public String toDisplayString()
+    {
+        // TODO
+        return "This should be a nice string to display to the user";
+    }
 }
