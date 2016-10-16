@@ -9,18 +9,18 @@ import com.thorsteinnth.kth.mmse.sepcli.Service.ClientService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class EventRequestController extends BaseController
 {
     private BaseController previousController;
+    private ClientService clientService;
 
     public EventRequestController(BaseController previousController)
     {
         this.previousController = previousController;
+        this.clientService = new ClientService(new ClientRepository());
     }
 
     public void displayPage()
@@ -45,24 +45,32 @@ public class EventRequestController extends BaseController
     }
 
     // TODO Restrict access to specific roles
-    // TODO Input validation
     private void createEventRequest()
     {
         CliHelper.newLine();
         CliHelper.write("Create event request");
 
-        String title = CliHelper.getInput("Title:");
+        if (clientService.getAllClients().isEmpty())
+        {
+            CliHelper.write("There are no client records in the system. Add some clients in order to add event requests.");
+            displayPage();
+        }
+
+        String title = CliHelper.getInputEmptyStringBanned("Title:");
         String description = CliHelper.getInput("Description:");
-        String startDateTime = CliHelper.getInput("Start time (YYYY-MM-DD-HH-MM):");
-        String endDateTime = CliHelper.getInput("End time (YYYY-MM-DD-HH-MM):");
-        String numberOfAttendees = CliHelper.getInput("Number of attendees:");
+        String startDateTime = CliHelper.getInputDate("Start time (YYYY-MM-DD-HH-MM):");
+        String endDateTime = CliHelper.getInputDate("End time (YYYY-MM-DD-HH-MM):");
+        String numberOfAttendees = CliHelper.getInputNumber("Number of attendees:");
         String preferenceDescription = CliHelper.getInput("Preference description:");
-        String expectedBudget = CliHelper.getInput("Expected budget (SEK):");
-        //TODO String client = CliHelper.getInput("Select client:");
+        String expectedBudget = CliHelper.getInputNumber("Expected budget (SEK):");
+        Client client = createEventRequestSelectClient();
+        if (client == null)
+        {
+            CliHelper.write("We need a client for the event request. Aborting.");
+            displayPage();
+        }
 
-        ClientService clientService = new ClientService(new ClientRepository());
-        Client client = clientService.createClient("Fannar", "KTH", "email@web.com", "5556666");
-
+        // NOTE: Date input from user is valid
         GregorianCalendar calStartDateTime = getGregorianCalendarFromString(startDateTime);
         GregorianCalendar calEndDateTime = getGregorianCalendarFromString(endDateTime);
 
@@ -85,9 +93,43 @@ public class EventRequestController extends BaseController
         displayPage();
     }
 
-    private void createEventRequestSelectClient()
+    private Client createEventRequestSelectClient()
     {
+        // Display client records for user to choose from
 
+        CliHelper.newLine();
+        CliHelper.write("Link event request to client");
+
+        if (clientService.getAllClients().isEmpty())
+        {
+            CliHelper.write("ERROR: No client records in system");
+            return null;
+        }
+        else
+        {
+            ArrayList<String> validInputs = new ArrayList<>();
+
+            for (Client client : clientService.getAllClients())
+            {
+                CliHelper.write(client.toStringShort());
+                validInputs.add(Integer.toString(client.id));
+            }
+
+            CliHelper.newLine();
+            final String selectedId = CliHelper.getInput(
+                    "Select a client to link to the event request:",
+                    validInputs);
+
+            Client client = clientService.getClientById(selectedId);
+
+            if (client == null)
+            {
+                CliHelper.write("ERROR: Could not find client with ID: " + selectedId);
+                return null;
+            }
+
+            return client;
+        }
     }
 
     private void back()
