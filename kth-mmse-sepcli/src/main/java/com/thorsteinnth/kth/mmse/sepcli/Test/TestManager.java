@@ -153,6 +153,18 @@ public class TestManager
             success = false;
         }
 
+        AppData.clear();
+
+        // Recruitment request test
+
+        if(!RecruitmentRequestTest.testCreateRecruitmentRequest())
+        {
+            System.out.println("RecruitmentRequestTest.testCreateRecruitmentRequest() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Access control test
 
         if (!AccessTest.testHasAccess())
