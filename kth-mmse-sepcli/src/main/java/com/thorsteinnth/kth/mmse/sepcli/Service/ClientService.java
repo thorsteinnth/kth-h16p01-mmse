@@ -30,4 +30,10 @@ public class ClientService
     {
         return this.repository.getAllClients();
     }
+
+    public void createInitialClients()
+    {
+        createClient("Fannar", "Bergshamra 99", "fannar@kth.se", "5556666");
+        createClient("Gretar", "Norra Djurgardstaden 999", "gretar@kth.se", "5556666");
+    }
 }

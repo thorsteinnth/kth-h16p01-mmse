@@ -62,7 +62,7 @@ public class EventRequestController extends BaseController
         String endDateTime = CliHelper.getInputDate("End time (YYYY-MM-DD-HH-MM):");
         String numberOfAttendees = CliHelper.getInputNumber("Number of attendees:");
         String preferenceDescription = CliHelper.getInput("Preference description:");
-        String expectedBudget = CliHelper.getInputNumber("Expected budget (SEK):");
+        String expectedBudget = CliHelper.getInputCurrency("Expected budget (SEK):");
         Client client = createEventRequestSelectClient();
         if (client == null)
         {
@@ -70,10 +70,11 @@ public class EventRequestController extends BaseController
             displayPage();
         }
 
-        // NOTE: Date input from user is valid
+        // NOTE: Input from user is valid at this point
         GregorianCalendar calStartDateTime = getGregorianCalendarFromString(startDateTime);
         GregorianCalendar calEndDateTime = getGregorianCalendarFromString(endDateTime);
 
+        // NOTE: Input from user is valid at this point
         BigDecimal bdExpectedBudget = new BigDecimal(expectedBudget);
 
         EventRequestService eventRequestService = new EventRequestService(new EventRequestRepository());
@@ -88,7 +89,7 @@ public class EventRequestController extends BaseController
                 client
         );
 
-        System.out.println(er);
+        printEventRequest(er);
 
         displayPage();
     }
@@ -130,6 +131,30 @@ public class EventRequestController extends BaseController
 
             return client;
         }
+    }
+
+    private void printEventRequest(EventRequest er)
+    {
+        // TODO Finalize formatting
+
+        CliHelper.newLine();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:\t\t\t\t\t\t" + er.getId() + System.getProperty("line.separator"));
+        sb.append("Status:\t\t\t\t\t" + er.getStatus() + System.getProperty("line.separator"));
+        sb.append("Title:\t\t\t\t\t" + er.getTitle() + System.getProperty("line.separator"));
+        sb.append("Description:\t\t\t" + er.getDescription() + System.getProperty("line.separator"));
+        sb.append("Start date time:\t\t" + er.getStartDateTimeString() + System.getProperty("line.separator"));
+        sb.append("End date time:\t\t\t" + er.getEndDateTimeString() + System.getProperty("line.separator"));
+        sb.append("Number of attendees:\t" + er.getNumberOfAttendees() + System.getProperty("line.separator"));
+        sb.append("Preference description:\t" + er.getPreferenceDescription() + System.getProperty("line.separator"));
+        sb.append("Expected budget:\t\t" + er.getExpectedBudget() + System.getProperty("line.separator"));
+        sb.append("Client:\t\t\t\t\t" + er.getClient().name + System.getProperty("line.separator"));
+        sb.append("Created by:\t\t\t\t" + er.getCreatedByUser().email + System.getProperty("line.separator"));
+        sb.append("Created date time:\t\t" + er.getCreatedDateTime().toString() + System.getProperty("line.separator"));
+        sb.append("Comments:\t" + er.getComments().toString() + System.getProperty("line.separator"));
+
+        CliHelper.write(sb.toString());
     }
 
     private void back()

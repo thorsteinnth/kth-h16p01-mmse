@@ -1,5 +1,6 @@
 package com.thorsteinnth.kth.mmse.sepcli;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -48,6 +49,37 @@ public class CliHelper
         }
 
         return input;
+    }
+
+    public static String getInputCurrency(String messageToUser)
+    {
+        boolean haveValidInput = false;
+        String input = "";
+
+        while (!haveValidInput)
+        {
+            input = getInputNumber(messageToUser);
+
+            if (isValidCurrencyString(input))
+                haveValidInput = true;
+            else
+                write("Error: Invalid input - input should be a number that represents money");
+        }
+
+        return input;
+    }
+
+    private static boolean isValidCurrencyString(String currencyString)
+    {
+        try
+        {
+            new BigDecimal(currencyString);
+            return true;
+        }
+        catch (NumberFormatException ex)
+        {
+            return false;
+        }
     }
 
     public static String getInputDate(String messageToUser)
