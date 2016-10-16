@@ -1,5 +1,6 @@
 package com.thorsteinnth.kth.mmse.sepcli.Test;
 
+import com.sun.javafx.tk.Toolkit;
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
@@ -48,8 +49,7 @@ public class TaskRequestTest
 
         try
         {
-            assert tr.getId().equals("1")
-                    && tr.getTitle().equals(testTitle)
+            assert tr.getTitle().equals(testTitle)
                     && tr.getDescription().equals(testDescription)
                     && tr.getPriority().equals(testPriority)
                     && tr.getEventRequest().equals(testEr)
@@ -63,6 +63,50 @@ public class TaskRequestTest
             System.out.println("testCreateTaskRequest() - failed");
             return false;
         }
+    }
+
+    public static boolean testAddGetCommentToTaskRequest()
+    {
+        TaskRequest testTaskRequest = getTestTaskRequest();
+
+        String testComment = "test task request comment";
+        testTaskRequest.addComment(testComment);
+
+        try
+        {
+            assert testTaskRequest.getComment().equals(testComment);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddCommentToTaskRequest - failed");
+            return false;
+        }
+    }
+
+    private static TaskRequest getTestTaskRequest()
+    {
+        TaskRequestService service = getService();
+
+        UserService userService = new UserService(new UserRepository());
+        userService.addInitialUsers();
+        userService.login("jack@sep.se", "jack123");
+
+        String testTitle = "Test task request title";
+        String testDescription = "Test task request description";
+        TaskRequest.Priority testPriority = TaskRequest.Priority.High;
+        EventRequest testEr = getTestEventRequest();
+        User testAssignee = new User("magy@sep.se", "magy123", User.Role.SubTeamEmployee);
+
+        TaskRequest tr = service.createTaskRequest(
+                testTitle,
+                testDescription,
+                testPriority,
+                testEr,
+                testAssignee
+        );
+
+        return tr;
     }
 
     private static EventRequest getTestEventRequest()

@@ -6,6 +6,8 @@ import com.thorsteinnth.kth.mmse.sepcli.Domain.TaskRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.ITaskRequestRepository;
 
+import java.util.ArrayList;
+
 public class TaskRequestService
 {
     private ITaskRequestRepository repository;
@@ -23,7 +25,6 @@ public class TaskRequestService
             User assignee)
     {
         TaskRequest taskRequest = new TaskRequest(
-                Integer.toString(AppData.taskRequests.size() + 1),
                 title,
                 descrition,
                 priority,
@@ -35,5 +36,10 @@ public class TaskRequestService
         this.repository.addTaskRequest(taskRequest);
 
         return taskRequest;
+    }
+
+    public ArrayList<TaskRequest> getAllTaskRequests()
+    {
+        return this.repository.getAllTaskRequests();
     }
 }

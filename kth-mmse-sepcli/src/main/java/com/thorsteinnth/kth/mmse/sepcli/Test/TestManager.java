@@ -135,6 +135,16 @@ public class TestManager
             success = false;
         }
 
+        AppData.clear();
+
+        if(!TaskRequestTest.testAddGetCommentToTaskRequest())
+        {
+            System.out.println("TaskRequestTest.testAddGetCommentToTaskRequest() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Access control test
 
         if (!AccessTest.testHasAccess())
