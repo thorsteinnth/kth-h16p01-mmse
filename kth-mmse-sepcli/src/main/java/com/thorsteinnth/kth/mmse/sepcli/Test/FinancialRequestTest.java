@@ -49,6 +49,7 @@ public class FinancialRequestTest
                     && fr.getReasonForBudgetAdjustment().equals(testReason)
                     && fr.getRequiredAmount().equals(testRequiredAmount)
                     && fr.getRequestingDepartment().equals(testReqDep)
+                    && fr.getStatus().equals(FinancialRequest.Status.Pending)
                     && fr.getCreatedByUser().equals(AppData.loggedInUser);
 
             return true;

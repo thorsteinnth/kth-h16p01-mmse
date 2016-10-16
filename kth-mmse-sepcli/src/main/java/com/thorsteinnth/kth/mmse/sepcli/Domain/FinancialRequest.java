@@ -9,11 +9,19 @@ public class FinancialRequest extends Request
     private String reasonForBudgetAdjustment;
     private BigDecimal requiredAmount;
     private RequestingDepartment requestingDepartment;
+    private Status status;
 
     public enum RequestingDepartment
     {
         ProductionDepartment,
         ServiceDepartment
+    }
+
+    public enum Status
+    {
+        Pending,
+        Approved,
+        Rejected
     }
 
     public FinancialRequest(
@@ -28,6 +36,7 @@ public class FinancialRequest extends Request
         this.reasonForBudgetAdjustment = reasonForBudgetAdjustment;
         this.requiredAmount = requiredAmount;
         this.requestingDepartment = requestingDepartment;
+        this.status = Status.Pending;
     }
 
     public String getTitle()
@@ -48,6 +57,16 @@ public class FinancialRequest extends Request
     public RequestingDepartment getRequestingDepartment()
     {
         return this.requestingDepartment;
+    }
+
+    public Status getStatus()
+    {
+        return this.status;
+    }
+
+    public void setStatus(Status status)
+    {
+        this.status = status;
     }
 
     @Override
