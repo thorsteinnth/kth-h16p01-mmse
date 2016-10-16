@@ -56,7 +56,7 @@ public class TaskRequestController extends BaseController
         CliHelper.newLine();
         CliHelper.write("Create task request");
 
-        if(eventRequestService.getAllEventRequests().isEmpty())
+        if (eventRequestService.getAllEventRequests().isEmpty())
         {
             CliHelper.write("There are no event requests in the system. Create an event request in order to add task request.");
             displayPage();

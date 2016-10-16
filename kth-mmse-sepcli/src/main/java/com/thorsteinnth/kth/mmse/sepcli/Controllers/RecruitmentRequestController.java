@@ -1,7 +1,6 @@
 package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.FinancialRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.RecruitmentRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.RecruitmentRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RecruitmentRequestService;
@@ -76,6 +75,8 @@ public class RecruitmentRequestController extends BaseController
     private void printRecruitmentRequest(RecruitmentRequest rr)
     {
         CliHelper.newLine();
+
+        // TODO Use toDisplayString instead
 
         StringBuilder sb = new StringBuilder();
         sb.append("ID:\t\t\t\t\t\t" + rr.getId() + System.getProperty("line.separator"));

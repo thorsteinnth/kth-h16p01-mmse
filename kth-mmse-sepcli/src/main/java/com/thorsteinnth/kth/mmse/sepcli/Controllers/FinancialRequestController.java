@@ -50,17 +50,19 @@ public class FinancialRequestController extends BaseController
         CliHelper.newLine();
         CliHelper.write("Create financial request");
 
-        if(eventRequestService.getAllEventRequests().isEmpty())
+        if (eventRequestService.getAllEventRequests().isEmpty())
         {
-            CliHelper.write("There are no event requests in the system. Create a event in order to add task request.");
+            CliHelper.write("There are no event requests in the system. Create an event request in order to add financial request.");
             displayPage();
+            return;
         }
 
         EventRequest eventRequest = selectEventRequest();
 
-        if(eventRequest == null)
+        if (eventRequest == null)
         {
             displayPage();
+            return;
         }
 
         String title = CliHelper.getInput("Title:");
@@ -91,9 +93,9 @@ public class FinancialRequestController extends BaseController
         CliHelper.newLine();
         CliHelper.write("Link task request to event");
 
-        if(eventRequestService.getAllEventRequests().isEmpty())
+        if (eventRequestService.getAllEventRequests().isEmpty())
         {
-            CliHelper.write("ERROR: No event available");
+            CliHelper.write("There are no event requests in the system");
             return null;
         }
         else
@@ -117,7 +119,7 @@ public class FinancialRequestController extends BaseController
                 }
             }
 
-            if(eventRequests.size() != 0)
+            if (eventRequests.size() != 0)
             {
                 CliHelper.newLine();
                 final String selectedSeqNumber = CliHelper.getInput(
@@ -129,7 +131,7 @@ public class FinancialRequestController extends BaseController
             }
             else
             {
-                CliHelper.write("ERROR: No event available");
+                CliHelper.write("There are no event requests with status open or in progress");
                 return null;
             }
         }
@@ -138,6 +140,8 @@ public class FinancialRequestController extends BaseController
     private void printFinancialRequest(FinancialRequest fr)
     {
         CliHelper.newLine();
+
+        // TODO Use toDisplayString instead
 
         StringBuilder sb = new StringBuilder();
         sb.append("ID:\t\t\t\t\t\t" + fr.getId() + System.getProperty("line.separator"));

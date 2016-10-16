@@ -41,7 +41,6 @@ class ClientController extends BaseController
             back();
         else
             System.out.println("ERROR: Unknown command");
-
     }
 
     // TODO Restrict access to specific roles

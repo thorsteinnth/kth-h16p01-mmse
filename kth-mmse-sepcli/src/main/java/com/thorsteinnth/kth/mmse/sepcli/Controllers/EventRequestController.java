@@ -63,6 +63,7 @@ public class EventRequestController extends BaseController
         {
             CliHelper.write("There are no client records in the system. Add some clients in order to add event requests.");
             displayPage();
+            return;
         }
 
         String title = CliHelper.getInputEmptyStringBanned("Title:");
@@ -77,6 +78,7 @@ public class EventRequestController extends BaseController
         {
             CliHelper.write("We need a client for the event request. Aborting.");
             displayPage();
+            return;
         }
 
         // NOTE: Input from user is valid at this point

@@ -19,8 +19,8 @@ public class LoginController extends BaseController
         CliHelper.newLine();
         CliHelper.write("Please enter your login information.");
 
-        String email = CliHelper.getInput("Email:");
-        String password = CliHelper.getInput("Password:");
+        String email = CliHelper.getInputEmptyStringBanned("Email:");
+        String password = CliHelper.getInputEmptyStringBanned("Password:");
 
         boolean success = new UserService(new UserRepository()).login(email, password);
 
