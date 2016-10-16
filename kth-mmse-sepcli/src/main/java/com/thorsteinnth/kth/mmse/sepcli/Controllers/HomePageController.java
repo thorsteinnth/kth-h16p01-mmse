@@ -23,32 +23,8 @@ public class HomePageController extends BaseController
         CliHelper.write("This is the homepage for user: " + AppData.loggedInUser.email);
 
         ArrayList<UIOperation> operations = buildUIOperationList();
-        ArrayList<String> validInputs = new ArrayList<String>();
-
-        CliHelper.write("Please select one of the following operations:");
-
-        for (UIOperation op : operations)
-        {
-            CliHelper.write(op.toDisplayString());
-            validInputs.add(Integer.toString(op.getNumber()));
-        }
-
-        String input = CliHelper.getInput("Select an operation", validInputs);
-
-        UIOperation selectedOperation = UIOperation.getUIOperationWithNumberFromList(
-                Integer.parseInt(input),
-                operations
-        );
-
-        if (selectedOperation == null)
-        {
-            CliHelper.write("ERROR: Unknown operation selected");
-            displayPage();
-        }
-        else
-        {
-            selectedOperation.executeCommand();
-        }
+        UIOperation.Command onSelectedOperationError = () -> displayPage();
+        displayUIOperations(operations, onSelectedOperationError);
     }
 
     private boolean userHasIncomingRequests()
