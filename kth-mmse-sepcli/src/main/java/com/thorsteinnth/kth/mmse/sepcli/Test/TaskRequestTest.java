@@ -37,7 +37,7 @@ public class TaskRequestTest
         String testDescription = "Test task request description";
         TaskRequest.Priority testPriority = TaskRequest.Priority.High;
         EventRequest testEr = getTestEventRequest();
-        User testAssignee = new User("magy@sep.se", "magy123", User.Role.SubTeamEmployee);
+        User testAssignee = new User("magy@sep.se", "magy123", User.Role.ProductionDepartmentSubTeamEmployee);
 
         TaskRequest tr = service.createTaskRequest(
                 testTitle,
@@ -96,7 +96,7 @@ public class TaskRequestTest
         String testDescription = "Test task request description";
         TaskRequest.Priority testPriority = TaskRequest.Priority.High;
         EventRequest testEr = getTestEventRequest();
-        User testAssignee = new User("magy@sep.se", "magy123", User.Role.SubTeamEmployee);
+        User testAssignee = new User("magy@sep.se", "magy123", User.Role.ProductionDepartmentSubTeamEmployee);
 
         TaskRequest tr = service.createTaskRequest(
                 testTitle,
