@@ -2,10 +2,7 @@ package com.thorsteinnth.kth.mmse.sepcli.Test;
 
 import com.sun.javafx.tk.Toolkit;
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.TaskRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.*;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.ClientRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.TaskRequestRepository;
@@ -69,12 +66,16 @@ public class TaskRequestTest
     {
         TaskRequest testTaskRequest = getTestTaskRequest();
 
-        String testComment = "test task request comment";
-        testTaskRequest.addComment(testComment);
+        RequestComment testComment1 = new RequestComment(AppData.loggedInUser, "test task request comment 1");
+        testTaskRequest.addComment(testComment1);
+        RequestComment testComment2 = new RequestComment(AppData.loggedInUser, "test task request comment 2");
+        testTaskRequest.addComment(testComment2);
 
         try
         {
-            assert testTaskRequest.getComment().equals(testComment);
+            assert testTaskRequest.getComments().size() == 2;
+            assert testTaskRequest.getComments().get(0).equals(testComment1);
+            assert testTaskRequest.getComments().get(1).equals(testComment2);
             return true;
         }
         catch (AssertionError ae)

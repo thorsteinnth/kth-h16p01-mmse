@@ -164,7 +164,12 @@ public class EventRequest extends Request
         sb.append("Client:\t\t\t\t\t" + getClient().name + System.getProperty("line.separator"));
         sb.append("Created by:\t\t\t\t" + getCreatedByUser().email + System.getProperty("line.separator"));
         sb.append("Created date time:\t\t" + getCreatedDateTime().toString() + System.getProperty("line.separator"));
-        sb.append("Comments:\t" + getComments().toString() + System.getProperty("line.separator"));
+        sb.append("Comments:" + System.getProperty("line.separator"));
+
+        for (RequestComment rc : getComments())
+        {
+            sb.append(rc.toDisplayString() + System.getProperty("line.separator"));
+        }
 
         return sb.toString();
     }

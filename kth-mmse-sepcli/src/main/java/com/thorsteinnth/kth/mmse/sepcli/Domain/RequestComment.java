@@ -30,6 +30,11 @@ public class RequestComment
         return this.comment;
     }
 
+    public String toDisplayString()
+    {
+        return "[" + createdTime.toString() + "] " + createdByUser.email + ": " + comment;
+    }
+
     @Override
     public String toString() {
         return "RequestComment{" +
@@ -37,5 +42,29 @@ public class RequestComment
                 ", createdTime=" + createdTime +
                 ", comment='" + comment + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RequestComment that = (RequestComment) o;
+
+        if (createdByUser != null ? !createdByUser.equals(that.createdByUser) : that.createdByUser != null)
+            return false;
+        if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) return false;
+        return comment != null ? comment.equals(that.comment) : that.comment == null;
+
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = createdByUser != null ? createdByUser.hashCode() : 0;
+        result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
+        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        return result;
     }
 }

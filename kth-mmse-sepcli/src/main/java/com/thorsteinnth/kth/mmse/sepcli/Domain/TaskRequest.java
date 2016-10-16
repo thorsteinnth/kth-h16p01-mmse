@@ -6,7 +6,7 @@ public class TaskRequest extends Request
 {
     private String title;
     private String description;
-    private String comment;
+    private ArrayList<RequestComment> comments;
     private Priority priority;
 
     private EventRequest eventRequest;
@@ -30,15 +30,15 @@ public class TaskRequest extends Request
         super(createdByUser);
         this.title = title;
         this.description = description;
-        this.comment = "";
+        this.comments = new ArrayList<>();
         this.priority = priority;
         this.eventRequest = eventRequest;
         this.assignee = assignee;
     }
 
-    public void addComment(String comment)
+    public void addComment(RequestComment comment)
     {
-        this.comment = comment;
+        this.comments.add(comment);
     }
 
     public String getId()
@@ -56,9 +56,9 @@ public class TaskRequest extends Request
         return description;
     }
 
-    public String getComment()
+    public ArrayList<RequestComment> getComments()
     {
-        return comment;
+        return comments;
     }
 
     public Priority getPriority()
@@ -84,12 +84,27 @@ public class TaskRequest extends Request
     @Override
     public String toDisplayString()
     {
-        // TODO
-        return "This should be a nice string to display to the user";
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:\t\t\t\t" + getId() + System.getProperty("line.separator"));
+        sb.append("Title:\t\t\t" + getTitle() + System.getProperty("line.separator"));
+        sb.append("Description:\t" + getDescription() + System.getProperty("line.separator"));
+        sb.append("Priority:\t\t" + getPriority().toString() + System.getProperty("line.separator"));
+        sb.append("Event request:\t" + getEventRequest().getTitle() + System.getProperty("line.separator"));
+        sb.append("Assignee:\t\t" + getAssignee().email + System.getProperty("line.separator"));
+        sb.append("Created by:\t\t" + getCreatedByUser().email + System.getProperty("line.separator"));
+        sb.append("Comments:" + System.getProperty("line.separator"));
+
+        for (RequestComment rc : getComments())
+        {
+            sb.append(rc.toDisplayString() + System.getProperty("line.separator"));
+        }
+
+        return sb.toString();
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -97,7 +112,7 @@ public class TaskRequest extends Request
 
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
+        if (comments != null ? !comments.equals(that.comments) : that.comments != null) return false;
         if (priority != that.priority) return false;
         if (eventRequest != null ? !eventRequest.equals(that.eventRequest) : that.eventRequest != null) return false;
         if (super.getCreatedByUser() != null ? !super.getCreatedByUser().equals(that.getCreatedByUser()) : that.getCreatedByUser() != null)
@@ -107,10 +122,11 @@ public class TaskRequest extends Request
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int result = title != null ? title.hashCode() : 0;
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (comments != null ? comments.hashCode() : 0);
         result = 31 * result + (priority != null ? priority.hashCode() : 0);
         result = 31 * result + (eventRequest != null ? eventRequest.hashCode() : 0);
         result = 31 * result + (super.getCreatedByUser() != null ? super.getCreatedByUser().hashCode() : 0);
@@ -119,11 +135,12 @@ public class TaskRequest extends Request
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "TaskRequest{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", comment='" + comment + '\'' +
+                ", comments=" + comments +
                 ", priority=" + priority +
                 ", eventRequest=" + eventRequest +
                 ", createdByUser=" + super.getCreatedByUser() +

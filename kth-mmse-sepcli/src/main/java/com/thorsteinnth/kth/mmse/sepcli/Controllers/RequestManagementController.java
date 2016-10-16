@@ -17,7 +17,8 @@ public class RequestManagementController extends BaseController
 
     public RequestManagementController(BaseController previousController)
     {
-        //RequestMailTest.uiTestHelperCreateAndSendEventRequests();
+        // TODO Delete when done testing
+        //RequestMailTest.uiTestHelperCreateAndSendRequests();
 
         this.previousController = previousController;
         this.requestMailService = new RequestMailService(new RequestEnvelopeRepository());
@@ -77,7 +78,7 @@ public class RequestManagementController extends BaseController
 
         for (RequestEnvelope re : incomingEnvelopes)
         {
-            UIOperation.Command showRequest = () -> showIncomingRequest(re.getRequest());
+            UIOperation.Command showRequest = () -> viewRequest(re.getRequest());
             operations.add(
                     new UIOperation(
                             ++operationCount,
@@ -86,6 +87,8 @@ public class RequestManagementController extends BaseController
                     )
             );
         }
+
+        // TODO Add back option
 
         UIOperation.Command onSelectedOperationError = () -> {
             CliHelper.write("ERROR: Selected operation error");
@@ -110,10 +113,63 @@ public class RequestManagementController extends BaseController
             return "Unknown request type";
     }
 
-    private void showIncomingRequest(Request request)
+    private void viewRequest(Request request)
     {
         CliHelper.newLine();
         CliHelper.write(request.toDisplayString());
+
+        // Allow user to select and work with request
+
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        if (requestTypeSupportsComments(request))
+        {
+            UIOperation.Command addComment = () -> addCommentToRequest(request);
+            operations.add(new UIOperation(++operationCount, "Add comment", addComment));
+        }
+
+        UIOperation.Command back = () -> { /* Do nothing */ };
+        operations.add(new UIOperation(++operationCount, "Back", back));
+
+        UIOperation.Command onSelectedOperationError = () -> CliHelper.write("ERROR: Selected operation error");
+        displayUIOperations(operations, onSelectedOperationError);
+    }
+
+    private void addCommentToRequest(Request request)
+    {
+        // NOTE: If we were using a DB we would need to save to DB after adding comments here
+
+        CliHelper.newLine();
+        String comment = CliHelper.getInput("Add comment:");
+        RequestComment requestComment = new RequestComment(AppData.loggedInUser, comment);
+
+        if (request instanceof EventRequest)
+        {
+            EventRequest eventRequest = (EventRequest)request;
+            eventRequest.addComment(requestComment);
+            CliHelper.write("Comment added");
+        }
+        else if (request instanceof TaskRequest)
+        {
+            TaskRequest taskRequest = (TaskRequest)request;
+            taskRequest.addComment(requestComment);
+            CliHelper.write("Comment added");
+        }
+        else
+        {
+            System.out.println("ERROR: RequestManagementController.addCommentToRequest() - unknown request type");
+        }
+    }
+
+    private boolean requestTypeSupportsComments(Request request)
+    {
+        if (request instanceof EventRequest)
+            return true;
+        else if (request instanceof TaskRequest)
+            return true;
+        else
+            return false;
     }
 
     private void back()

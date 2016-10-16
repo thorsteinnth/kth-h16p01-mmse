@@ -1,17 +1,8 @@
 package com.thorsteinnth.kth.mmse.sepcli.Test;
 
-import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.RequestEnvelope;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
-import com.thorsteinnth.kth.mmse.sepcli.Repository.ClientRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Service.ClientService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.*;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.*;
+import com.thorsteinnth.kth.mmse.sepcli.Service.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -147,10 +138,32 @@ public class RequestMailTest
         return er;
     }
 
+    private static TaskRequest createTestTaskRequest()
+    {
+        TaskRequestService service = new TaskRequestService(new TaskRequestRepository());
+        UserService userService = new UserService(new UserRepository());
+
+        String testTitle = "Test task request title";
+        String testDescription = "Test task request description";
+        TaskRequest.Priority testPriority = TaskRequest.Priority.High;
+        EventRequest testEr = createTestEventRequest();
+        User testAssignee = userService.getUserByEmail("magy@sep.se");
+
+        TaskRequest tr = service.createTaskRequest(
+                testTitle,
+                testDescription,
+                testPriority,
+                testEr,
+                testAssignee
+        );
+
+        return tr;
+    }
+
     // UI test helpers (not unit tests)
     // Load data into the system to make UI development easier
 
-    public static void uiTestHelperCreateAndSendEventRequests()
+    public static void uiTestHelperCreateAndSendRequests()
     {
         RequestMailService requestMailService = getService();
         UserService userService = new UserService(new UserRepository());
@@ -158,11 +171,13 @@ public class RequestMailTest
         EventRequest request1 = createTestEventRequest();
         EventRequest request2 = createTestEventRequest();
         EventRequest request3 = createTestEventRequest();
+        TaskRequest request4 = createTestTaskRequest();
         User recipient1 = userService.getUserByEmail("alice@sep.se");
         User recipient2 = userService.getUserByEmail("jack@sep.se");
 
         requestMailService.sendRequest(request1, recipient1);
         requestMailService.sendRequest(request2, recipient2);
         requestMailService.sendRequest(request3, recipient1);
+        requestMailService.sendRequest(request4, recipient1);
     }
 }

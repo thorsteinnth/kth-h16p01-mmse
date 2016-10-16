@@ -58,14 +58,16 @@ public class TaskRequestController extends BaseController
 
         if(eventRequestService.getAllEventRequests().isEmpty())
         {
-            CliHelper.write("There are no event requests in the system. Create a event in order to add task request.");
+            CliHelper.write("There are no event requests in the system. Create an event request in order to add task request.");
             displayPage();
+            return;
         }
 
         EventRequest eventRequest = selectEventRequest();
-        if(eventRequest == null)
+        if (eventRequest == null)
         {
             displayPage();
+            return;
         }
 
         String title = CliHelper.getInput("Title:");
@@ -109,7 +111,7 @@ public class TaskRequestController extends BaseController
         CliHelper.newLine();
         CliHelper.write("Link task request to event");
 
-        if(eventRequestService.getAllEventRequests().isEmpty())
+        if (eventRequestService.getAllEventRequests().isEmpty())
         {
             CliHelper.write("ERROR: No event available");
             return null;
@@ -135,7 +137,7 @@ public class TaskRequestController extends BaseController
                 }
             }
 
-            if(eventRequests.size() != 0)
+            if (eventRequests.size() != 0)
             {
                 CliHelper.newLine();
                 final String selectedSeqNumber = CliHelper.getInput(
@@ -147,7 +149,7 @@ public class TaskRequestController extends BaseController
             }
             else
             {
-                CliHelper.write("ERROR: No event available");
+                CliHelper.write("There are no event requests that are open or in progress");
                 return null;
             }
         }
@@ -207,6 +209,8 @@ public class TaskRequestController extends BaseController
     private void printTaskRequest(TaskRequest tr)
     {
         CliHelper.newLine();
+
+        // TODO Use toDisplayString instead
 
         StringBuilder sb = new StringBuilder();
         sb.append("ID:\t\t\t\t\t\t" + tr.getId() + System.getProperty("line.separator"));
