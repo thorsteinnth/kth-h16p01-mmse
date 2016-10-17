@@ -49,6 +49,7 @@ public class TaskRequestTest
             assert tr.getTitle().equals(testTitle)
                     && tr.getDescription().equals(testDescription)
                     && tr.getPriority().equals(testPriority)
+                    && tr.getStatus().equals(TaskRequest.Status.Pending)
                     && tr.getEventRequest().equals(testEr)
                     && tr.getCreatedByUser().equals(AppData.loggedInUser)
                     && tr.getAssignee().equals(testAssignee);

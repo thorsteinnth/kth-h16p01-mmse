@@ -66,7 +66,7 @@ public class FinancialRequestController extends BaseController
         }
 
         String title = CliHelper.getInput("Title:");
-        String reason = CliHelper.getInput("Reason:");
+        String reason = CliHelper.getInput("Reason for budget adjustment:");
         String reqAmount = CliHelper.getInputCurrency("Required amount (SEK):");
 
         // NOTE: Input from user is valid at this point
@@ -106,8 +106,7 @@ public class FinancialRequestController extends BaseController
 
             for (EventRequest er: eventRequestService.getAllEventRequests())
             {
-                if(er.getStatus() == EventRequest.Status.Open ||
-                        er.getStatus() == EventRequest.Status.InProgress)
+                if(er.getStatus() == EventRequest.Status.Pending)
                 {
                     String seqNumber = Integer.toString(counter);
 
@@ -131,7 +130,7 @@ public class FinancialRequestController extends BaseController
             }
             else
             {
-                CliHelper.write("There are no event requests with status open or in progress");
+                CliHelper.write("There are no event requests with status pending");
                 return null;
             }
         }
