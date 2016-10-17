@@ -1,5 +1,11 @@
 package com.thorsteinnth.kth.mmse.sepcli;
 
+import com.thorsteinnth.kth.mmse.sepcli.Test.AcceptanceTest.EventRequestAcptTest;
+import com.thorsteinnth.kth.mmse.sepcli.Test.AcptTestCreateEventRequest;
+
+import java.awt.event.ActionEvent;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -7,12 +13,41 @@ import java.util.Scanner;
 
 public class CliHelper
 {
+    private static boolean isTestMode;
+
+    public static boolean getIsTestMode()
+    {
+        return isTestMode;
+    }
+
+    public static void setIsTestMode(boolean testMode)
+    {
+        isTestMode = testMode;
+    }
+
     public static String getInput(String messageToUser)
     {
-        Scanner scanner = new Scanner(System.in);
+        InputStream is;
+        if(isTestMode)
+            is = EventRequestAcptTest.getInputStream();
+        else
+            is = System.in;
+
+        Scanner scanner;
+
+        if(is != null)
+        {
+            scanner = new Scanner(is);
+        }
+        else
+        {
+            scanner = new Scanner(System.in);
+        }
 
         write(messageToUser);
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+
+        return input;
     }
 
     public static String getInputEmptyStringBanned(String messageToUser)
