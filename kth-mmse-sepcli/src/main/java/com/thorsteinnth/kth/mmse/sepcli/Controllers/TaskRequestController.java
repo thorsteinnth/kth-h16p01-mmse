@@ -124,8 +124,7 @@ public class TaskRequestController extends BaseController
 
             for (EventRequest er: eventRequestService.getAllEventRequests())
             {
-                if(er.getStatus() == EventRequest.Status.Open ||
-                        er.getStatus() == EventRequest.Status.InProgress)
+                if(er.getStatus() == EventRequest.Status.Pending)
                 {
                     String seqNumber = Integer.toString(counter);
 
@@ -149,7 +148,7 @@ public class TaskRequestController extends BaseController
             }
             else
             {
-                CliHelper.write("There are no event requests that are open or in progress");
+                CliHelper.write("There are no event requests with status pending");
                 return null;
             }
         }
@@ -209,19 +208,7 @@ public class TaskRequestController extends BaseController
     private void printTaskRequest(TaskRequest tr)
     {
         CliHelper.newLine();
-
-        // TODO Use toDisplayString instead
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("ID:\t\t\t\t\t\t" + tr.getId() + System.getProperty("line.separator"));
-        sb.append("Title:\t\t\t\t\t" + tr.getTitle() + System.getProperty("line.separator"));
-        sb.append("Description:\t\t" + tr.getDescription() + System.getProperty("line.separator"));
-        sb.append("Priority:\t\t\t" + tr.getPriority().toString() + System.getProperty("line.separator"));
-        sb.append("Event request:\t" + tr.getEventRequest().getTitle() + System.getProperty("line.separator"));
-        sb.append("Assignee:\t\t\t" + tr.getAssignee().email + System.getProperty("line.separator"));
-        sb.append("Created by:\t\t" + tr.getCreatedByUser().email + System.getProperty("line.separator"));
-
-        CliHelper.write(sb.toString());
+        CliHelper.write(tr.toDisplayString());
     }
 
     private void back()

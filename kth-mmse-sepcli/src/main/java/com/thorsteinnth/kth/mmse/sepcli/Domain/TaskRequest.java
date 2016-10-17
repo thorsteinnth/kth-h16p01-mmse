@@ -8,6 +8,7 @@ public class TaskRequest extends Request
     private String description;
     private ArrayList<RequestComment> comments;
     private Priority priority;
+    private Status status;
 
     private EventRequest eventRequest;
     private User assignee;
@@ -17,6 +18,13 @@ public class TaskRequest extends Request
         Low,
         Medium,
         High
+    }
+
+    public enum Status
+    {
+        Pending,
+        Approved,
+        Rejected
     }
 
     public TaskRequest(
@@ -32,6 +40,7 @@ public class TaskRequest extends Request
         this.description = description;
         this.comments = new ArrayList<>();
         this.priority = priority;
+        this.status = Status.Pending;
         this.eventRequest = eventRequest;
         this.assignee = assignee;
     }
@@ -66,6 +75,16 @@ public class TaskRequest extends Request
         return priority;
     }
 
+    public Status getStatus()
+    {
+        return this.status;
+    }
+
+    public void setStatus(Status status)
+    {
+        this.status = status;
+    }
+
     public EventRequest getEventRequest()
     {
         return eventRequest;
@@ -89,6 +108,7 @@ public class TaskRequest extends Request
         sb.append("Title:\t\t\t" + getTitle() + System.getProperty("line.separator"));
         sb.append("Description:\t" + getDescription() + System.getProperty("line.separator"));
         sb.append("Priority:\t\t" + getPriority().toString() + System.getProperty("line.separator"));
+        sb.append("Status:\t\t\t" + getStatus() + System.getProperty("line.separator"));
         sb.append("Event request:\t" + getEventRequest().getTitle() + System.getProperty("line.separator"));
         sb.append("Assignee:\t\t" + getAssignee().email + System.getProperty("line.separator"));
         sb.append("Created by:\t\t" + getCreatedByUser().email + System.getProperty("line.separator"));
@@ -114,9 +134,8 @@ public class TaskRequest extends Request
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (comments != null ? !comments.equals(that.comments) : that.comments != null) return false;
         if (priority != that.priority) return false;
+        if (status != that.status) return false;
         if (eventRequest != null ? !eventRequest.equals(that.eventRequest) : that.eventRequest != null) return false;
-        if (super.getCreatedByUser() != null ? !super.getCreatedByUser().equals(that.getCreatedByUser()) : that.getCreatedByUser() != null)
-            return false;
         return assignee != null ? assignee.equals(that.assignee) : that.assignee == null;
 
     }
@@ -128,8 +147,8 @@ public class TaskRequest extends Request
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (comments != null ? comments.hashCode() : 0);
         result = 31 * result + (priority != null ? priority.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (eventRequest != null ? eventRequest.hashCode() : 0);
-        result = 31 * result + (super.getCreatedByUser() != null ? super.getCreatedByUser().hashCode() : 0);
         result = 31 * result + (assignee != null ? assignee.hashCode() : 0);
         return result;
     }
@@ -142,6 +161,7 @@ public class TaskRequest extends Request
                 ", description='" + description + '\'' +
                 ", comments=" + comments +
                 ", priority=" + priority +
+                ", status=" + status +
                 ", eventRequest=" + eventRequest +
                 ", createdByUser=" + super.getCreatedByUser() +
                 ", assignee=" + assignee +
