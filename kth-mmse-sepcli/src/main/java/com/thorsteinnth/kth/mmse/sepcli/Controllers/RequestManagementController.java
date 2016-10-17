@@ -196,7 +196,7 @@ public class RequestManagementController extends BaseController
         // Check if the current task request type supports comments and if the current user has authority to add them
         if (requestTypeSupportsComments(request) && userHasAddCommentRightsForRequest(request))
         {
-            UIOperation.Command addComment = () -> addCommentToRequest(request);
+            UIOperation.Command addComment = () -> addCommentToRequest(request, requestEnvelope);
             operations.add(new UIOperation(++operationCount, "Add comment", addComment));
         }
 
@@ -215,7 +215,7 @@ public class RequestManagementController extends BaseController
         displayUIOperations(operations, onSelectedOperationError);
     }
 
-    private void addCommentToRequest(Request request)
+    private void addCommentToRequest(Request request, RequestEnvelope requestEnvelope)
     {
         CliHelper.newLine();
         String comment = CliHelper.getInput("Add comment:");
@@ -233,6 +233,13 @@ public class RequestManagementController extends BaseController
             TaskRequest taskRequest = (TaskRequest)request;
             service.addCommentToTaskRequest(taskRequest, comment);
             CliHelper.write("Comment added");
+
+            CliHelper.newLine();
+
+            this.requestMailService.removeRequestEnvelope(requestEnvelope);
+            this.requestMailService.sendRequest(taskRequest, taskRequest.getCreatedByUser());
+
+            CliHelper.write("Request sent with comment back to: " + taskRequest.getCreatedByUser().email);
         }
         else
         {
