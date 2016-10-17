@@ -2,6 +2,7 @@ package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.AccessFunction;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.TaskRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
@@ -9,10 +10,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.TaskRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.TaskRequestService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.Service.*;
 import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
 import java.util.ArrayList;
@@ -49,8 +47,11 @@ public class TaskRequestController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        UIOperation.Command createTaskRequest = () -> createTaskRequest();
-        operations.add(new UIOperation(++operationCount, "Create task request", createTaskRequest));
+        if (AccessControlService.hasAccess(AccessFunction.createTaskRequest))
+        {
+            UIOperation.Command createTaskRequest = () -> createTaskRequest();
+            operations.add(new UIOperation(++operationCount, "Create task request", createTaskRequest));
+        }
 
         UIOperation.Command back = () -> back();
         operations.add(new UIOperation(++operationCount, "Back", back));
@@ -58,7 +59,6 @@ public class TaskRequestController extends BaseController
         return operations;
     }
 
-    // TODO Restrict access to specific roles
     private void createTaskRequest()
     {
         CliHelper.newLine();
