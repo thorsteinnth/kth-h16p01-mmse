@@ -43,9 +43,9 @@ public class RequestManagementController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        // TODO Check access control and other stuff for what operations he should have access to
-
         // Browse incoming requests
+        // Everybody that can access this page should have the ability to browse incoming requests
+        // They should not receive requests that they should not have access to anyway
         UIOperation.Command browseIncomingRequests = () -> browseIncomingRequests();
         operations.add(new UIOperation(
                 ++operationCount,
@@ -56,20 +56,32 @@ public class RequestManagementController extends BaseController
         );
 
         // Event requests
-        UIOperation.Command eventRequestManagement = () -> eventRequestManagement();
-        operations.add(new UIOperation(++operationCount, "Event requests", eventRequestManagement));
+        if (AccessControlService.hasAccess(AccessFunction.eventRequestManagement))
+        {
+            UIOperation.Command eventRequestManagement = () -> eventRequestManagement();
+            operations.add(new UIOperation(++operationCount, "Event requests", eventRequestManagement));
+        }
 
         // Task requests
-        UIOperation.Command taskRequestManagement = () -> taskRequestManagement();
-        operations.add(new UIOperation(++operationCount, "Task requests", taskRequestManagement));
+        if (AccessControlService.hasAccess(AccessFunction.taskRequestManagement))
+        {
+            UIOperation.Command taskRequestManagement = () -> taskRequestManagement();
+            operations.add(new UIOperation(++operationCount, "Task requests", taskRequestManagement));
+        }
 
         // Financial requests
-        UIOperation.Command financialRequestManagement = () -> financialRequestManagement();
-        operations.add(new UIOperation(++operationCount, "Financial requests", financialRequestManagement));
+        if (AccessControlService.hasAccess(AccessFunction.financialRequestManagement))
+        {
+            UIOperation.Command financialRequestManagement = () -> financialRequestManagement();
+            operations.add(new UIOperation(++operationCount, "Financial requests", financialRequestManagement));
+        }
 
         // Recruitment requests
-        UIOperation.Command recruitmentRequestManagement = () -> recruitmentRequestManagement();
-        operations.add(new UIOperation(++operationCount, "Recruitment requests", recruitmentRequestManagement));
+        if (AccessControlService.hasAccess(AccessFunction.recruitmentRequestManagement))
+        {
+            UIOperation.Command recruitmentRequestManagement = () -> recruitmentRequestManagement();
+            operations.add(new UIOperation(++operationCount, "Recruitment requests", recruitmentRequestManagement));
+        }
 
         // Go back
         UIOperation.Command back = () -> back();
