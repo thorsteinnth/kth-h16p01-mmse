@@ -1,6 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.AccessFunction;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
@@ -33,7 +34,7 @@ public class EventRequestController extends BaseController
     public void displayPage()
     {
         CliHelper.newLine();
-        CliHelper.write("This is the create event request page");
+        CliHelper.write("This is the event request page");
 
         ArrayList<UIOperation> operations = buildUIOperationList();
         UIOperation.Command onSelectedOperationError = () -> displayPage();
@@ -45,8 +46,11 @@ public class EventRequestController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        UIOperation.Command createEventRequest = () -> createEventRequest();
-        operations.add(new UIOperation(++operationCount, "Create event request", createEventRequest));
+        if (AccessControlService.hasAccess(AccessFunction.createEventRequest))
+        {
+            UIOperation.Command createEventRequest = () -> createEventRequest();
+            operations.add(new UIOperation(++operationCount, "Create event request", createEventRequest));
+        }
 
         UIOperation.Command back = () -> back();
         operations.add(new UIOperation(++operationCount, "Back", back));
@@ -54,7 +58,6 @@ public class EventRequestController extends BaseController
         return operations;
     }
 
-    // TODO Restrict access to specific roles
     private void createEventRequest()
     {
         CliHelper.newLine();
