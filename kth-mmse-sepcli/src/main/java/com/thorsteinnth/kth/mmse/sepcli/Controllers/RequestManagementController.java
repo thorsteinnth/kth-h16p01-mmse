@@ -216,8 +216,26 @@ public class RequestManagementController extends BaseController
 
     private void updateTaskRequestStatus(TaskRequest taskRequest)
     {
-        // TODO
-        System.out.println("Should update status on task request");
+        CliHelper.newLine();
+        CliHelper.write("Current status is: " + taskRequest.getStatus());
+        CliHelper.write("Select new status:");
+
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        // TODO Don't allow the user to go to just any status - progression rules
+        for (TaskRequest.Status status : TaskRequest.Status.values())
+        {
+            UIOperation.Command selectStatus = () -> {
+                taskRequest.setStatus(status);
+                CliHelper.write("Status updated. New status: " + taskRequest.getStatus());
+            };
+            operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
+        }
+
+        UIOperation.Command onSelectedOperationError = () ->
+                CliHelper.write("ERROR: Selected operation error");
+        displayUIOperations(operations, onSelectedOperationError);
     }
 
     private void updateFinancialRequestStatus(FinancialRequest financialRequest)
