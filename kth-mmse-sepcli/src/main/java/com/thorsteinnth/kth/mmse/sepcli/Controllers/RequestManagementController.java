@@ -188,7 +188,7 @@ public class RequestManagementController extends BaseController
         CliHelper.newLine();
         CliHelper.write(request.toDisplayString());
 
-        // Allow user to select and work with request
+        // Options to work with request
 
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
@@ -207,6 +207,31 @@ public class RequestManagementController extends BaseController
         // All users are allowed to mark the requests they receive as resolved
         UIOperation.Command markAsResolved = () -> markAsResolved(requestEnvelope);
         operations.add(new UIOperation(++operationCount, "Mark as resolved", markAsResolved));
+
+        //================================================================================
+        // Event request workflow specific actions
+        //================================================================================
+
+        if (request instanceof EventRequest)
+        {
+            if (AppData.loggedInUser.role == User.Role.SeniorCustomerServiceOfficer)
+            {
+                // Senior customer service officer should forward the request to financial manager
+                // (if she does not reject it)
+                UIOperation.Command forwardEventRequestToFinancialManager =
+                        () -> forwardEventRequestToFinancialManager((EventRequest)request, requestEnvelope);
+                operations.add(new UIOperation(
+                        ++operationCount,
+                        "Forward event request to financial manager",
+                        forwardEventRequestToFinancialManager)
+                );
+            }
+        }
+
+        //================================================================================
+        // End event request workflow specific actions
+        //================================================================================
+
 
         UIOperation.Command back = () -> { /* Do nothing */ };
         operations.add(new UIOperation(++operationCount, "Back", back));
@@ -259,6 +284,10 @@ public class RequestManagementController extends BaseController
         else
             return false;
     }
+
+    //================================================================================
+    // Update request status
+    //================================================================================
 
     private void updateRequestStatus(Request request)
     {
@@ -391,6 +420,10 @@ public class RequestManagementController extends BaseController
         displayUIOperations(operations, onSelectedOperationError);
     }
 
+    //================================================================================
+    // End update request status
+    //================================================================================
+
     private void markAsResolved(RequestEnvelope envelope)
     {
         CliHelper.newLine();
@@ -422,7 +455,75 @@ public class RequestManagementController extends BaseController
         this.previousController.displayPage();
     }
 
+    //================================================================================
+    // Event request workflow specific actions
+    //================================================================================
+
+    private void sendEventRequest(EventRequest request, User.Role recipientRole)
+    {
+        CliHelper.newLine();
+        CliHelper.write("Send event request");
+        CliHelper.newLine();
+
+        UserService userService = new UserService(new UserRepository());
+
+        if (userService.getAllUsersByRole(recipientRole).isEmpty())
+        {
+            CliHelper.write("ERROR: No users with role " + User.getRoleDisplayString(recipientRole) + " in system.");
+            return;
+        }
+        else
+        {
+            ArrayList<String> validInputs = new ArrayList<>();
+            ArrayList<String> emailList = new ArrayList<>();
+
+            int i = 1;
+            for (User user : userService.getAllUsersByRole(recipientRole))
+            {
+                CliHelper.write(
+                        Integer.toString(i)
+                                + ".\t"
+                                + user.toDisplayString()
+                );
+                validInputs.add(Integer.toString(i));
+                emailList.add(user.email);
+                i++;
+            }
+
+            CliHelper.newLine();
+            String selectedNumber = CliHelper.getInput(
+                    "Select a user to send the request to:",
+                    validInputs);
+
+            String selectedEmail = emailList.get(Integer.parseInt(selectedNumber)-1);
+            User recipient = userService.getUserByEmail(selectedEmail);
+
+            if (recipient == null)
+            {
+                CliHelper.write("ERROR: Could not find user with email: " + selectedEmail);
+                return;
+            }
+
+            this.requestMailService.sendRequest(request, recipient);
+
+            CliHelper.newLine();
+            CliHelper.write("Request sent to: " + recipient.toDisplayString());
+        }
+    }
+
+    private void forwardEventRequestToFinancialManager(EventRequest request, RequestEnvelope envelope)
+    {
+        sendEventRequest(request, User.Role.FinancialManager);
+        markAsResolved(envelope);
+    }
+
+    //================================================================================
+    // End event request workflow specific actions
+    //================================================================================
+
+    //================================================================================
     // Access control helpers
+    //================================================================================
 
     private boolean userHasAddCommentRightsForRequest(Request request)
     {
@@ -448,4 +549,8 @@ public class RequestManagementController extends BaseController
             return false;
         }
     }
+
+    //================================================================================
+    // End access control helpers
+    //================================================================================
 }
