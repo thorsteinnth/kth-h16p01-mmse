@@ -66,7 +66,9 @@ class ClientController extends BaseController
 
         Client newClient = new ClientService(new ClientRepository()).createClient(name, address, email, phoneNumber);
 
-        CliHelper.write("Client created: " + newClient.toString());
+        CliHelper.newLine();
+        CliHelper.write("Client created:");
+        CliHelper.write(newClient.toDisplayStringLong());
 
         displayPage();
     }
@@ -84,7 +86,7 @@ class ClientController extends BaseController
         {
             for (Client client : clientService.getAllClients())
             {
-                CliHelper.write(client.toStringShort());
+                CliHelper.write(client.toDisplayStringShort());
             }
 
             viewClientRecord();
@@ -131,15 +133,7 @@ class ClientController extends BaseController
     private void printClientRecord(Client client)
     {
         CliHelper.newLine();
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("ID:\t\t\t\t" + client.id + System.getProperty("line.separator"));
-        sb.append("Name:\t\t\t" + client.name + System.getProperty("line.separator"));
-        sb.append("Address:\t\t" + client.address + System.getProperty("line.separator"));
-        sb.append("Email:\t\t\t" + client.email + System.getProperty("line.separator"));
-        sb.append("Phone number:\t" + client.phoneNumber + System.getProperty("line.separator"));
-
-        CliHelper.write(sb.toString());
+        CliHelper.write(client.toDisplayStringLong());
     }
 
     private void back()

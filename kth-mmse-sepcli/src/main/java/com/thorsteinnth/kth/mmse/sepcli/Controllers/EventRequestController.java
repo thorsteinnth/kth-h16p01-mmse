@@ -175,7 +175,7 @@ public class EventRequestController extends BaseController
 
             for (Client client : clientService.getAllClients())
             {
-                CliHelper.write(client.toStringShort());
+                CliHelper.write(client.toDisplayStringShort());
                 validInputs.add(Integer.toString(client.id));
             }
 

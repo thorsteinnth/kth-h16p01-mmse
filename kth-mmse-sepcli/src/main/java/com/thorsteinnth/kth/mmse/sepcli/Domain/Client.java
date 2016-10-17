@@ -17,9 +17,20 @@ public class Client
         this.phoneNumber = phoneNumber;
     }
 
-    public String toStringShort()
+    public String toDisplayStringShort()
     {
         return id + ". " + name;
+    }
+
+    public String toDisplayStringLong()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:\t\t\t\t" + id + System.getProperty("line.separator"));
+        sb.append("Name:\t\t\t" + name + System.getProperty("line.separator"));
+        sb.append("Address:\t\t" + address + System.getProperty("line.separator"));
+        sb.append("Email:\t\t\t" + email + System.getProperty("line.separator"));
+        sb.append("Phone number:\t" + phoneNumber + System.getProperty("line.separator"));
+        return sb.toString();
     }
 
     @Override
