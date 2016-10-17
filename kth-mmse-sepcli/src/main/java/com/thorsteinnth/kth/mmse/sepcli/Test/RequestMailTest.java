@@ -160,7 +160,7 @@ public class RequestMailTest
         return tr;
     }
 
-    public static RecruitmentRequest createTestRecruitmentRequest()
+    private static RecruitmentRequest createTestRecruitmentRequest()
     {
         RecruitmentRequestService service = new RecruitmentRequestService(new RecruitmentRequestRepository());
 
@@ -179,7 +179,7 @@ public class RequestMailTest
         return rr;
     }
 
-    public static FinancialRequest createTestFinancialRequest()
+    private static FinancialRequest createTestFinancialRequest()
     {
         FinancialRequestService service = new FinancialRequestService(new FinancialRequestRepository());
         EventRequest eventRequest = createTestEventRequest();
