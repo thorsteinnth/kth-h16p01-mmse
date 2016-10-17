@@ -167,6 +167,9 @@ public class TaskRequestController extends BaseController
 
         for (User u: userService.getAllUsers())
         {
+            // NOTE:
+            // Only production managers and service department managers will
+            // be allowed in here
             if (AppData.loggedInUser.role == User.Role.ProductionManager)
             {
                 if(u.role == User.Role.ProductionDepartmentSubTeamEmployee)

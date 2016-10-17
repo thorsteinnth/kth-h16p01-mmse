@@ -134,25 +134,49 @@ public class EventRequestTest
 
     public static boolean testAddGetCommentToEventRequest()
     {
-        // Note: We are not using the service to add comments at the moment
-
+        EventRequestService service = getService();
         EventRequest testEventRequest = createTestEventRequest();
 
-        RequestComment testComment1 = new RequestComment(AppData.loggedInUser, "test event request comment 1");
-        testEventRequest.addComment(testComment1);
-        RequestComment testComment2 = new RequestComment(AppData.loggedInUser, "test event request comment 2");
-        testEventRequest.addComment(testComment2);
+        String testString1 = "test event request comment 1";
+        String testString2 = "test event request comment 2";
+
+        service.addCommentToEventRequest(testEventRequest, testString1);
+        service.addCommentToEventRequest(testEventRequest, testString2);
 
         try
         {
             assert testEventRequest.getComments().size() == 2;
+
+            RequestComment testComment1 = new RequestComment(AppData.loggedInUser, testString1);
+            RequestComment testComment2 = new RequestComment(AppData.loggedInUser, testString2);
             assert testEventRequest.getComments().get(0).equals(testComment1);
             assert testEventRequest.getComments().get(1).equals(testComment2);
+
             return true;
         }
         catch (AssertionError ae)
         {
             System.out.println("testAddCommentToEventRequest - failed");
+            return false;
+        }
+    }
+
+    public static boolean testUpdateEventRequestStatus()
+    {
+        EventRequestService service = getService();
+        EventRequest testEventRequest = createTestEventRequest();
+
+        try
+        {
+            // TODO Status progression rules
+            assert testEventRequest.getStatus().equals(EventRequest.Status.Pending);
+            service.updateEventRequestStatus(testEventRequest, EventRequest.Status.InProgress);
+            assert testEventRequest.getStatus().equals(EventRequest.Status.InProgress);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testUpdateEventRequestStatus() - failed");
             return false;
         }
     }

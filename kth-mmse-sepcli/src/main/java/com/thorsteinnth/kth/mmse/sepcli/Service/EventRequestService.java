@@ -3,6 +3,7 @@ package com.thorsteinnth.kth.mmse.sepcli.Service;
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.RequestComment;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.IEventRequestRepository;
 
 import java.math.BigDecimal;
@@ -48,5 +49,22 @@ public class EventRequestService
     public ArrayList<EventRequest> getAllEventRequests()
     {
         return this.repository.getAllEventRequests();
+    }
+
+    public void addCommentToEventRequest(EventRequest request, String commentText)
+    {
+        // NOTE:
+        // Not saving this to repo since our implementation is only using an
+        // in-memory data store
+        request.addComment(new RequestComment(AppData.loggedInUser, commentText));
+    }
+
+    public void updateEventRequestStatus(EventRequest request, EventRequest.Status newStatus)
+    {
+        // TODO Status progression rules
+        // NOTE:
+        // Not saving this to repo since our implementation is only using an
+        // in-memory data store
+        request.setStatus(newStatus);
     }
 }

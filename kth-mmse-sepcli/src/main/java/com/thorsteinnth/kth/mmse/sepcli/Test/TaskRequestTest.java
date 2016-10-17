@@ -65,23 +65,49 @@ public class TaskRequestTest
 
     public static boolean testAddGetCommentToTaskRequest()
     {
+        TaskRequestService service = getService();
         TaskRequest testTaskRequest = getTestTaskRequest();
 
-        RequestComment testComment1 = new RequestComment(AppData.loggedInUser, "test task request comment 1");
-        testTaskRequest.addComment(testComment1);
-        RequestComment testComment2 = new RequestComment(AppData.loggedInUser, "test task request comment 2");
-        testTaskRequest.addComment(testComment2);
+        String testString1 = "test task request comment 1";
+        String testString2 = "test task request comment 2";
+
+        service.addCommentToTaskRequest(testTaskRequest, testString1);
+        service.addCommentToTaskRequest(testTaskRequest, testString2);
 
         try
         {
             assert testTaskRequest.getComments().size() == 2;
+
+            RequestComment testComment1 = new RequestComment(AppData.loggedInUser, testString1);
+            RequestComment testComment2 = new RequestComment(AppData.loggedInUser, testString2);
             assert testTaskRequest.getComments().get(0).equals(testComment1);
             assert testTaskRequest.getComments().get(1).equals(testComment2);
+
             return true;
         }
         catch (AssertionError ae)
         {
-            System.out.println("testAddCommentToTaskRequest - failed");
+            System.out.println("testAddGetCommentToTaskRequest - failed");
+            return false;
+        }
+    }
+
+    public static boolean testUpdateTaskRequestStatus()
+    {
+        TaskRequestService service = getService();
+        TaskRequest testTaskRequest = getTestTaskRequest();
+
+        try
+        {
+            // TODO Status progression rules
+            assert testTaskRequest.getStatus().equals(TaskRequest.Status.Pending);
+            service.updateTaskRequestStatus(testTaskRequest, TaskRequest.Status.Approved);
+            assert testTaskRequest.getStatus().equals(TaskRequest.Status.Approved);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testUpdateTaskRequestStatus() - failed");
             return false;
         }
     }
