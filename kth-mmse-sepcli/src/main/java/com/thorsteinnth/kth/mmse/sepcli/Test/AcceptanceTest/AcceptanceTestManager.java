@@ -31,4 +31,9 @@ public class AcceptanceTestManager
 
         //else return another input stream
     }
+
+    public static void displayResults(String result)
+    {
+        System.out.println("Acceptance test result: " + result);
+    }
 }

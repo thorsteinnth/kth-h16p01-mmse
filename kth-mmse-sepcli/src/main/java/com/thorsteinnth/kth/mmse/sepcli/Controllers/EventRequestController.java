@@ -12,6 +12,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Service.ClientService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.Test.AcceptanceTest.AcceptanceTestManager;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -101,12 +102,19 @@ public class EventRequestController extends BaseController
         );
 
         printEventRequest(er);
-        sendRequest(er);
+        String result = sendRequest(er);
 
-        displayPage();
+        if(CliHelper.getIsTestMode())
+        {
+            AcceptanceTestManager.displayResults(result);
+        }
+        else
+        {
+            displayPage();
+        }
     }
 
-    private void sendRequest(EventRequest request)
+    private String sendRequest(EventRequest request)
     {
         CliHelper.newLine();
         CliHelper.write("Send event request");
@@ -116,7 +124,7 @@ public class EventRequestController extends BaseController
         {
             // NOTE: Should never happen
             CliHelper.write("ERROR: No users in system");
-            return;
+            return "ERROR";
         }
         else
         {
@@ -147,13 +155,15 @@ public class EventRequestController extends BaseController
             if (recipient == null)
             {
                 CliHelper.write("ERROR: Could not find user with email: " + selectedEmail);
-                return;
+                return "ERROR";
             }
 
             this.requestMailService.sendRequest(request, recipient);
 
             CliHelper.newLine();
             CliHelper.write("Request sent to: " + recipient.email);
+
+            return "EventRequest successfully created and sent";
         }
     }
 

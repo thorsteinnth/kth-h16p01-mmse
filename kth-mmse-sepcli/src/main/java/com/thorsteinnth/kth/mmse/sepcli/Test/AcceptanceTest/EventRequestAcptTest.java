@@ -24,7 +24,7 @@ public class EventRequestAcptTest
         operationQueue.add("200"); //Number of attendees
         operationQueue.add("Description of preferences");
         operationQueue.add("50000"); //Expected budget
-        operationQueue.add("2"); //select 2: ling event to client nr. 2
+        operationQueue.add("2"); //select 2: link event to client nr. 2
         operationQueue.add("1");
     }
 

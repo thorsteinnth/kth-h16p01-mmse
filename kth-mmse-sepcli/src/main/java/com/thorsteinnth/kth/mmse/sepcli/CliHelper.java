@@ -38,6 +38,7 @@ public class CliHelper
         }
         else
         {
+            AcceptanceTestManager.displayResults("Acceptance test FAILED!");
             scanner = new Scanner(System.in);
         }
 
