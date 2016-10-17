@@ -1,5 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Domain;
 
+import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
+
 import javax.print.DocFlavor;
 import java.math.BigDecimal;
 
@@ -81,8 +83,16 @@ public class FinancialRequest extends Request
     @Override
     public String toDisplayString()
     {
-        // TODO
-        return "This should be a nice string to display to the user";
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:\t\t\t\t\t\t" + getId() + System.getProperty("line.separator"));
+        sb.append("Title:\t\t\t\t\t" + getTitle() + System.getProperty("line.separator"));
+        sb.append("Status:\t\t\t\t\t" + getStatus() + System.getProperty("line.separator"));
+        sb.append("Reason:\t\t\t\t\t" + getReasonForBudgetAdjustment() + System.getProperty("line.separator"));
+        sb.append("Required amt:\t\t" + getRequiredAmount().toString() + System.getProperty("line.separator"));
+        sb.append("Event request:\t" + getEventRequest().getTitle() + System.getProperty("line.separator"));
+        sb.append("Created by:\t\t" + getCreatedByUser().email + System.getProperty("line.separator"));
+
+        return sb.toString();
     }
 
     @Override

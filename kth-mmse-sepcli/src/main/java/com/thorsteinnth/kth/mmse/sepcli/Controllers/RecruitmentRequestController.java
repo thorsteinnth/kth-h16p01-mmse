@@ -44,12 +44,12 @@ public class RecruitmentRequestController extends BaseController
 
         String jobTitle = CliHelper.getInput("Job title:");
         String jobDescription = CliHelper.getInput("Job description:");
-        String requirements = CliHelper.getInput("Requirements:");
+        String requirements = CliHelper.getInput("Applicant requirements:");
 
         ArrayList<String> validContractTypeInputs = new ArrayList<>();
         validContractTypeInputs.add("F");
         validContractTypeInputs.add("O");
-        String contractType = CliHelper.getInput("Contract type (Full time (F)/Outsourcing (O):", validContractTypeInputs);
+        String contractType = CliHelper.getInput("Contract type (Full time (F)/Outsourcing (O)):", validContractTypeInputs);
 
         RecruitmentRequest.ContractType cType;
 
@@ -75,20 +75,7 @@ public class RecruitmentRequestController extends BaseController
     private void printRecruitmentRequest(RecruitmentRequest rr)
     {
         CliHelper.newLine();
-
-        // TODO Use toDisplayString instead
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("ID:\t\t\t\t\t\t" + rr.getId() + System.getProperty("line.separator"));
-        sb.append("Title:\t\t\t\t" + rr.getJobTitle() + System.getProperty("line.separator"));
-        sb.append("Description:\t\t\t" + rr.getJobDescription() + System.getProperty("line.separator"));
-        sb.append("Requirements:\t\t\t" + rr.getRequirements() + System.getProperty("line.separator"));
-        sb.append("Contract type:\t\t" + rr.getContractType().toString() + System.getProperty("line.separator"));
-        sb.append("Req department:\t" + rr.getRequestingDepartment().toString() + System.getProperty("line.separator"));
-        sb.append("Status:\t\t\t\t\t" + rr.getStatus() + System.getProperty("line.separator"));
-        sb.append("Created by:\t\t" + rr.getCreatedByUser().email + System.getProperty("line.separator"));
-
-        CliHelper.write(sb.toString());
+        CliHelper.write(rr.toDisplayString());
     }
 
     private void back()

@@ -140,19 +140,7 @@ public class FinancialRequestController extends BaseController
     private void printFinancialRequest(FinancialRequest fr)
     {
         CliHelper.newLine();
-
-        // TODO Use toDisplayString instead
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("ID:\t\t\t\t\t\t" + fr.getId() + System.getProperty("line.separator"));
-        sb.append("Title:\t\t\t\t\t" + fr.getTitle() + System.getProperty("line.separator"));
-        sb.append("Status:\t\t\t\t\t" + fr.getStatus() + System.getProperty("line.separator"));
-        sb.append("Reason:\t\t\t\t\t" + fr.getReasonForBudgetAdjustment() + System.getProperty("line.separator"));
-        sb.append("Required amt:\t\t" + fr.getRequiredAmount().toString() + System.getProperty("line.separator"));
-        sb.append("Event request:\t" + fr.getEventRequest().getTitle() + System.getProperty("line.separator"));
-        sb.append("Created by:\t\t" + fr.getCreatedByUser().email + System.getProperty("line.separator"));
-
-        CliHelper.write(sb.toString());
+        CliHelper.write(fr.toDisplayString());
     }
 
     private void back()
