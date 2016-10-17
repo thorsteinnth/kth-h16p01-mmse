@@ -32,72 +32,116 @@ public class AccessControlService
             case AdministrationDepartmentManager:
                 accessList.addAll(Arrays.asList(
                         AccessFunction.requestManagement,
+
+                        AccessFunction.eventRequestManagement,
                         AccessFunction.approveEventRequest,
                         AccessFunction.rejectEventRequest,
                         AccessFunction.browseEventRequests
                 ));
                 break;
+
             case FinancialManager:
                 accessList.addAll(Arrays.asList(
                         AccessFunction.requestManagement,
+
+                        AccessFunction.eventRequestManagement,
                         AccessFunction.editEventRequest,
+
+                        AccessFunction.financialRequestManagement,
                         AccessFunction.approveFinancialRequest,
                         AccessFunction.rejectFinancialRequest,
+
                         AccessFunction.clientManagement,
                         AccessFunction.browseClientRecords
                 ));
                 break;
+
             case ProductionManager:
                 accessList.addAll(Arrays.asList(
                         AccessFunction.requestManagement,
+
+                        AccessFunction.eventRequestManagement,
                         AccessFunction.editEventRequest,
+
+                        AccessFunction.financialRequestManagement,
                         AccessFunction.createFinancialRequest,
+
+                        AccessFunction.taskRequestManagement,
                         AccessFunction.createTaskRequest,
+
+                        AccessFunction.recruitmentRequestManagement,
                         AccessFunction.createRecruitmentRequest
                 ));
                 break;
+
             case ServiceDepartmentManager:
                 accessList.addAll(Arrays.asList(
                         AccessFunction.requestManagement,
+
+                        AccessFunction.eventRequestManagement,
                         AccessFunction.editEventRequest,
+
+                        AccessFunction.financialRequestManagement,
                         AccessFunction.createFinancialRequest,
+
+                        AccessFunction.taskRequestManagement,
                         AccessFunction.createTaskRequest,
+
+                        AccessFunction.recruitmentRequestManagement,
                         AccessFunction.createRecruitmentRequest
                 ));
                 break;
+
             case ProductionDepartmentSubTeamEmployee:
                 accessList.add(AccessFunction.requestManagement);
+
+                accessList.add(AccessFunction.taskRequestManagement);
                 accessList.add(AccessFunction.editTaskRequest);
                 break;
+
             case ServiceDepartmentSubTeamEmployee:
                 accessList.add(AccessFunction.requestManagement);
+
+                accessList.add(AccessFunction.taskRequestManagement);
                 accessList.add(AccessFunction.editTaskRequest);
                 break;
+
             case MarketingAssistant:
                 accessList.add(AccessFunction.clientManagement);
                 accessList.add(AccessFunction.browseClientRecords);
                 break;
+
             case MarketingOfficer:
                 accessList.add(AccessFunction.clientManagement);
                 accessList.add(AccessFunction.browseClientRecords);
                 break;
+
             case CustomerServiceOfficer:
                 accessList.add(AccessFunction.requestManagement);
+
+                accessList.add(AccessFunction.eventRequestManagement);
                 accessList.add(AccessFunction.createEventRequest);
                 break;
+
             case SeniorCustomerServiceOfficer:
                 accessList.addAll(Arrays.asList(
                         AccessFunction.requestManagement,
+
+                        AccessFunction.eventRequestManagement,
                         AccessFunction.rejectEventRequest,
+                        AccessFunction.browseEventRequests,
+
                         AccessFunction.clientManagement,
                         AccessFunction.createClientRecord,
-                        AccessFunction.browseClientRecords,
-                        AccessFunction.browseEventRequests
+                        AccessFunction.browseClientRecords
                 ));
                 break;
+
             case SeniorHRManager:
                 accessList.addAll(Arrays.asList(
                         AccessFunction.requestManagement,
+
+                        AccessFunction.recruitmentRequestManagement,
                         AccessFunction.approveRecruitmentRequest,
                         AccessFunction.rejectRecruitmentRequest
                 ));
