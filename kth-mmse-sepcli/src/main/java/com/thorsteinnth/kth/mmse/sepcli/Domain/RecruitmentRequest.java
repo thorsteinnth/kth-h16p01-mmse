@@ -77,10 +77,18 @@ public class RecruitmentRequest extends Request
         return this.status;
     }
 
-    @Override
     public String toDisplayString()
     {
-        // TODO
-        return "This should be a nice string to display to the user";
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:\t\t\t\t\t" + getId() + System.getProperty("line.separator"));
+        sb.append("Title:\t\t\t\t" + getJobTitle() + System.getProperty("line.separator"));
+        sb.append("Description:\t\t" + getJobDescription() + System.getProperty("line.separator"));
+        sb.append("Requirements:\t\t" + getRequirements() + System.getProperty("line.separator"));
+        sb.append("Contract type:\t\t" + getContractType().toString() + System.getProperty("line.separator"));
+        sb.append("Req department:\t\t" + getRequestingDepartment().toString() + System.getProperty("line.separator"));
+        sb.append("Status:\t\t\t\t" + getStatus() + System.getProperty("line.separator"));
+        sb.append("Created by:\t\t\t" + getCreatedByUser().email + System.getProperty("line.separator"));
+
+        return sb.toString();
     }
 }
