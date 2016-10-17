@@ -57,6 +57,10 @@ public class RecruitmentRequestTest
         RecruitmentRequestService service = getService();
         RecruitmentRequest testRecruitmentRequest = createTestRecruitmentRequest();
 
+        // Log in user that has authority to do this
+        UserService userService = new UserService(new UserRepository());
+        userService.login("simon@sep.se", "simon123");
+
         try
         {
             // TODO Status progression rules

@@ -69,6 +69,10 @@ public class FinancialRequestTest
         FinancialRequestService service = getService();
         FinancialRequest testFinancialRequest = getTestFinancialRequest();
 
+        // Log in user that has authority to do this
+        UserService userService = new UserService(new UserRepository());
+        userService.login("alice@sep.se", "alice123");
+
         try
         {
             // TODO Status progression rules
