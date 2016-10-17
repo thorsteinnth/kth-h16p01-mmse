@@ -46,6 +46,7 @@ class ClientController extends BaseController
     // TODO Restrict access to specific roles
     private void createClient()
     {
+        CliHelper.newLine();
         CliHelper.write("Create client");
         String name = CliHelper.getInput("Name:");
         String address = CliHelper.getInput("Address:");
@@ -97,7 +98,7 @@ class ClientController extends BaseController
                 "Select a client ID to view details, or select 0 to go back",
                 validInputs);
 
-        if (selectedId.equals(0))
+        if (selectedId.equals("0"))
         {
             displayPage();
         }
