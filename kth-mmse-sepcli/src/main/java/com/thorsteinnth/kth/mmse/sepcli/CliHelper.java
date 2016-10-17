@@ -1,6 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli;
 
-import com.thorsteinnth.kth.mmse.sepcli.Test.AcceptanceTest.EventRequestAcptTest;
+import com.thorsteinnth.kth.mmse.sepcli.Test.AcceptanceTest.AcceptanceTestManager;
+
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class CliHelper
     {
         InputStream is;
         if(isTestMode)
-            is = EventRequestAcptTest.getInputStream();
+            is = AcceptanceTestManager.getInputStream();
         else
             is = System.in;
 

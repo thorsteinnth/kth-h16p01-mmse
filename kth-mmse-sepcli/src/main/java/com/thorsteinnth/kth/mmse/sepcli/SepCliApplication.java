@@ -5,7 +5,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Repository.ClientRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.ClientService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
-import com.thorsteinnth.kth.mmse.sepcli.Test.AcceptanceTest.EventRequestAcptTest;
+import com.thorsteinnth.kth.mmse.sepcli.Test.AcceptanceTest.AcceptanceTestManager;
 import com.thorsteinnth.kth.mmse.sepcli.Test.TestManager;
 
 public class SepCliApplication
@@ -22,7 +22,7 @@ public class SepCliApplication
 
         //TODO we could get this from the main arguments list
         CliHelper.setIsTestMode(false);
-        //EventRequestAcptTest.runTest();
+        //AcceptanceTestManager.runAcceptanceTest("1");
 
         // Add initial data
         new UserService(new UserRepository()).addInitialUsers();
