@@ -131,4 +131,29 @@ public class EventRequestTest
             return false;
         }
     }
+
+    public static boolean testAddGetCommentToEventRequest()
+    {
+        // Note: We are not using the service to add comments at the moment
+
+        EventRequest testEventRequest = createTestEventRequest();
+
+        RequestComment testComment1 = new RequestComment(AppData.loggedInUser, "test event request comment 1");
+        testEventRequest.addComment(testComment1);
+        RequestComment testComment2 = new RequestComment(AppData.loggedInUser, "test event request comment 2");
+        testEventRequest.addComment(testComment2);
+
+        try
+        {
+            assert testEventRequest.getComments().size() == 2;
+            assert testEventRequest.getComments().get(0).equals(testComment1);
+            assert testEventRequest.getComments().get(1).equals(testComment2);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testAddCommentToEventRequest - failed");
+            return false;
+        }
+    }
 }
