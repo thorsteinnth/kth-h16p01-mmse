@@ -6,9 +6,11 @@ import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.TaskRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.TaskRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
+import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.TaskRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
 
@@ -21,12 +23,14 @@ public class TaskRequestController extends BaseController
     private BaseController previousController;
     private EventRequestService eventRequestService;
     private UserService userService;
+    private RequestMailService requestMailService;
 
     public TaskRequestController(BaseController previousController)
     {
         this.previousController = previousController;
         this.eventRequestService = new EventRequestService(new EventRequestRepository());
         this.userService = new UserService(new UserRepository());
+        this.requestMailService = new RequestMailService(new RequestEnvelopeRepository());
     }
 
     public void displayPage()
@@ -100,8 +104,17 @@ public class TaskRequestController extends BaseController
         );
 
         printTaskRequest(tr);
+        sendRequest(tr);
 
         displayPage();
+    }
+
+    private void sendRequest(TaskRequest tr)
+    {
+        CliHelper.newLine();
+        this.requestMailService.sendRequest(tr, tr.getAssignee());
+
+        CliHelper.write("Request sent to assignee: " + tr.getAssignee().email);
     }
 
     private EventRequest selectEventRequest()

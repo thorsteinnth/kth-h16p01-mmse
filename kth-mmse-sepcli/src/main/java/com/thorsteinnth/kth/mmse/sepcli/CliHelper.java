@@ -1,10 +1,6 @@
 package com.thorsteinnth.kth.mmse.sepcli;
 
 import com.thorsteinnth.kth.mmse.sepcli.Test.AcceptanceTest.EventRequestAcptTest;
-import com.thorsteinnth.kth.mmse.sepcli.Test.AcptTestCreateEventRequest;
-
-import java.awt.event.ActionEvent;
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
