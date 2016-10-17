@@ -22,7 +22,7 @@ public class SepCliApplication
 
         //TODO we could get this from the main arguments list
         CliHelper.setIsTestMode(false);
-        //AcceptanceTestManager.runAcceptanceTest("1");
+        //AcceptanceTestManager.runAcceptanceTest("2"); //can be access test 1 or 2
 
         // Add initial data
         new UserService(new UserRepository()).addInitialUsers();

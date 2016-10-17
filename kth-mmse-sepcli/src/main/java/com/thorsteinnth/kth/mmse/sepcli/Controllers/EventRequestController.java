@@ -102,19 +102,12 @@ public class EventRequestController extends BaseController
         );
 
         printEventRequest(er);
-        String result = sendRequest(er);
+        sendRequest(er);
 
-        if(CliHelper.getIsTestMode())
-        {
-            AcceptanceTestManager.displayResults(result);
-        }
-        else
-        {
-            displayPage();
-        }
+        displayPage();
     }
 
-    private String sendRequest(EventRequest request)
+    private void sendRequest(EventRequest request)
     {
         CliHelper.newLine();
         CliHelper.write("Send event request");
@@ -124,7 +117,7 @@ public class EventRequestController extends BaseController
         {
             // NOTE: Should never happen
             CliHelper.write("ERROR: No users in system");
-            return "ERROR";
+            return;
         }
         else
         {
@@ -155,15 +148,16 @@ public class EventRequestController extends BaseController
             if (recipient == null)
             {
                 CliHelper.write("ERROR: Could not find user with email: " + selectedEmail);
-                return "ERROR";
+                return;
             }
 
             this.requestMailService.sendRequest(request, recipient);
 
             CliHelper.newLine();
-            CliHelper.write("Request sent to: " + recipient.email);
+            CliHelper.write("Event request successfully created!");
 
-            return "EventRequest successfully created and sent";
+            CliHelper.newLine();
+            CliHelper.write("Request sent to: " + recipient.email);
         }
     }
 

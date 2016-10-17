@@ -26,9 +26,13 @@ public class CliHelper
     {
         InputStream is;
         if(isTestMode)
+        {
             is = AcceptanceTestManager.getInputStream();
+        }
         else
+        {
             is = System.in;
+        }
 
         Scanner scanner;
 
@@ -38,7 +42,6 @@ public class CliHelper
         }
         else
         {
-            AcceptanceTestManager.displayResults("Acceptance test FAILED!");
             scanner = new Scanner(System.in);
         }
 
@@ -201,6 +204,11 @@ public class CliHelper
     public static void write(String message)
     {
         System.out.println(message);
+
+        if(isTestMode)
+        {
+            AcceptanceTestManager.checkOutput(message);
+        }
     }
 
     public static void newLine()

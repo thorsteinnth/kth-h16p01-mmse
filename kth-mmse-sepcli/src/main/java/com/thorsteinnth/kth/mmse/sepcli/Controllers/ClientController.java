@@ -70,6 +70,9 @@ class ClientController extends BaseController
         CliHelper.write("Client created:");
         CliHelper.write(newClient.toDisplayStringLong());
 
+        CliHelper.newLine();
+        CliHelper.write("Client record successfully created!");
+
         displayPage();
     }
 
