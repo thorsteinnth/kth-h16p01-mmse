@@ -3,8 +3,12 @@ package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.*;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.TaskRequestRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
+import com.thorsteinnth.kth.mmse.sepcli.Service.TaskRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Test.RequestMailTest;
 import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
@@ -181,22 +185,21 @@ public class RequestManagementController extends BaseController
 
     private void addCommentToRequest(Request request)
     {
-        // NOTE: If we were using a DB we would need to save to DB after adding comments here
-
         CliHelper.newLine();
         String comment = CliHelper.getInput("Add comment:");
-        RequestComment requestComment = new RequestComment(AppData.loggedInUser, comment);
 
         if (request instanceof EventRequest)
         {
+            EventRequestService service = new EventRequestService(new EventRequestRepository());
             EventRequest eventRequest = (EventRequest)request;
-            eventRequest.addComment(requestComment);
+            service.addCommentToEventRequest(eventRequest, comment);
             CliHelper.write("Comment added");
         }
         else if (request instanceof TaskRequest)
         {
+            TaskRequestService service = new TaskRequestService(new TaskRequestRepository());
             TaskRequest taskRequest = (TaskRequest)request;
-            taskRequest.addComment(requestComment);
+            service.addCommentToTaskRequest(taskRequest, comment);
             CliHelper.write("Comment added");
         }
         else
