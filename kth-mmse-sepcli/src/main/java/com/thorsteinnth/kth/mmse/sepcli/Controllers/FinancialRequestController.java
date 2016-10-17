@@ -12,6 +12,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.FinancialRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -37,21 +38,24 @@ public class FinancialRequestController extends BaseController
     {
         CliHelper.newLine();
         CliHelper.write("This is the create financial request page");
-        CliHelper.write("Please select one of the following operations:");
-        CliHelper.write("1. Create financial request");
-        CliHelper.write("2. Back");
-        ArrayList<String> validInputs = new ArrayList<String>();
-        validInputs.add("1");
-        validInputs.add("2");
 
-        String input = CliHelper.getInput("Select an operation (1-2)", validInputs);
+        ArrayList<UIOperation> operations = buildUIOperationList();
+        UIOperation.Command onSelectedOperationError = () -> displayPage();
+        displayUIOperations(operations, onSelectedOperationError);
+    }
 
-        if (input.equals("1"))
-            createFinancialRequest();
-        else if (input.equals("2"))
-            back();
-        else
-            System.out.println("ERROR: Unknown command");
+    private ArrayList<UIOperation> buildUIOperationList()
+    {
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        UIOperation.Command createFinancialRequest = () -> createFinancialRequest();
+        operations.add(new UIOperation(++operationCount, "Create financial request", createFinancialRequest));
+
+        UIOperation.Command back = () -> back();
+        operations.add(new UIOperation(++operationCount, "Back", back));
+
+        return operations;
     }
 
     private void createFinancialRequest()
