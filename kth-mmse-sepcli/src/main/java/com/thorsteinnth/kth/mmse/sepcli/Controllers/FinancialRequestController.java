@@ -3,10 +3,15 @@ package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.FinancialRequest;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.FinancialRequestRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.FinancialRequestService;
+import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
+import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,11 +22,15 @@ public class FinancialRequestController extends BaseController
 {
     private BaseController previousController;
     private EventRequestService eventRequestService;
+    private UserService userService;
+    private RequestMailService requestMailService;
 
     public FinancialRequestController(BaseController previousController)
     {
         this.previousController = previousController;
         this.eventRequestService = new EventRequestService(new EventRequestRepository());
+        this.userService = new UserService(new UserRepository());
+        this.requestMailService = new RequestMailService(new RequestEnvelopeRepository());
     }
 
     public void displayPage()
@@ -81,9 +90,70 @@ public class FinancialRequestController extends BaseController
         );
 
         printFinancialRequest(fr);
-        //TODO : send request
+        sendRequest(fr);
 
         displayPage();
+    }
+
+    private void sendRequest(FinancialRequest fr)
+    {
+        CliHelper.newLine();
+        CliHelper.write("Send event request");
+        CliHelper.newLine();
+
+        if (userService.getAllUsers().isEmpty())
+        {
+            // NOTE: Should never happen
+            CliHelper.write("ERROR: No users in system");
+            return;
+        }
+        else
+        {
+            ArrayList<String> validInputs = new ArrayList<>();
+            ArrayList<String> emailList = new ArrayList<>();
+
+            int i = 1;
+            for (User user : userService.getAllUsers())
+            {
+                if(user.role == User.Role.FinancialManager)
+                {
+                    CliHelper.write(
+                            Integer.toString(i)
+                                    + ".\t"
+                                    + user.email
+                    );
+                    validInputs.add(Integer.toString(i));
+                    emailList.add(user.email);
+                    i++;
+                }
+            }
+
+            if(emailList.size() == 0)
+            {
+                // NOTE: should never happen
+                CliHelper.write("ERRIR: No financial manager in the system");
+                return;
+            }
+
+            CliHelper.newLine();
+            String selectedNumber = CliHelper.getInput(
+                    "Select a user to send the request to:",
+                    validInputs);
+
+            String selectedEmail = emailList.get(Integer.parseInt(selectedNumber)-1);
+            User recipient = userService.getUserByEmail(selectedEmail);
+
+            if (recipient == null)
+            {
+                CliHelper.write("ERROR: Could not find user with email: " + selectedEmail);
+                return;
+            }
+
+            this.requestMailService.sendRequest(fr, recipient);
+
+            CliHelper.newLine();
+            CliHelper.write("Request sent to: " + recipient.email);
+        }
     }
 
     private EventRequest selectEventRequest()
