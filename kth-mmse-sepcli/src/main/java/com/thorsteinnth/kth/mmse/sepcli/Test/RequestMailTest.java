@@ -160,6 +160,44 @@ public class RequestMailTest
         return tr;
     }
 
+    public static RecruitmentRequest createTestRecruitmentRequest()
+    {
+        RecruitmentRequestService service = new RecruitmentRequestService(new RecruitmentRequestRepository());
+
+        String testJobTitle = "Test job title";
+        String testJobDescription = "Test job description";
+        String testRequirements = "Test requirements";
+        RecruitmentRequest.ContractType testContractType = RecruitmentRequest.ContractType.FullTime;
+
+        RecruitmentRequest rr = service.createRecruitmentRequest(
+                testJobTitle,
+                testJobDescription,
+                testRequirements,
+                testContractType
+        );
+
+        return rr;
+    }
+
+    public static FinancialRequest createTestFinancialRequest()
+    {
+        FinancialRequestService service = new FinancialRequestService(new FinancialRequestRepository());
+        EventRequest eventRequest = createTestEventRequest();
+
+        String testTitle = "Test financial request";
+        String testReason = "Test reason for the financial request";
+        BigDecimal testRequiredAmount = new BigDecimal(5000);
+
+        FinancialRequest fr = service.createFinancialRequest(
+                testTitle,
+                testReason,
+                testRequiredAmount,
+                eventRequest
+        );
+
+        return fr;
+    }
+
     // UI test helpers (not unit tests)
     // Load data into the system to make UI development easier
 
@@ -172,6 +210,8 @@ public class RequestMailTest
         EventRequest request2 = createTestEventRequest();
         EventRequest request3 = createTestEventRequest();
         TaskRequest request4 = createTestTaskRequest();
+        RecruitmentRequest request5 = createTestRecruitmentRequest();
+        FinancialRequest request6 = createTestFinancialRequest();
         User recipient1 = userService.getUserByEmail("alice@sep.se");
         User recipient2 = userService.getUserByEmail("jack@sep.se");
 
@@ -179,5 +219,7 @@ public class RequestMailTest
         requestMailService.sendRequest(request2, recipient2);
         requestMailService.sendRequest(request3, recipient1);
         requestMailService.sendRequest(request4, recipient1);
+        requestMailService.sendRequest(request5, recipient1);
+        requestMailService.sendRequest(request6, recipient1);
     }
 }
