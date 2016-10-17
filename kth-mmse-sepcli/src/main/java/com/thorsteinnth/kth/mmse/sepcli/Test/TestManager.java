@@ -135,6 +135,14 @@ public class TestManager
 
         AppData.clear();
 
+        if (!EventRequestTest.testAddGetCommentToEventRequest())
+        {
+            System.out.println("EventRequestTest.testAddGetCommentToEventRequest() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Task request test
 
         if(!TaskRequestTest.testCreateTaskRequest())
