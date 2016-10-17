@@ -100,6 +100,10 @@ public class FinancialRequestController extends BaseController
         displayPage();
     }
 
+    /**
+     * Send financial request to some financial manager in the system
+     * @param fr
+     */
     private void sendRequest(FinancialRequest fr)
     {
         CliHelper.newLine();
@@ -136,7 +140,7 @@ public class FinancialRequestController extends BaseController
             if(emailList.size() == 0)
             {
                 // NOTE: should never happen
-                CliHelper.write("ERRIR: No financial manager in the system");
+                CliHelper.write("ERROR: No financial manager in the system");
                 return;
             }
 

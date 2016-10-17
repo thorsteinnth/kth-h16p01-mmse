@@ -91,6 +91,10 @@ public class RecruitmentRequestController extends BaseController
         displayPage();
     }
 
+    /**
+     * Send recruitment request to some SeniorHRManager in the system
+     * @param rr
+     */
     private void sendRequest(RecruitmentRequest rr)
     {
         CliHelper.newLine();
@@ -111,7 +115,7 @@ public class RecruitmentRequestController extends BaseController
             int i = 1;
             for (User user : userService.getAllUsers())
             {
-                if(user.role == User.Role.SeniorHRManager)
+                if (user.role == User.Role.SeniorHRManager)
                 {
                     CliHelper.write(
                             Integer.toString(i)
@@ -124,10 +128,10 @@ public class RecruitmentRequestController extends BaseController
                 }
             }
 
-            if(emailList.size() == 0)
+            if (emailList.size() == 0)
             {
                 // NOTE: should never happen
-                CliHelper.write("ERRIR: No financial manager in the system");
+                CliHelper.write("ERROR: No senior HR manager in the system");
                 return;
             }
 

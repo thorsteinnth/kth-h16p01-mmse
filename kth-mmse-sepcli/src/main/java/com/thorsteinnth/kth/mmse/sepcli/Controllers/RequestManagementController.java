@@ -236,6 +236,9 @@ public class RequestManagementController extends BaseController
 
             CliHelper.newLine();
 
+            // Send task request automatically back to the user that created the task request
+            // i.e. the staff manager
+
             this.requestMailService.removeRequestEnvelope(requestEnvelope);
             this.requestMailService.sendRequest(taskRequest, taskRequest.getCreatedByUser());
 
