@@ -48,7 +48,7 @@ public class UserService
         addUser(createUser("jack@sep.se", "jack123", User.Role.ProductionManager));
         addUser(createUser("natalie@sep.se", "natalie123", User.Role.ServiceDepartmentManager));
         addUser(createUser("magy@sep.se", "magy123", User.Role.ProductionDepartmentSubTeamEmployee));
-        addUser(createUser("helen@sep.se", "helen", User.Role.ServiceDepartmentSubTeamEmployee));
+        addUser(createUser("helen@sep.se", "helen123", User.Role.ServiceDepartmentSubTeamEmployee));
         addUser(createUser("charlie@sep.se", "charlie123", User.Role.VicePresident));
     }
 
