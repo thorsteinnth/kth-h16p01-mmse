@@ -120,7 +120,9 @@ public class RequestManagementController extends BaseController
             operations.add(
                     new UIOperation(
                             ++operationCount,
-                            getRequestTypeString(re.getRequest()) + " from " + re.getSender().email,
+                            "[" + re.getCreatedDateTime().toString() + "] "
+                            + re.getSender().email + ": "
+                            + getRequestTypeString(re.getRequest()),
                             showRequest
                     )
             );
