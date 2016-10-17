@@ -2,7 +2,9 @@ package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.AccessFunction;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Service.AccessControlService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
 import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
@@ -35,32 +37,23 @@ public class HomePageController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        // TODO Check access control and other stuff for what operations he should have access tp
-
-        // TODO When should the user have access to this?
-        if (true)
+        if (AccessControlService.hasAccess(AccessFunction.requestManagement))
         {
             UIOperation.Command requestManagement = () -> requestManagement();
             operations.add(new UIOperation(++operationCount, "Request management", requestManagement));
         }
 
-        if (true)
+        if (AccessControlService.hasAccess(AccessFunction.clientManagement))
         {
             UIOperation.Command clientManagement = () -> clientManagement();
             operations.add(new UIOperation(++operationCount, "Client management", clientManagement));
         }
 
-        if (true)
-        {
-            UIOperation.Command logout = () -> logout();
-            operations.add(new UIOperation(++operationCount, "Logout", logout));
-        }
+        UIOperation.Command logout = () -> logout();
+        operations.add(new UIOperation(++operationCount, "Logout", logout));
 
-        if (true)
-        {
-            UIOperation.Command quit = () -> closeApplication();
-            operations.add(new UIOperation(++operationCount, "Quit", quit));
-        }
+        UIOperation.Command quit = () -> closeApplication();
+        operations.add(new UIOperation(++operationCount, "Quit", quit));
 
         return operations;
     }

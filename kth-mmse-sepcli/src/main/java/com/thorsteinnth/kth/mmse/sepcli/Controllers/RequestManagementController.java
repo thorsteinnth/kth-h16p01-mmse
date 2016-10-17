@@ -47,7 +47,13 @@ public class RequestManagementController extends BaseController
 
         // Browse incoming requests
         UIOperation.Command browseIncomingRequests = () -> browseIncomingRequests();
-        operations.add(new UIOperation(++operationCount, "Browse incoming requests", browseIncomingRequests));
+        operations.add(new UIOperation(
+                ++operationCount,
+                "Browse incoming requests ("
+                        + this.requestMailService.getRequestEnvelopesForUser(AppData.loggedInUser).size()
+                        + ")",
+                browseIncomingRequests)
+        );
 
         // Event requests
         UIOperation.Command eventRequestManagement = () -> eventRequestManagement();
@@ -116,7 +122,7 @@ public class RequestManagementController extends BaseController
 
         for (RequestEnvelope re : incomingEnvelopes)
         {
-            UIOperation.Command showRequest = () -> viewRequest(re.getRequest());
+            UIOperation.Command showRequest = () -> viewIncomingRequest(re);
             operations.add(
                     new UIOperation(
                             ++operationCount,
@@ -153,8 +159,10 @@ public class RequestManagementController extends BaseController
             return "Unknown request type";
     }
 
-    private void viewRequest(Request request)
+    private void viewIncomingRequest(RequestEnvelope requestEnvelope)
     {
+        Request request = requestEnvelope.getRequest();
+
         CliHelper.newLine();
         CliHelper.write(request.toDisplayString());
 
@@ -171,6 +179,9 @@ public class RequestManagementController extends BaseController
 
         UIOperation.Command updateStatus = () -> updateRequestStatus(request);
         operations.add(new UIOperation(++operationCount, "Update request status", updateStatus));
+
+        UIOperation.Command markAsResolved = () -> markAsResolved(requestEnvelope);
+        operations.add(new UIOperation(++operationCount, "Mark as resolved", markAsResolved));
 
         UIOperation.Command back = () -> { /* Do nothing */ };
         operations.add(new UIOperation(++operationCount, "Back", back));
@@ -327,6 +338,32 @@ public class RequestManagementController extends BaseController
         UIOperation.Command onSelectedOperationError = () ->
                 CliHelper.write("ERROR: Selected operation error");
         displayUIOperations(operations, onSelectedOperationError);
+    }
+
+    private void markAsResolved(RequestEnvelope envelope)
+    {
+        CliHelper.newLine();
+        CliHelper.write("Remove request from incoming queue");
+
+        // Are you sure verification
+        ArrayList<String> validInputs = new ArrayList<>();
+        validInputs.add("Y");
+        validInputs.add("N");
+        String userIsSure = CliHelper.getInput("Are you sure? (Y/N)", validInputs);
+
+        if (userIsSure.equals("Y"))
+        {
+            this.requestMailService.removeRequestEnvelope(envelope);
+            CliHelper.write("Request removed from incoming queue");
+        }
+        else if (userIsSure.equals("N"))
+        {
+            // Do nothing
+        }
+        else
+        {
+            System.out.println("ERROR: Received invalid input from user");
+        }
     }
 
     private void back()
