@@ -10,6 +10,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RecruitmentRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
 import java.util.ArrayList;
 
@@ -30,21 +31,24 @@ public class RecruitmentRequestController extends BaseController
     {
         CliHelper.newLine();
         CliHelper.write("This is the create recruitment request page");
-        CliHelper.write("Please select one of the following operations:");
-        CliHelper.write("1. Create recruitment request");
-        CliHelper.write("2. Back");
-        ArrayList<String> validInputs = new ArrayList<String>();
-        validInputs.add("1");
-        validInputs.add("2");
 
-        String input = CliHelper.getInput("Select an operation (1-2)", validInputs);
+        ArrayList<UIOperation> operations = buildUIOperationList();
+        UIOperation.Command onSelectedOperationError = () -> displayPage();
+        displayUIOperations(operations, onSelectedOperationError);
+    }
 
-        if (input.equals("1"))
-            createRecruitmentRequest();
-        else if (input.equals("2"))
-            back();
-        else
-            System.out.println("ERROR: Unknown command");
+    private ArrayList<UIOperation> buildUIOperationList()
+    {
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        UIOperation.Command createRecruitmentRequest = () -> createRecruitmentRequest();
+        operations.add(new UIOperation(++operationCount, "Create recruitment request", createRecruitmentRequest));
+
+        UIOperation.Command back = () -> back();
+        operations.add(new UIOperation(++operationCount, "Back", back));
+
+        return operations;
     }
 
     private void createRecruitmentRequest()

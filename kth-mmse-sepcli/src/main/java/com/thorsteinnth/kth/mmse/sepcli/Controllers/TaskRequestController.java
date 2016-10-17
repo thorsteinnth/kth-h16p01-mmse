@@ -13,6 +13,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.TaskRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,21 +38,24 @@ public class TaskRequestController extends BaseController
     {
         CliHelper.newLine();
         CliHelper.write("This is the create task request page");
-        CliHelper.write("Please select one of the following operations:");
-        CliHelper.write("1. Create task request");
-        CliHelper.write("2. Back");
-        ArrayList<String> validInputs = new ArrayList<String>();
-        validInputs.add("1");
-        validInputs.add("2");
 
-        String input = CliHelper.getInput("Select an operation (1-2)", validInputs);
+        ArrayList<UIOperation> operations = buildUIOperationList();
+        UIOperation.Command onSelectedOperationError = () -> displayPage();
+        displayUIOperations(operations, onSelectedOperationError);
+    }
 
-        if (input.equals("1"))
-            createTaskRequest();
-        else if (input.equals("2"))
-            back();
-        else
-            System.out.println("ERROR: Unknown command");
+    private ArrayList<UIOperation> buildUIOperationList()
+    {
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        UIOperation.Command createTaskRequest = () -> createTaskRequest();
+        operations.add(new UIOperation(++operationCount, "Create task request", createTaskRequest));
+
+        UIOperation.Command back = () -> back();
+        operations.add(new UIOperation(++operationCount, "Back", back));
+
+        return operations;
     }
 
     // TODO Restrict access to specific roles
