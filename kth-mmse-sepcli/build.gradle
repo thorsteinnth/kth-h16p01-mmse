@@ -14,3 +14,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile "com.beust:jcommander:1.48"
 }
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.thorsteinnth.kth.mmse.sepcli.SepCliApplication'
+        )
+    }
+}
