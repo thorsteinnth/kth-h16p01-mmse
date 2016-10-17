@@ -1,6 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.AccessFunction;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.FinancialRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
@@ -8,10 +9,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.FinancialRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.FinancialRequestService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.Service.*;
 import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
 import java.math.BigDecimal;
@@ -49,8 +47,11 @@ public class FinancialRequestController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        UIOperation.Command createFinancialRequest = () -> createFinancialRequest();
-        operations.add(new UIOperation(++operationCount, "Create financial request", createFinancialRequest));
+        if (AccessControlService.hasAccess(AccessFunction.createFinancialRequest))
+        {
+            UIOperation.Command createFinancialRequest = () -> createFinancialRequest();
+            operations.add(new UIOperation(++operationCount, "Create financial request", createFinancialRequest));
+        }
 
         UIOperation.Command back = () -> back();
         operations.add(new UIOperation(++operationCount, "Back", back));
