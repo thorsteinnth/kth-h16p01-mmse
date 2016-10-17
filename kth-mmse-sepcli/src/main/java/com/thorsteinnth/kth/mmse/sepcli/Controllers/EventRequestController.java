@@ -105,21 +105,23 @@ public class EventRequestController extends BaseController
         );
 
         printEventRequest(er);
-        sendRequest(er);
+
+        // Send request to the senior customer service officer
+        // Note that the only user with the authority to create an event request is a customer service officer
+        sendRequest(er, User.Role.SeniorCustomerServiceOfficer);
 
         displayPage();
     }
 
-    private void sendRequest(EventRequest request)
+    private void sendRequest(EventRequest request, User.Role recipientRole)
     {
         CliHelper.newLine();
         CliHelper.write("Send event request");
         CliHelper.newLine();
 
-        if (userService.getAllUsers().isEmpty())
+        if (userService.getAllUsersByRole(recipientRole).isEmpty())
         {
-            // NOTE: Should never happen
-            CliHelper.write("ERROR: No users in system");
+            CliHelper.write("ERROR: No users with role " + User.getRoleDisplayString(recipientRole) + " in system.");
             return;
         }
         else
@@ -128,12 +130,12 @@ public class EventRequestController extends BaseController
             ArrayList<String> emailList = new ArrayList<>();
 
             int i = 1;
-            for (User user : userService.getAllUsers())
+            for (User user : userService.getAllUsersByRole(recipientRole))
             {
                 CliHelper.write(
                         Integer.toString(i)
                         + ".\t"
-                        + user.email
+                        + user.toDisplayString()
                 );
                 validInputs.add(Integer.toString(i));
                 emailList.add(user.email);
@@ -160,7 +162,7 @@ public class EventRequestController extends BaseController
             CliHelper.write("Event request successfully created!");
 
             CliHelper.newLine();
-            CliHelper.write("Request sent to: " + recipient.email);
+            CliHelper.write("Request sent to: " + recipient.toDisplayString());
         }
     }
 
