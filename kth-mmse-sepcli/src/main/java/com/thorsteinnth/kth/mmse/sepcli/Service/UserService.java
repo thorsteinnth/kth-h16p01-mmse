@@ -78,6 +78,11 @@ public class UserService
         return this.repository.getAllUsers();
     }
 
+    public ArrayList<User> getAllUsersByRole(User.Role role)
+    {
+        return this.repository.getAllUsersByRole(role);
+    }
+
     public User updateUser(User user, String newEmail, String newPassword, User.Role newRole)
     {
         return this.repository.updateUser(user, newEmail, newPassword, newRole);

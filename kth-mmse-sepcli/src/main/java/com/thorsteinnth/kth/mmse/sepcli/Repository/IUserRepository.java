@@ -10,5 +10,6 @@ public interface IUserRepository
     void deleteUser(User user);
     User getUserByEmail(String email);
     ArrayList<User> getAllUsers();
+    ArrayList<User> getAllUsersByRole(User.Role role);
     User updateUser(User user, String newEmail, String newPassword, User.Role newRole);
 }

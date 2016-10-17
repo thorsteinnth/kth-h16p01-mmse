@@ -83,6 +83,14 @@ public class TestManager
 
         AppData.clear();
 
+        if(!UserTest.testGetAllUsersByRole())
+        {
+            System.out.println("UserTest.testGetAllUsersByRole() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         if(!UserTest.testEditUser())
         {
             System.out.println("UserTest.testEditUser() FAILED");
