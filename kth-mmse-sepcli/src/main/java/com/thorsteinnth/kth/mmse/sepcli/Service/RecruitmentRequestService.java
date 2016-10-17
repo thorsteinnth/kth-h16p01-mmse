@@ -1,9 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Service;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.FinancialRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.RecruitmentRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.*;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.IRecruitmentRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.RecruitmentRequestRepository;
 
@@ -51,12 +49,27 @@ public class RecruitmentRequestService
         return this.repository.getAllRecruitmentRequests();
     }
 
-    public void updateRecruitmentRequestStatus(RecruitmentRequest request, RecruitmentRequest.Status newStatus)
+    public boolean updateRecruitmentRequestStatus(RecruitmentRequest request, RecruitmentRequest.Status newStatus)
     {
         // TODO Status progression rules
         // NOTE:
         // Not saving this to repo since our implementation is only using an
         // in-memory data store
+
+        // Check for access rights for the approved and rejected operations
+
+        if (newStatus == RecruitmentRequest.Status.Approved)
+        {
+            if (!AccessControlService.hasAccess(AccessFunction.approveRecruitmentRequest))
+                return false;
+        }
+        else if (newStatus == RecruitmentRequest.Status.Rejected)
+        {
+            if (!AccessControlService.hasAccess(AccessFunction.rejectRecruitmentRequest))
+                return false;
+        }
+
         request.setStatus(newStatus);
+        return true;
     }
 }

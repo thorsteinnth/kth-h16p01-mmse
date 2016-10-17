@@ -112,6 +112,10 @@ public class RequestManagementController extends BaseController
 
     public void browseIncomingRequests()
     {
+        // NOTE: If a user receives a request, we assume he is allowed to view it.
+        // We do not do access rights checks here, only when the user is going to perform
+        // some operation on the request
+
         CliHelper.newLine();
 
         if (!this.requestMailService.userHasIncomingRequests())
@@ -173,6 +177,12 @@ public class RequestManagementController extends BaseController
 
     private void viewIncomingRequest(RequestEnvelope requestEnvelope)
     {
+        // NOTE:
+        // Everybody can get in here.
+        // While a user should never receive a request that he does not have authority to do anything with
+        // we still have to check if he has access privileges for the type of request/operation he is trying
+        // to do with his incoming request
+
         Request request = requestEnvelope.getRequest();
 
         CliHelper.newLine();
@@ -183,15 +193,18 @@ public class RequestManagementController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        if (requestTypeSupportsComments(request))
+        // Check if the current task request type supports comments and if the current user has authority to add them
+        if (requestTypeSupportsComments(request) && userHasAddCommentRightsForRequest(request))
         {
             UIOperation.Command addComment = () -> addCommentToRequest(request);
             operations.add(new UIOperation(++operationCount, "Add comment", addComment));
         }
 
+        // We allow all users to attempt to update a status here, the operation will fail if they don't have the right
         UIOperation.Command updateStatus = () -> updateRequestStatus(request);
         operations.add(new UIOperation(++operationCount, "Update request status", updateStatus));
 
+        // All users are allowed to mark the requests they receive as resolved
         UIOperation.Command markAsResolved = () -> markAsResolved(requestEnvelope);
         operations.add(new UIOperation(++operationCount, "Mark as resolved", markAsResolved));
 
@@ -264,10 +277,14 @@ public class RequestManagementController extends BaseController
         // TODO Don't allow the user to go to just any status - progression rules
         for (EventRequest.Status status : EventRequest.Status.values())
         {
-            UIOperation.Command selectStatus = () -> {
+            UIOperation.Command selectStatus = () ->
+            {
                 EventRequestService service = new EventRequestService(new EventRequestRepository());
-                service.updateEventRequestStatus(eventRequest, status);
-                CliHelper.write("Status updated. New status: " + eventRequest.getStatus());
+                boolean success = service.updateEventRequestStatus(eventRequest, status);
+                if (success)
+                    CliHelper.write("Status updated. New status: " + eventRequest.getStatus());
+                else
+                    CliHelper.write("Unable to update status");
             };
             operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
         }
@@ -289,10 +306,14 @@ public class RequestManagementController extends BaseController
         // TODO Don't allow the user to go to just any status - progression rules
         for (TaskRequest.Status status : TaskRequest.Status.values())
         {
-            UIOperation.Command selectStatus = () -> {
+            UIOperation.Command selectStatus = () ->
+            {
                 TaskRequestService service = new TaskRequestService(new TaskRequestRepository());
-                service.updateTaskRequestStatus(taskRequest, status);
-                CliHelper.write("Status updated. New status: " + taskRequest.getStatus());
+                boolean success = service.updateTaskRequestStatus(taskRequest, status);
+                if (success)
+                    CliHelper.write("Status updated. New status: " + taskRequest.getStatus());
+                else
+                    CliHelper.write("Unable to update status");
             };
             operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
         }
@@ -314,10 +335,14 @@ public class RequestManagementController extends BaseController
         // TODO Don't allow the user to go to just any status - progression rules
         for (FinancialRequest.Status status : FinancialRequest.Status.values())
         {
-            UIOperation.Command selectStatus = () -> {
+            UIOperation.Command selectStatus = () ->
+            {
                 FinancialRequestService service = new FinancialRequestService(new FinancialRequestRepository());
-                service.updateFinancialRequestStatus(financialRequest, status);
-                CliHelper.write("Status updated. New status: " + financialRequest.getStatus());
+                boolean success = service.updateFinancialRequestStatus(financialRequest, status);
+                if (success)
+                    CliHelper.write("Status updated. New status: " + financialRequest.getStatus());
+                else
+                    CliHelper.write("Unable to update status");
             };
             operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
         }
@@ -339,10 +364,14 @@ public class RequestManagementController extends BaseController
         // TODO Don't allow the user to go to just any status - progression rules
         for (RecruitmentRequest.Status status : RecruitmentRequest.Status.values())
         {
-            UIOperation.Command selectStatus = () -> {
+            UIOperation.Command selectStatus = () ->
+            {
                 RecruitmentRequestService service = new RecruitmentRequestService(new RecruitmentRequestRepository());
-                service.updateRecruitmentRequestStatus(recruitmentRequest, status);
-                CliHelper.write("Status updated. New status: " + recruitmentRequest.getStatus());
+                boolean success = service.updateRecruitmentRequestStatus(recruitmentRequest, status);
+                if (success)
+                    CliHelper.write("Status updated. New status: " + recruitmentRequest.getStatus());
+                else
+                    CliHelper.write("Unable to update status");
             };
             operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
         }
@@ -381,5 +410,32 @@ public class RequestManagementController extends BaseController
     private void back()
     {
         this.previousController.displayPage();
+    }
+
+    // Access control helpers
+
+    private boolean userHasAddCommentRightsForRequest(Request request)
+    {
+        // User should have edit rights for this
+
+        if (request instanceof EventRequest)
+        {
+            if (AccessControlService.hasAccess(AccessFunction.editEventRequest))
+                return true;
+            else
+                return false;
+        }
+        else if (request instanceof TaskRequest)
+        {
+            if (AccessControlService.hasAccess(AccessFunction.editTaskRequest))
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            System.out.println("ERROR: RequestManagementController.userHasAddCommentRightsForRequest() - unknown request type");
+            return false;
+        }
     }
 }

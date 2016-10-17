@@ -1,10 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Service;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.RequestComment;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.TaskRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.*;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.ITaskRequestRepository;
 
 import java.util.ArrayList;
@@ -52,12 +49,27 @@ public class TaskRequestService
         request.addComment(new RequestComment(AppData.loggedInUser, commentText));
     }
 
-    public void updateTaskRequestStatus(TaskRequest request, TaskRequest.Status newStatus)
+    public boolean updateTaskRequestStatus(TaskRequest request, TaskRequest.Status newStatus)
     {
         // TODO Status progression rules
         // NOTE:
         // Not saving this to repo since our implementation is only using an
         // in-memory data store
+
+        // Check for access rights for the approved and rejected operations
+
+        if (newStatus == TaskRequest.Status.Approved)
+        {
+            if (!AccessControlService.hasAccess(AccessFunction.approveTaskRequest))
+                return false;
+        }
+        else if (newStatus == TaskRequest.Status.Rejected)
+        {
+            if (!AccessControlService.hasAccess(AccessFunction.rejectTaskRequest))
+                return false;
+        }
+
         request.setStatus(newStatus);
+        return true;
     }
 }

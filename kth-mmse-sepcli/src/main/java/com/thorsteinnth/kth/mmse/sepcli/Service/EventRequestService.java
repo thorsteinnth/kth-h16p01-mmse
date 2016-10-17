@@ -1,6 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Service;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.AccessFunction;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.RequestComment;
@@ -59,12 +60,27 @@ public class EventRequestService
         request.addComment(new RequestComment(AppData.loggedInUser, commentText));
     }
 
-    public void updateEventRequestStatus(EventRequest request, EventRequest.Status newStatus)
+    public boolean updateEventRequestStatus(EventRequest request, EventRequest.Status newStatus)
     {
-        // TODO Status progression rules
         // NOTE:
         // Not saving this to repo since our implementation is only using an
         // in-memory data store
+
+        // TODO Status progression rules
+
+        // Possible statuses
+        // Pending, Open, InProgress, Closed, Rejected
+        // TODO
+        // We only check if the user has authority to reject, for now
+        // It is unclear what users will be responsible for giving the request the other statuses
+
+        if (newStatus == EventRequest.Status.Rejected)
+        {
+            if (!AccessControlService.hasAccess(AccessFunction.rejectEventRequest))
+                return false;
+        }
+
         request.setStatus(newStatus);
+        return true;
     }
 }

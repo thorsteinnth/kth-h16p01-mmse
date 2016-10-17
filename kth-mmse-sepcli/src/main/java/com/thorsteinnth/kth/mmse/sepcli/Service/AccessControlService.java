@@ -68,6 +68,8 @@ public class AccessControlService
 
                         AccessFunction.taskRequestManagement,
                         AccessFunction.createTaskRequest,
+                        AccessFunction.approveTaskRequest,
+                        AccessFunction.rejectTaskRequest,
 
                         AccessFunction.recruitmentRequestManagement,
                         AccessFunction.createRecruitmentRequest
@@ -86,6 +88,8 @@ public class AccessControlService
 
                         AccessFunction.taskRequestManagement,
                         AccessFunction.createTaskRequest,
+                        AccessFunction.approveTaskRequest,
+                        AccessFunction.rejectTaskRequest,
 
                         AccessFunction.recruitmentRequestManagement,
                         AccessFunction.createRecruitmentRequest

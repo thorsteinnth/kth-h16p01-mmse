@@ -1,10 +1,7 @@
 package com.thorsteinnth.kth.mmse.sepcli.Service;
 
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.EventRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.FinancialRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.TaskRequest;
-import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.*;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.IFinancialRequestRepository;
 
 import java.math.BigDecimal;
@@ -52,12 +49,25 @@ public class FinancialRequestService
         return this.repository.getAllFinancialRequests();
     }
 
-    public void updateFinancialRequestStatus(FinancialRequest request, FinancialRequest.Status newStatus)
+    public boolean updateFinancialRequestStatus(FinancialRequest request, FinancialRequest.Status newStatus)
     {
         // TODO Status progression rules
         // NOTE:
         // Not saving this to repo since our implementation is only using an
         // in-memory data store
+
+        if (newStatus == FinancialRequest.Status.Approved)
+        {
+            if (!AccessControlService.hasAccess(AccessFunction.approveFinancialRequest))
+                return false;
+        }
+        else if (newStatus == FinancialRequest.Status.Rejected)
+        {
+            if (!AccessControlService.hasAccess(AccessFunction.rejectFinancialRequest))
+                return false;
+        }
+
         request.setStatus(newStatus);
+        return true;
     }
 }

@@ -29,6 +29,8 @@ public enum AccessFunction
 
     createTaskRequest,
     editTaskRequest,
+    approveTaskRequest,
+    rejectTaskRequest,
 
     createFinancialRequest,
     approveFinancialRequest,
