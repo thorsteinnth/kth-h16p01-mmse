@@ -1,12 +1,14 @@
 package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.AccessFunction;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.FinancialRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.RecruitmentRequest;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.User;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.RecruitmentRequestRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.UserRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Service.AccessControlService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RecruitmentRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
@@ -42,8 +44,11 @@ public class RecruitmentRequestController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        UIOperation.Command createRecruitmentRequest = () -> createRecruitmentRequest();
-        operations.add(new UIOperation(++operationCount, "Create recruitment request", createRecruitmentRequest));
+        if (AccessControlService.hasAccess(AccessFunction.createRecruitmentRequest))
+        {
+            UIOperation.Command createRecruitmentRequest = () -> createRecruitmentRequest();
+            operations.add(new UIOperation(++operationCount, "Create recruitment request", createRecruitmentRequest));
+        }
 
         UIOperation.Command back = () -> back();
         operations.add(new UIOperation(++operationCount, "Back", back));
