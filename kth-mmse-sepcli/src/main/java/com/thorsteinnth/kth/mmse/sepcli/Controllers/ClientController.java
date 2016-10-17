@@ -1,9 +1,12 @@
 package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
+import com.thorsteinnth.kth.mmse.sepcli.Domain.AccessFunction;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.Client;
 import com.thorsteinnth.kth.mmse.sepcli.Repository.ClientRepository;
+import com.thorsteinnth.kth.mmse.sepcli.Service.AccessControlService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.ClientService;
+import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
 import java.util.ArrayList;
 
@@ -22,25 +25,33 @@ class ClientController extends BaseController
     {
         CliHelper.newLine();
         CliHelper.write("This is the client management page");
-        CliHelper.write("Please select one of the following operations:");
-        CliHelper.write("1. Create client record");
-        CliHelper.write("2. Browse client records");
-        CliHelper.write("3. Back");
-        ArrayList<String> validInputs = new ArrayList<String>();
-        validInputs.add("1");
-        validInputs.add("2");
-        validInputs.add("3");
 
-        String input = CliHelper.getInput("Select an operation (1-3)", validInputs);
+        ArrayList<UIOperation> operations = buildUIOperationList();
+        UIOperation.Command onSelectedOperationError = () -> displayPage();
+        displayUIOperations(operations, onSelectedOperationError);
+    }
 
-        if (input.equals("1"))
-            createClient();
-        else if (input.equals("2"))
-            browseClientRecords();
-        else if (input.equals("3"))
-            back();
-        else
-            System.out.println("ERROR: Unknown command");
+    private ArrayList<UIOperation> buildUIOperationList()
+    {
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        if (true)
+        {
+            UIOperation.Command createClient = () -> createClient();
+            operations.add(new UIOperation(++operationCount, "Create client record", createClient));
+        }
+
+        if (true)
+        {
+            UIOperation.Command browseClientRecords = () -> browseClientRecords();
+            operations.add(new UIOperation(++operationCount, "Browse client records", browseClientRecords));
+        }
+
+        UIOperation.Command back = () -> back();
+        operations.add(new UIOperation(++operationCount, "Back", back));
+
+        return operations;
     }
 
     // TODO Restrict access to specific roles
@@ -55,7 +66,9 @@ class ClientController extends BaseController
 
         Client newClient = new ClientService(new ClientRepository()).createClient(name, address, email, phoneNumber);
 
-        CliHelper.write("Client created: " + newClient.toString());
+        CliHelper.newLine();
+        CliHelper.write("Client created:");
+        CliHelper.write(newClient.toDisplayStringLong());
 
         displayPage();
     }
@@ -73,7 +86,7 @@ class ClientController extends BaseController
         {
             for (Client client : clientService.getAllClients())
             {
-                CliHelper.write(client.toStringShort());
+                CliHelper.write(client.toDisplayStringShort());
             }
 
             viewClientRecord();
@@ -120,15 +133,7 @@ class ClientController extends BaseController
     private void printClientRecord(Client client)
     {
         CliHelper.newLine();
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("ID:\t\t\t\t" + client.id + System.getProperty("line.separator"));
-        sb.append("Name:\t\t\t" + client.name + System.getProperty("line.separator"));
-        sb.append("Address:\t\t" + client.address + System.getProperty("line.separator"));
-        sb.append("Email:\t\t\t" + client.email + System.getProperty("line.separator"));
-        sb.append("Phone number:\t" + client.phoneNumber + System.getProperty("line.separator"));
-
-        CliHelper.write(sb.toString());
+        CliHelper.write(client.toDisplayStringLong());
     }
 
     private void back()
