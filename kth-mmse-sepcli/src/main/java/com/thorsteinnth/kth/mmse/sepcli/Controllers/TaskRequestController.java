@@ -167,7 +167,7 @@ public class TaskRequestController extends BaseController
 
         for (User u: userService.getAllUsers())
         {
-            if(AppData.loggedInUser.role == User.Role.ProductionManager)
+            if (AppData.loggedInUser.role == User.Role.ProductionManager)
             {
                 if(u.role == User.Role.ProductionDepartmentSubTeamEmployee)
                 {
@@ -180,7 +180,7 @@ public class TaskRequestController extends BaseController
                     counter++;
                 }
             }
-            else if(AppData.loggedInUser.role == User.Role.ServiceDepartmentManager)
+            else if (AppData.loggedInUser.role == User.Role.ServiceDepartmentManager)
             {
                 if(u.role == User.Role.ServiceDepartmentSubTeamEmployee)
                 {

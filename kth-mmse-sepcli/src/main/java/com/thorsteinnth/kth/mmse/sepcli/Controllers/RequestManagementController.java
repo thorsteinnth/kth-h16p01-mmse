@@ -45,13 +45,51 @@ public class RequestManagementController extends BaseController
 
         // TODO Check access control and other stuff for what operations he should have access to
 
+        // Browse incoming requests
         UIOperation.Command browseIncomingRequests = () -> browseIncomingRequests();
         operations.add(new UIOperation(++operationCount, "Browse incoming requests", browseIncomingRequests));
 
+        // Event requests
+        UIOperation.Command eventRequestManagement = () -> eventRequestManagement();
+        operations.add(new UIOperation(++operationCount, "Event requests", eventRequestManagement));
+
+        // Task requests
+        UIOperation.Command taskRequestManagement = () -> taskRequestManagement();
+        operations.add(new UIOperation(++operationCount, "Task requests", taskRequestManagement));
+
+        // Financial requests
+        UIOperation.Command financialRequestManagement = () -> financialRequestManagement();
+        operations.add(new UIOperation(++operationCount, "Financial requests", financialRequestManagement));
+
+        // Recruitment requests
+        UIOperation.Command recruitmentRequestManagement = () -> recruitmentRequestManagement();
+        operations.add(new UIOperation(++operationCount, "Recruitment requests", recruitmentRequestManagement));
+
+        // Go back
         UIOperation.Command back = () -> back();
         operations.add(new UIOperation(++operationCount, "Back", back));
 
         return operations;
+    }
+
+    public void eventRequestManagement()
+    {
+        new EventRequestController(this).displayPage();
+    }
+
+    public void taskRequestManagement()
+    {
+        new TaskRequestController(this).displayPage();
+    }
+
+    public void financialRequestManagement()
+    {
+        new FinancialRequestController(this).displayPage();
+    }
+
+    public void recruitmentRequestManagement()
+    {
+        new RecruitmentRequestController(this).displayPage();
     }
 
     public void browseIncomingRequests()
