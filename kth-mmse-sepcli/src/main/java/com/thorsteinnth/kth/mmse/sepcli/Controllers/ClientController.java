@@ -36,13 +36,13 @@ class ClientController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        if (true)
+        if (AccessControlService.hasAccess(AccessFunction.createClientRecord))
         {
             UIOperation.Command createClient = () -> createClient();
             operations.add(new UIOperation(++operationCount, "Create client record", createClient));
         }
 
-        if (true)
+        if (AccessControlService.hasAccess(AccessFunction.browseClientRecords))
         {
             UIOperation.Command browseClientRecords = () -> browseClientRecords();
             operations.add(new UIOperation(++operationCount, "Browse client records", browseClientRecords));
@@ -113,7 +113,7 @@ class ClientController extends BaseController
 
         if (selectedId.equals("0"))
         {
-            displayPage();
+            // Do nothing
         }
         else
         {
