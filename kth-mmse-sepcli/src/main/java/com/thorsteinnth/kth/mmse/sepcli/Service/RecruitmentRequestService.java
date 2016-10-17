@@ -50,4 +50,13 @@ public class RecruitmentRequestService
     {
         return this.repository.getAllRecruitmentRequests();
     }
+
+    public void updateRecruitmentRequestStatus(RecruitmentRequest request, RecruitmentRequest.Status newStatus)
+    {
+        // TODO Status progression rules
+        // NOTE:
+        // Not saving this to repo since our implementation is only using an
+        // in-memory data store
+        request.setStatus(newStatus);
+    }
 }

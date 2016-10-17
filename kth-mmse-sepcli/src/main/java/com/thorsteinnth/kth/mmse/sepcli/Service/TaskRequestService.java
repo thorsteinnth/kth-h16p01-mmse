@@ -51,4 +51,13 @@ public class TaskRequestService
         // in-memory data store
         request.addComment(new RequestComment(AppData.loggedInUser, commentText));
     }
+
+    public void updateTaskRequestStatus(TaskRequest request, TaskRequest.Status newStatus)
+    {
+        // TODO Status progression rules
+        // NOTE:
+        // Not saving this to repo since our implementation is only using an
+        // in-memory data store
+        request.setStatus(newStatus);
+    }
 }

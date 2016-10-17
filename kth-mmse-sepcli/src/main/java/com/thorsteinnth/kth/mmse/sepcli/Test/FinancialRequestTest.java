@@ -64,6 +64,26 @@ public class FinancialRequestTest
 
     }
 
+    public static boolean testUpdateFinancialRequestStatus()
+    {
+        FinancialRequestService service = getService();
+        FinancialRequest testFinancialRequest = getTestFinancialRequest();
+
+        try
+        {
+            // TODO Status progression rules
+            assert testFinancialRequest.getStatus().equals(FinancialRequest.Status.Pending);
+            service.updateFinancialRequestStatus(testFinancialRequest, FinancialRequest.Status.Approved);
+            assert testFinancialRequest.getStatus().equals(FinancialRequest.Status.Approved);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testUpdateFinancialRequestStatus() - failed");
+            return false;
+        }
+    }
+
     private static EventRequest getTestEventRequest()
     {
         EventRequestService srv = new EventRequestService(new EventRequestRepository());
@@ -93,5 +113,28 @@ public class FinancialRequestTest
         );
 
         return er;
+    }
+
+    private static FinancialRequest getTestFinancialRequest()
+    {
+        FinancialRequestService service = getService();
+        EventRequest eventRequest = getTestEventRequest();
+
+        UserService userService = new UserService(new UserRepository());
+        userService.addInitialUsers();
+        userService.login("jack@sep.se", "jack123");
+
+        String testTitle = "Test financial request";
+        String testReason = "Test reason for the financial request";
+        BigDecimal testRequiredAmount = new BigDecimal(5000);
+
+        FinancialRequest fr = service.createFinancialRequest(
+                testTitle,
+                testReason,
+                testRequiredAmount,
+                eventRequest
+        );
+
+        return fr;
     }
 }

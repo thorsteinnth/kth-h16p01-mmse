@@ -3,12 +3,8 @@ package com.thorsteinnth.kth.mmse.sepcli.Controllers;
 import com.thorsteinnth.kth.mmse.sepcli.AppData;
 import com.thorsteinnth.kth.mmse.sepcli.CliHelper;
 import com.thorsteinnth.kth.mmse.sepcli.Domain.*;
-import com.thorsteinnth.kth.mmse.sepcli.Repository.EventRequestRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Repository.RequestEnvelopeRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Repository.TaskRequestRepository;
-import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
-import com.thorsteinnth.kth.mmse.sepcli.Service.TaskRequestService;
+import com.thorsteinnth.kth.mmse.sepcli.Repository.*;
+import com.thorsteinnth.kth.mmse.sepcli.Service.*;
 import com.thorsteinnth.kth.mmse.sepcli.Test.RequestMailTest;
 import com.thorsteinnth.kth.mmse.sepcli.UIOperation;
 
@@ -246,7 +242,8 @@ public class RequestManagementController extends BaseController
         for (EventRequest.Status status : EventRequest.Status.values())
         {
             UIOperation.Command selectStatus = () -> {
-                eventRequest.setStatus(status);
+                EventRequestService service = new EventRequestService(new EventRequestRepository());
+                service.updateEventRequestStatus(eventRequest, status);
                 CliHelper.write("Status updated. New status: " + eventRequest.getStatus());
             };
             operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
@@ -270,7 +267,8 @@ public class RequestManagementController extends BaseController
         for (TaskRequest.Status status : TaskRequest.Status.values())
         {
             UIOperation.Command selectStatus = () -> {
-                taskRequest.setStatus(status);
+                TaskRequestService service = new TaskRequestService(new TaskRequestRepository());
+                service.updateTaskRequestStatus(taskRequest, status);
                 CliHelper.write("Status updated. New status: " + taskRequest.getStatus());
             };
             operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
@@ -294,7 +292,8 @@ public class RequestManagementController extends BaseController
         for (FinancialRequest.Status status : FinancialRequest.Status.values())
         {
             UIOperation.Command selectStatus = () -> {
-                financialRequest.setStatus(status);
+                FinancialRequestService service = new FinancialRequestService(new FinancialRequestRepository());
+                service.updateFinancialRequestStatus(financialRequest, status);
                 CliHelper.write("Status updated. New status: " + financialRequest.getStatus());
             };
             operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
@@ -318,7 +317,8 @@ public class RequestManagementController extends BaseController
         for (RecruitmentRequest.Status status : RecruitmentRequest.Status.values())
         {
             UIOperation.Command selectStatus = () -> {
-                recruitmentRequest.setStatus(status);
+                RecruitmentRequestService service = new RecruitmentRequestService(new RecruitmentRequestRepository());
+                service.updateRecruitmentRequestStatus(recruitmentRequest, status);
                 CliHelper.write("Status updated. New status: " + recruitmentRequest.getStatus());
             };
             operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));

@@ -160,4 +160,24 @@ public class EventRequestTest
             return false;
         }
     }
+
+    public static boolean testUpdateEventRequestStatus()
+    {
+        EventRequestService service = getService();
+        EventRequest testEventRequest = createTestEventRequest();
+
+        try
+        {
+            // TODO Status progression rules
+            assert testEventRequest.getStatus().equals(EventRequest.Status.Pending);
+            service.updateEventRequestStatus(testEventRequest, EventRequest.Status.InProgress);
+            assert testEventRequest.getStatus().equals(EventRequest.Status.InProgress);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testUpdateEventRequestStatus() - failed");
+            return false;
+        }
+    }
 }

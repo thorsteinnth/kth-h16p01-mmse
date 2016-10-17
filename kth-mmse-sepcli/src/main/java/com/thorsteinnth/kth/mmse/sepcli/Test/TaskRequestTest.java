@@ -92,6 +92,26 @@ public class TaskRequestTest
         }
     }
 
+    public static boolean testUpdateTaskRequestStatus()
+    {
+        TaskRequestService service = getService();
+        TaskRequest testTaskRequest = getTestTaskRequest();
+
+        try
+        {
+            // TODO Status progression rules
+            assert testTaskRequest.getStatus().equals(TaskRequest.Status.Pending);
+            service.updateTaskRequestStatus(testTaskRequest, TaskRequest.Status.Approved);
+            assert testTaskRequest.getStatus().equals(TaskRequest.Status.Approved);
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testUpdateTaskRequestStatus() - failed");
+            return false;
+        }
+    }
+
     private static TaskRequest getTestTaskRequest()
     {
         TaskRequestService service = getService();

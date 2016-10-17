@@ -143,6 +143,14 @@ public class TestManager
 
         AppData.clear();
 
+        if (!EventRequestTest.testUpdateEventRequestStatus())
+        {
+            System.out.println("EventRequestTest.testUpdateEventRequestStatus FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Task request test
 
         if(!TaskRequestTest.testCreateTaskRequest())
@@ -161,6 +169,14 @@ public class TestManager
 
         AppData.clear();
 
+        if(!TaskRequestTest.testUpdateTaskRequestStatus())
+        {
+            System.out.println("TaskRequestTest.testUpdateTaskRequestStatus() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Financial request test
 
         if(!FinancialRequestTest.testCreateFinancialRequest())
@@ -171,11 +187,27 @@ public class TestManager
 
         AppData.clear();
 
+        if(!FinancialRequestTest.testUpdateFinancialRequestStatus())
+        {
+            System.out.println("FinancialRequest.testUpdateFinancialRequestStatus() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Recruitment request test
 
         if(!RecruitmentRequestTest.testCreateRecruitmentRequest())
         {
             System.out.println("RecruitmentRequestTest.testCreateRecruitmentRequest() FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
+        if(!RecruitmentRequestTest.testUpdateRecruitmentRequestStatus())
+        {
+            System.out.println("RecruitmentRequestTest.testUpdateRecruitmentRequestStatus() FAILED");
             success = false;
         }
 
