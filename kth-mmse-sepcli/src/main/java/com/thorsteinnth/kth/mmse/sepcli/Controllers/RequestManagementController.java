@@ -129,6 +129,9 @@ public class RequestManagementController extends BaseController
             operations.add(new UIOperation(++operationCount, "Add comment", addComment));
         }
 
+        UIOperation.Command updateStatus = () -> updateRequestStatus(request);
+        operations.add(new UIOperation(++operationCount, "Update request status", updateStatus));
+
         UIOperation.Command back = () -> { /* Do nothing */ };
         operations.add(new UIOperation(++operationCount, "Back", back));
 
@@ -170,6 +173,99 @@ public class RequestManagementController extends BaseController
             return true;
         else
             return false;
+    }
+
+    private void updateRequestStatus(Request request)
+    {
+        if (request instanceof EventRequest)
+            updateEventRequestStatus((EventRequest)request);
+        else if (request instanceof TaskRequest)
+            updateTaskRequestStatus((TaskRequest)request);
+        else if (request instanceof FinancialRequest)
+            updateFinancialRequestStatus((FinancialRequest)request);
+        else if (request instanceof RecruitmentRequest)
+            updateRecruitmentRequestStatus((RecruitmentRequest)request);
+        else
+            System.out.println(
+                    "ERROR: RequestManagementController.updateRequestStatus() - unknown request type");
+    }
+
+    private void updateEventRequestStatus(EventRequest eventRequest)
+    {
+        CliHelper.newLine();
+        CliHelper.write("Current status is: " + eventRequest.getStatus());
+        CliHelper.write("Select new status:");
+
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        // TODO Don't allow the user to go to just any status - progression rules
+        for (EventRequest.Status status : EventRequest.Status.values())
+        {
+            UIOperation.Command selectStatus = () -> {
+                eventRequest.setStatus(status);
+                CliHelper.write("Status updated. New status: " + eventRequest.getStatus());
+            };
+            operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
+        }
+
+        UIOperation.Command onSelectedOperationError = () ->
+                CliHelper.write("ERROR: Selected operation error");
+        displayUIOperations(operations, onSelectedOperationError);
+    }
+
+    private void updateTaskRequestStatus(TaskRequest taskRequest)
+    {
+        // TODO
+        System.out.println("Should update status on task request");
+    }
+
+    private void updateFinancialRequestStatus(FinancialRequest financialRequest)
+    {
+        CliHelper.newLine();
+        CliHelper.write("Current status is: " + financialRequest.getStatus());
+        CliHelper.write("Select new status:");
+
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        // TODO Don't allow the user to go to just any status - progression rules
+        for (FinancialRequest.Status status : FinancialRequest.Status.values())
+        {
+            UIOperation.Command selectStatus = () -> {
+                financialRequest.setStatus(status);
+                CliHelper.write("Status updated. New status: " + financialRequest.getStatus());
+            };
+            operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
+        }
+
+        UIOperation.Command onSelectedOperationError = () ->
+                CliHelper.write("ERROR: Selected operation error");
+        displayUIOperations(operations, onSelectedOperationError);
+    }
+
+    private void updateRecruitmentRequestStatus(RecruitmentRequest recruitmentRequest)
+    {
+        CliHelper.newLine();
+        CliHelper.write("Current status is: " + recruitmentRequest.getStatus());
+        CliHelper.write("Select new status:");
+
+        ArrayList<UIOperation> operations = new ArrayList<>();
+        int operationCount = 0;
+
+        // TODO Don't allow the user to go to just any status - progression rules
+        for (RecruitmentRequest.Status status : RecruitmentRequest.Status.values())
+        {
+            UIOperation.Command selectStatus = () -> {
+                recruitmentRequest.setStatus(status);
+                CliHelper.write("Status updated. New status: " + recruitmentRequest.getStatus());
+            };
+            operations.add(new UIOperation(++operationCount, status.toString(), selectStatus));
+        }
+
+        UIOperation.Command onSelectedOperationError = () ->
+                CliHelper.write("ERROR: Selected operation error");
+        displayUIOperations(operations, onSelectedOperationError);
     }
 
     private void back()
