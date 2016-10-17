@@ -16,19 +16,73 @@ public class AcceptanceTestManager
         {
             EventRequestAcptTest.runTest();
         }
-        else
+        else if(testNumber.equals("2"))
         {
-            //Run another acceptance test
+            CreateClientRecordAcptTest.runTest();
         }
     }
 
     public static InputStream getInputStream()
     {
         if (testNumber.equals("1"))
-            return EventRequestAcptTest.getInputStream();
-        else
-            return EventRequestAcptTest.getInputStream();
+        {
+            InputStream is = EventRequestAcptTest.getInputStream();
 
-        //else return another input stream
+            if(is == null)
+            {
+                //The operation queue for the acceptance test is empty but
+                //we have not yet received a success message - test failed
+
+                System.out.println();
+                System.out.println("Event request acceptance test failed!");
+                System.exit(0);
+
+                return null;
+            }
+            else
+            {
+                return is;
+            }
+        }
+        else
+        {
+            InputStream is = CreateClientRecordAcptTest.getInputStream();
+
+            if(is == null)
+            {
+                //The operation queue for the acceptance test is empty but
+                //we have not yet received a success message - test failed
+
+                System.out.println();
+                System.out.println("Create client record acceptance test failed!");
+                System.exit(0);
+
+                return null;
+            }
+            else
+            {
+                return is;
+            }
+        }
+    }
+
+    public static void checkOutput(String output)
+    {
+        if(testNumber.equals("1"))
+        {
+            if(output.equals("Event request successfully created!"))
+            {
+                System.out.println("Event request acceptance test passed!");
+                System.exit(0);
+            }
+        }
+        else if(testNumber.equals("2"))
+        {
+            if(output.equals("Client record successfully created!"))
+            {
+                System.out.println("Create client record acceptance test passed!");
+                System.exit(0);
+            }
+        }
     }
 }

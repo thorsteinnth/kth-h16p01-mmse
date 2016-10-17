@@ -12,6 +12,7 @@ import com.thorsteinnth.kth.mmse.sepcli.Service.ClientService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.EventRequestService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.RequestMailService;
 import com.thorsteinnth.kth.mmse.sepcli.Service.UserService;
+import com.thorsteinnth.kth.mmse.sepcli.Test.AcceptanceTest.AcceptanceTestManager;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -151,6 +152,9 @@ public class EventRequestController extends BaseController
             }
 
             this.requestMailService.sendRequest(request, recipient);
+
+            CliHelper.newLine();
+            CliHelper.write("Event request successfully created!");
 
             CliHelper.newLine();
             CliHelper.write("Request sent to: " + recipient.email);
