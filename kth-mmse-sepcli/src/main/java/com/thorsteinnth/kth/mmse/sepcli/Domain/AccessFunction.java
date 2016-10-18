@@ -31,6 +31,7 @@ public enum AccessFunction
     browseEventRequests,
     approveEventRequest,
     rejectEventRequest,
+    updateEventRequestWorkflowStatus,
 
     createTaskRequest,
     editTaskRequest,

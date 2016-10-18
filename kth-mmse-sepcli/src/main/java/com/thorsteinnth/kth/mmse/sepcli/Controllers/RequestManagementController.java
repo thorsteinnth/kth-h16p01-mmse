@@ -275,6 +275,19 @@ public class RequestManagementController extends BaseController
                         approveOrRejectAndForwardToSCSO)
                 );
             }
+            else if (AppData.loggedInUser.role == User.Role.ProductionManager
+                    || AppData.loggedInUser.role == User.Role.ServiceDepartmentManager)
+            {
+                // Staff managers (production manager and servicedepartmentmanager have the
+                // chance to update the event request's workflow status
+                UIOperation.Command updateEventRequestWorkflowStatus =
+                        () -> updateEventRequestWorkflowStatus((EventRequest)request);
+                operations.add(new UIOperation(
+                        ++operationCount,
+                        "Update workflow status",
+                        updateEventRequestWorkflowStatus)
+                );
+            }
             else
             {
                 // Do nothing
@@ -645,6 +658,47 @@ public class RequestManagementController extends BaseController
         sendEventRequest(request, User.Role.ProductionManager);
         sendEventRequest(request, User.Role.ServiceDepartmentManager);
         markAsResolved(envelope);
+    }
+
+    /**
+     * Staff managers (production manager & service department managers) can update the event request's
+     * workflow status
+     * @param request
+     */
+    private void updateEventRequestWorkflowStatus(EventRequest request)
+    {
+        CliHelper.newLine();
+        CliHelper.write("Update workflow status. Current status: " + request.getWorkflowStatus());
+
+        ArrayList<String> validInputs = new ArrayList<>();
+        ArrayList<EventRequest.WorkflowStatus> wfStatuses = new ArrayList<>();
+
+        int i = 1;
+        for (EventRequest.WorkflowStatus wfStatus : EventRequest.WorkflowStatus.values())
+        {
+            wfStatuses.add(wfStatus);
+            validInputs.add(Integer.toString(i));
+            CliHelper.write(i + ". " + wfStatus);
+            i++;
+        }
+
+        String input = CliHelper.getInput("Please choose a workflow status:", validInputs);
+
+        EventRequest.WorkflowStatus selectedStatus = wfStatuses.get(Integer.parseInt(input)-1);
+
+        EventRequestService service = new EventRequestService(new EventRequestRepository());
+        boolean success = service.updateWorkflowStatus(request, selectedStatus);
+        if (success)
+        {
+            CliHelper.newLine();
+            CliHelper.write("Workflow status updated");
+            CliHelper.newLine();
+            CliHelper.write(request.toDisplayString());
+        }
+        else
+        {
+            CliHelper.write("Unable to update workflow status");
+        }
     }
 
     //endregion

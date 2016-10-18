@@ -18,6 +18,7 @@ public class EventRequest extends Request
     private BigDecimal expectedBudget;
     private ArrayList<RequestComment> comments;
     private Status status;
+    private WorkflowStatus workflowStatus;
     private Date createdDateTime;
 
     // TODO public ArrayList<FinancialRequest> financialRequests - or not, can lookup the other way around
@@ -42,17 +43,17 @@ public class EventRequest extends Request
     Pending
     -> all task requests accepted -> open (both automatic and manual)
     ->
-
-
     // When we are staffmanager and are viewing an event request we get "edit workflow status"
-    public enum WorkflowState
-    {
-        TaskRequestsSent,          // StaffManager does this - set to open
-        AllBudgetAndStaffingIssuesResolved,   // Staffmanager can do this - set to in progress
-        EventFinalized  // StaffManager - set to closed or archived
-    }
-
+    he changes the status of the request
     */
+
+    public enum WorkflowStatus
+    {
+        Initial,
+        StaffingDoneTaskRequestsSent,           // Set status to open
+        AllBudgetAndStaffingIssuesResolved,     // Set status to in progress
+        EventFinalized                          //  Set status to closed or archived
+    }
 
     public EventRequest(
             String title,
@@ -80,6 +81,7 @@ public class EventRequest extends Request
         this.comments = new ArrayList<RequestComment>();
         this.createdDateTime = new Date();
         this.status = Status.Pending;
+        this.workflowStatus = WorkflowStatus.Initial;
     }
 
     public String getId()
@@ -105,6 +107,27 @@ public class EventRequest extends Request
     public Status getStatus()
     {
         return status;
+    }
+
+    /**
+     * Update workflow status and update event request status accordingly
+     * @param newWorkflowStatus
+     */
+    public void setWorkflowStatus(WorkflowStatus newWorkflowStatus)
+    {
+        this.workflowStatus = newWorkflowStatus;
+
+        if (newWorkflowStatus == WorkflowStatus.StaffingDoneTaskRequestsSent)
+            this.status = Status.Open;
+        else if (newWorkflowStatus == WorkflowStatus.AllBudgetAndStaffingIssuesResolved)
+            this.status = Status.InProgress;
+        else if (newWorkflowStatus == WorkflowStatus.EventFinalized)
+            this.status = Status.Closed;
+    }
+
+    public WorkflowStatus getWorkflowStatus()
+    {
+        return workflowStatus;
     }
 
     public String getTitle()
@@ -169,11 +192,10 @@ public class EventRequest extends Request
 
     public String toDisplayString()
     {
-        // TODO Finalize formatting
-
         StringBuilder sb = new StringBuilder();
         sb.append("ID:\t\t\t\t\t\t" + getId() + System.getProperty("line.separator"));
         sb.append("Status:\t\t\t\t\t" + getStatus() + System.getProperty("line.separator"));
+        sb.append("Workflow status:\t\t" + getWorkflowStatus() + System.getProperty("line.separator"));
         sb.append("Title:\t\t\t\t\t" + getTitle() + System.getProperty("line.separator"));
         sb.append("Description:\t\t\t" + getDescription() + System.getProperty("line.separator"));
         sb.append("Start date time:\t\t" + getStartDateTimeString() + System.getProperty("line.separator"));
@@ -213,6 +235,7 @@ public class EventRequest extends Request
             return false;
         if (comments != null ? !comments.equals(that.comments) : that.comments != null) return false;
         if (status != that.status) return false;
+        if (workflowStatus != that.workflowStatus) return false;
         if (createdDateTime != null ? !createdDateTime.equals(that.createdDateTime) : that.createdDateTime != null)
             return false;
         if (client != null ? !client.equals(that.client) : that.client != null) return false;
@@ -249,6 +272,7 @@ public class EventRequest extends Request
                 ", expectedBudget=" + expectedBudget +
                 ", comments=" + comments +
                 ", status=" + status +
+                ", workflowStatus=" + workflowStatus +
                 ", createdDateTime=" + createdDateTime +
                 ", client=" + client +
                 ", createdByUser=" + createdByUser +

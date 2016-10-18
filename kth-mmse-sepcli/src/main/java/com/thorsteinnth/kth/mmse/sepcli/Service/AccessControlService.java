@@ -62,6 +62,7 @@ public class AccessControlService
 
                         AccessFunction.eventRequestManagement,
                         AccessFunction.editEventRequest,
+                        AccessFunction.updateEventRequestWorkflowStatus,
 
                         AccessFunction.financialRequestManagement,
                         AccessFunction.createFinancialRequest,
@@ -82,6 +83,7 @@ public class AccessControlService
 
                         AccessFunction.eventRequestManagement,
                         AccessFunction.editEventRequest,
+                        AccessFunction.updateEventRequestWorkflowStatus,
 
                         AccessFunction.financialRequestManagement,
                         AccessFunction.createFinancialRequest,

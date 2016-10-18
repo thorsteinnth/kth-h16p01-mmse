@@ -66,29 +66,37 @@ public class EventRequestService
         // Not saving this to repo since our implementation is only using an
         // in-memory data store
 
-        // TODO Status progression rules
-
         // Possible statuses
-        // Pending, Open, InProgress, Closed, Rejected
-        // TODO
-        // We only check if the user has authority to approve or reject, for now
-        // It is unclear what users will be responsible for giving the request the other statuses
-        // TODO Just have the system be able to do that? and the staff managers able to set workflow statuses
-        // and then the system updates the actual status based on the workflow status changes?
+        // Pending, Open, InProgress, Closed, Rejected, Approved
+        // We only allow to set the status to approved or rejected, other status changes are done
+        // automatically when the workflow status changes
 
         if (newStatus == EventRequest.Status.Rejected)
         {
             if (!AccessControlService.hasAccess(AccessFunction.rejectEventRequest))
                 return false;
         }
-
-        if (newStatus == EventRequest.Status.Approved)
+        else if (newStatus == EventRequest.Status.Approved)
         {
             if (!AccessControlService.hasAccess(AccessFunction.approveEventRequest))
                 return false;
         }
+        else
+        {
+            // Do not allow manual changes into other statuses
+            return false;
+        }
 
         request.setStatus(newStatus);
+        return true;
+    }
+
+    public boolean updateWorkflowStatus(EventRequest request, EventRequest.WorkflowStatus workflowStatus)
+    {
+        if (!AccessControlService.hasAccess(AccessFunction.updateEventRequestWorkflowStatus))
+            return false;
+
+        request.setWorkflowStatus(workflowStatus);
         return true;
     }
 }
