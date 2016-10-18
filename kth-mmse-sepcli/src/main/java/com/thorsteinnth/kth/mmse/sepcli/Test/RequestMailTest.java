@@ -214,6 +214,7 @@ public class RequestMailTest
         FinancialRequest request6 = createTestFinancialRequest();
         User recipient1 = userService.getUserByEmail("alice@sep.se");
         User recipient2 = userService.getUserByEmail("jack@sep.se");
+        User recipient3 = userService.getUserByEmail("mike@sep.se");
 
         requestMailService.sendRequest(request1, recipient1);
         requestMailService.sendRequest(request2, recipient2);
@@ -221,5 +222,6 @@ public class RequestMailTest
         requestMailService.sendRequest(request4, recipient1);
         requestMailService.sendRequest(request5, recipient1);
         requestMailService.sendRequest(request6, recipient1);
+        requestMailService.sendRequest(request1, recipient3);
     }
 }

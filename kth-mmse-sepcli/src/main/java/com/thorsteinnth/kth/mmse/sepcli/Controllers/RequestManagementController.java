@@ -193,7 +193,7 @@ public class RequestManagementController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        // TODO disallow this when dealing with the event request workflow?
+        // Add comments
         // Check if the current request type supports comments and if the current user has authority to add them
         if (requestTypeSupportsComments(request) && userHasAddCommentRightsForRequest(request))
         {
@@ -201,13 +201,17 @@ public class RequestManagementController extends BaseController
             operations.add(new UIOperation(++operationCount, "Add comment", addComment));
         }
 
-        // TODO disallow this when dealing with the event request workflow?
-        // We allow all users to attempt to update a status here, the operation will fail if they don't have the right
-        UIOperation.Command updateStatus = () -> updateRequestStatus(request);
-        operations.add(new UIOperation(++operationCount, "Update request status", updateStatus));
+        // Update status
+        if (userHasUpdateStatusRightsForRequest(request))
+        {
+            UIOperation.Command updateStatus = () -> updateRequestStatus(request);
+            operations.add(new UIOperation(++operationCount, "Update request status", updateStatus));
+        }
 
-        // TODO disallow this when dealing with the event request workflow?
+        // Mark as resolved
         // All users are allowed to mark the requests they receive as resolved
+        // We trust that the user will not mark a request as resolved prematurely
+        // (e.g. if he should continue an event request workflow)
         UIOperation.Command markAsResolved = () -> markAsResolved(requestEnvelope);
         operations.add(new UIOperation(++operationCount, "Mark as resolved", markAsResolved));
 
@@ -705,6 +709,11 @@ public class RequestManagementController extends BaseController
 
     //region Access control helpers
 
+    /**
+     * Check if the user has add comment rights to request
+     * @param request
+     * @return true if he has add comment rights, false otherwise
+     */
     private boolean userHasAddCommentRightsForRequest(Request request)
     {
         // User should have edit rights for this
@@ -726,6 +735,56 @@ public class RequestManagementController extends BaseController
         else
         {
             System.out.println("ERROR: RequestManagementController.userHasAddCommentRightsForRequest() - unknown request type");
+            return false;
+        }
+    }
+
+    /**
+     * Check if the user has either approve or reject rights to the request, for UI purposes
+     * When the user then attempts to update the status we check if he can update the status to that value
+     * he is selecting
+     * NOTE:
+     * For event requests we only ever let the user approve or reject, other status
+     * updates are done automatically
+     * @param request
+     * @return true if he has some update rights, false if not
+     */
+    private boolean userHasUpdateStatusRightsForRequest(Request request)
+    {
+        if (request instanceof EventRequest)
+        {
+            if (AccessControlService.hasAccess(AccessFunction.approveEventRequest)
+                    || AccessControlService.hasAccess(AccessFunction.rejectEventRequest))
+                return true;
+            else
+                return false;
+        }
+        else if (request instanceof TaskRequest)
+        {
+            if (AccessControlService.hasAccess(AccessFunction.approveTaskRequest)
+                    || AccessControlService.hasAccess(AccessFunction.rejectTaskRequest))
+                return true;
+            else
+                return false;
+        }
+        else if (request instanceof FinancialRequest)
+        {
+            if (AccessControlService.hasAccess(AccessFunction.approveFinancialRequest)
+                    || AccessControlService.hasAccess(AccessFunction.rejectFinancialRequest))
+                return true;
+            else
+                return false;
+        }
+        else if (request instanceof RecruitmentRequest)
+        {
+            if (AccessControlService.hasAccess(AccessFunction.approveRecruitmentRequest)
+                    || AccessControlService.hasAccess(AccessFunction.rejectRecruitmentRequest))
+                return true;
+            else
+                return false;
+        }
+        else
+        {
             return false;
         }
     }
