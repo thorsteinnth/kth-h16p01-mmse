@@ -51,7 +51,6 @@ public class FinancialRequestService
 
     public boolean updateFinancialRequestStatus(FinancialRequest request, FinancialRequest.Status newStatus)
     {
-        // TODO Status progression rules
         // NOTE:
         // Not saving this to repo since our implementation is only using an
         // in-memory data store

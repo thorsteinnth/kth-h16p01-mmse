@@ -107,7 +107,6 @@ public class TaskRequestTest
 
         try
         {
-            // TODO Status progression rules
             assert testTaskRequest.getStatus().equals(TaskRequest.Status.Pending);
             service.updateTaskRequestStatus(testTaskRequest, TaskRequest.Status.Approved);
             assert testTaskRequest.getStatus().equals(TaskRequest.Status.Approved);

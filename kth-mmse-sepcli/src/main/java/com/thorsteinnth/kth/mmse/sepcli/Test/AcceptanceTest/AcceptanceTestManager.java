@@ -6,8 +6,6 @@ public class AcceptanceTestManager
 {
     private static String testNumber;
 
-    //TODO figure out how to assert test result
-
     public static void runAcceptanceTest(String testToRun)
     {
         testNumber = testToRun;

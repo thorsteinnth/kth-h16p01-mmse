@@ -17,9 +17,6 @@ public class RequestManagementController extends BaseController
 
     public RequestManagementController(BaseController previousController)
     {
-        // TODO Delete when done testing
-        //RequestMailTest.uiTestHelperCreateAndSendRequests();
-
         this.previousController = previousController;
         this.requestMailService = new RequestMailService(new RequestEnvelopeRepository());
     }
@@ -149,8 +146,6 @@ public class RequestManagementController extends BaseController
                     )
             );
         }
-
-        // TODO Add back option
 
         UIOperation.Command onSelectedOperationError = () -> {
             CliHelper.write("ERROR: Selected operation error");
@@ -378,7 +373,6 @@ public class RequestManagementController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        // TODO Don't allow the user to go to just any status - progression rules
         for (EventRequest.Status status : EventRequest.Status.values())
         {
             UIOperation.Command selectStatus = () ->
@@ -407,7 +401,6 @@ public class RequestManagementController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        // TODO Don't allow the user to go to just any status - progression rules
         for (TaskRequest.Status status : TaskRequest.Status.values())
         {
             UIOperation.Command selectStatus = () ->
@@ -436,7 +429,6 @@ public class RequestManagementController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        // TODO Don't allow the user to go to just any status - progression rules
         for (FinancialRequest.Status status : FinancialRequest.Status.values())
         {
             UIOperation.Command selectStatus = () ->
@@ -465,7 +457,6 @@ public class RequestManagementController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        // TODO Don't allow the user to go to just any status - progression rules
         for (RecruitmentRequest.Status status : RecruitmentRequest.Status.values())
         {
             UIOperation.Command selectStatus = () ->

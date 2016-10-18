@@ -53,7 +53,6 @@ public class UserService
         addUser(createUser("charlie@sep.se", "charlie123", User.Role.VicePresident));
     }
 
-    // TODO Refactor so we only have createUser, not createUser and addUser
     public User createUser(String email, String password, User.Role role)
     {
         return new User(email, password, role);

@@ -51,7 +51,6 @@ public class TaskRequestService
 
     public boolean updateTaskRequestStatus(TaskRequest request, TaskRequest.Status newStatus)
     {
-        // TODO Status progression rules
         // NOTE:
         // Not saving this to repo since our implementation is only using an
         // in-memory data store

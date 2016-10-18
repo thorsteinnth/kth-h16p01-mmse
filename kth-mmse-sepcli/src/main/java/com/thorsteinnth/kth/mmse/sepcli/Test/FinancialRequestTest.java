@@ -75,7 +75,6 @@ public class FinancialRequestTest
 
         try
         {
-            // TODO Status progression rules
             assert testFinancialRequest.getStatus().equals(FinancialRequest.Status.Pending);
             service.updateFinancialRequestStatus(testFinancialRequest, FinancialRequest.Status.Approved);
             assert testFinancialRequest.getStatus().equals(FinancialRequest.Status.Approved);

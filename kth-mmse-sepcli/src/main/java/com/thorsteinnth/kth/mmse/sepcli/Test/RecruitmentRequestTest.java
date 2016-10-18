@@ -63,7 +63,6 @@ public class RecruitmentRequestTest
 
         try
         {
-            // TODO Status progression rules
             assert testRecruitmentRequest.getStatus().equals(RecruitmentRequest.Status.Pending);
             service.updateRecruitmentRequestStatus(testRecruitmentRequest, RecruitmentRequest.Status.Approved);
             assert testRecruitmentRequest.getStatus().equals(RecruitmentRequest.Status.Approved);
