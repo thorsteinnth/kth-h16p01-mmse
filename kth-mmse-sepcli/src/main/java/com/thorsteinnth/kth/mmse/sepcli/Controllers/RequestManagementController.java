@@ -208,9 +208,7 @@ public class RequestManagementController extends BaseController
         UIOperation.Command markAsResolved = () -> markAsResolved(requestEnvelope);
         operations.add(new UIOperation(++operationCount, "Mark as resolved", markAsResolved));
 
-        //================================================================================
-        // Event request workflow specific actions
-        //================================================================================
+        //region Event request workflow specific actions
 
         if (request instanceof EventRequest)
         {
@@ -226,12 +224,23 @@ public class RequestManagementController extends BaseController
                         forwardEventRequestToFinancialManager)
                 );
             }
+            else if (AppData.loggedInUser.role == User.Role.FinancialManager)
+            {
+                // The financial manager should write his feedback (add comment)
+                // and then forward the request to the administration department manager
+                UIOperation.Command addCommentAndForwardToAdministrationDeptManager =
+                        () -> addCommentToEventRequestAndForwardToAdministrationDeptManager(
+                                (EventRequest)request, requestEnvelope
+                        );
+                operations.add(new UIOperation(
+                        ++operationCount,
+                        "Add comment and forward to administration department manager",
+                        addCommentAndForwardToAdministrationDeptManager)
+                );
+            }
         }
 
-        //================================================================================
-        // End event request workflow specific actions
-        //================================================================================
-
+        //endregion
 
         UIOperation.Command back = () -> { /* Do nothing */ };
         operations.add(new UIOperation(++operationCount, "Back", back));
@@ -285,9 +294,7 @@ public class RequestManagementController extends BaseController
             return false;
     }
 
-    //================================================================================
-    // Update request status
-    //================================================================================
+    //region Update request status
 
     private void updateRequestStatus(Request request)
     {
@@ -420,9 +427,7 @@ public class RequestManagementController extends BaseController
         displayUIOperations(operations, onSelectedOperationError);
     }
 
-    //================================================================================
-    // End update request status
-    //================================================================================
+    //endregion
 
     private void markAsResolved(RequestEnvelope envelope)
     {
@@ -455,9 +460,7 @@ public class RequestManagementController extends BaseController
         this.previousController.displayPage();
     }
 
-    //================================================================================
-    // Event request workflow specific actions
-    //================================================================================
+    //region Event request workflow specific actions
 
     private void sendEventRequest(EventRequest request, User.Role recipientRole)
     {
@@ -517,13 +520,16 @@ public class RequestManagementController extends BaseController
         markAsResolved(envelope);
     }
 
-    //================================================================================
-    // End event request workflow specific actions
-    //================================================================================
+    private void addCommentToEventRequestAndForwardToAdministrationDeptManager(EventRequest request, RequestEnvelope envelope)
+    {
+        addCommentToRequest(request, envelope);
+        sendEventRequest(request, User.Role.AdministrationDepartmentManager);
+        markAsResolved(envelope);
+    }
 
-    //================================================================================
-    // Access control helpers
-    //================================================================================
+    //endregion
+
+    //region Access control helpers
 
     private boolean userHasAddCommentRightsForRequest(Request request)
     {
@@ -550,7 +556,5 @@ public class RequestManagementController extends BaseController
         }
     }
 
-    //================================================================================
-    // End access control helpers
-    //================================================================================
+    //endregion
 }
