@@ -167,7 +167,7 @@ public class FinancialRequestController extends BaseController
 
     private EventRequest selectEventRequest()
     {
-        // Display list of all open or in progress event requests for user to choose from
+        // Display list of all pending or approved event requests for user to choose from
 
         CliHelper.newLine();
         CliHelper.write("Link task request to event");
@@ -185,7 +185,8 @@ public class FinancialRequestController extends BaseController
 
             for (EventRequest er: eventRequestService.getAllEventRequests())
             {
-                if(er.getStatus() == EventRequest.Status.Pending)
+                if (er.getStatus() == EventRequest.Status.Pending
+                        || er.getStatus() == EventRequest.Status.Approved)
                 {
                     String seqNumber = Integer.toString(counter);
 
@@ -209,7 +210,7 @@ public class FinancialRequestController extends BaseController
             }
             else
             {
-                CliHelper.write("There are no event requests with status pending");
+                CliHelper.write("There are no event requests with status pending or approved");
                 return null;
             }
         }

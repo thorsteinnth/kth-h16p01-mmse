@@ -141,7 +141,8 @@ public class TaskRequestController extends BaseController
 
             for (EventRequest er: eventRequestService.getAllEventRequests())
             {
-                if(er.getStatus() == EventRequest.Status.Pending)
+                if (er.getStatus() == EventRequest.Status.Pending
+                        || er.getStatus() == EventRequest.Status.Approved)
                 {
                     String seqNumber = Integer.toString(counter);
 
@@ -165,7 +166,7 @@ public class TaskRequestController extends BaseController
             }
             else
             {
-                CliHelper.write("There are no event requests with status pending");
+                CliHelper.write("There are no event requests with status pending or approved");
                 return null;
             }
         }

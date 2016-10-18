@@ -193,17 +193,20 @@ public class RequestManagementController extends BaseController
         ArrayList<UIOperation> operations = new ArrayList<>();
         int operationCount = 0;
 
-        // Check if the current task request type supports comments and if the current user has authority to add them
+        // TODO disallow this when dealing with the event request workflow?
+        // Check if the current request type supports comments and if the current user has authority to add them
         if (requestTypeSupportsComments(request) && userHasAddCommentRightsForRequest(request))
         {
             UIOperation.Command addComment = () -> addCommentToRequest(request, requestEnvelope);
             operations.add(new UIOperation(++operationCount, "Add comment", addComment));
         }
 
+        // TODO disallow this when dealing with the event request workflow?
         // We allow all users to attempt to update a status here, the operation will fail if they don't have the right
         UIOperation.Command updateStatus = () -> updateRequestStatus(request);
         operations.add(new UIOperation(++operationCount, "Update request status", updateStatus));
 
+        // TODO disallow this when dealing with the event request workflow?
         // All users are allowed to mark the requests they receive as resolved
         UIOperation.Command markAsResolved = () -> markAsResolved(requestEnvelope);
         operations.add(new UIOperation(++operationCount, "Mark as resolved", markAsResolved));
@@ -214,15 +217,36 @@ public class RequestManagementController extends BaseController
         {
             if (AppData.loggedInUser.role == User.Role.SeniorCustomerServiceOfficer)
             {
-                // Senior customer service officer should forward the request to financial manager
-                // (if she does not reject it)
-                UIOperation.Command forwardEventRequestToFinancialManager =
-                        () -> forwardEventRequestToFinancialManager((EventRequest)request, requestEnvelope);
-                operations.add(new UIOperation(
-                        ++operationCount,
-                        "Forward event request to financial manager",
-                        forwardEventRequestToFinancialManager)
-                );
+                EventRequest eventRequest = (EventRequest) request;
+
+                if (eventRequest.getStatus() == EventRequest.Status.Pending)
+                {
+                    // Senior customer service officer should forward the request to financial manager
+                    // (if she does not reject it)
+                    UIOperation.Command forwardEventRequestToFinancialManager =
+                            () -> forwardEventRequestToFinancialManager(eventRequest, requestEnvelope);
+                    operations.add(new UIOperation(
+                            ++operationCount,
+                            "Forward event request to financial manager",
+                            forwardEventRequestToFinancialManager)
+                    );
+                }
+                else if (eventRequest.getStatus() == EventRequest.Status.Approved)
+                {
+                    // Event request has been approved by admin dept manager
+                    // Should send to production managers and staff managers
+                    UIOperation.Command forwardApprovedEventRequestToStaffManagers =
+                            () -> forwardApprovedEventRequestToStaffManagers(eventRequest, requestEnvelope);
+                    operations.add(new UIOperation(
+                            ++operationCount,
+                            "Forward event request to staff managers",
+                            forwardApprovedEventRequestToStaffManagers)
+                    );
+                }
+                else
+                {
+                    // Do nothing
+                }
             }
             else if (AppData.loggedInUser.role == User.Role.FinancialManager)
             {
@@ -479,6 +503,11 @@ public class RequestManagementController extends BaseController
 
     //region Event request workflow specific actions
 
+    /**
+     * Send event request to some user with the selected role.
+     * @param request
+     * @param recipientRole
+     */
     private void sendEventRequest(EventRequest request, User.Role recipientRole)
     {
         CliHelper.newLine();
@@ -531,12 +560,22 @@ public class RequestManagementController extends BaseController
         }
     }
 
+    /**
+     * Senior customer service officer forwards an event request to the financial manager
+     * @param request
+     * @param envelope
+     */
     private void forwardEventRequestToFinancialManager(EventRequest request, RequestEnvelope envelope)
     {
         sendEventRequest(request, User.Role.FinancialManager);
         markAsResolved(envelope);
     }
 
+    /**
+     * Financial manager adds a comment to the event request and then forwards it to the admin dept manager
+     * @param request
+     * @param envelope
+     */
     private void addCommentToEventRequestAndForwardToAdministrationDeptManager(EventRequest request, RequestEnvelope envelope)
     {
         addCommentToRequest(request, envelope);
@@ -544,6 +583,12 @@ public class RequestManagementController extends BaseController
         markAsResolved(envelope);
     }
 
+    /**
+     * Administration department manager approves or rejects the event request and then sends it to the senior
+     * customer service officer
+     * @param request
+     * @param envelope
+     */
     private void approveOrRejectEventRequestAndForwardToSeniorCustomerServiceOfficer(EventRequest request, RequestEnvelope envelope)
     {
         approveOrRejectEventRequest(request);
@@ -551,6 +596,10 @@ public class RequestManagementController extends BaseController
         markAsResolved(envelope);
     }
 
+    /**
+     * Administration department manager approves or rejects an event request
+     * @param request
+     */
     private void approveOrRejectEventRequest(EventRequest request)
     {
         EventRequestService service = new EventRequestService(new EventRequestRepository());
@@ -583,6 +632,19 @@ public class RequestManagementController extends BaseController
         {
             System.out.println("ERROR: RequestManagementController.approveOrRejectEventRequest() - invalid decision");
         }
+    }
+
+    /**
+     * Senior customer service officer sends the approved event request to the staff managers
+     * (production manager and service department manager)
+     * @param request
+     * @param envelope
+     */
+    private void forwardApprovedEventRequestToStaffManagers(EventRequest request, RequestEnvelope envelope)
+    {
+        sendEventRequest(request, User.Role.ProductionManager);
+        sendEventRequest(request, User.Role.ServiceDepartmentManager);
+        markAsResolved(envelope);
     }
 
     //endregion
