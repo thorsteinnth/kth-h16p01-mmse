@@ -97,6 +97,7 @@ public class EventRequestTest
                     && er.getExpectedBudget().equals(testExpectedBudget)
                     && er.getComments().equals(new ArrayList<RequestComment>())
                     && er.getStatus().equals(EventRequest.Status.Pending)
+                    && er.getWorkflowStatus().equals(EventRequest.WorkflowStatus.Initial)
                     && er.client.equals(testClient)
                     && er.createdByUser.equals(AppData.loggedInUser);
 
@@ -200,6 +201,48 @@ public class EventRequestTest
         catch (AssertionError ae)
         {
             System.out.println("testUpdateEventRequestStatus() - failed");
+            return false;
+        }
+    }
+
+    public static boolean testUpdateEventRequestWorkflowStatus()
+    {
+        EventRequestService service = getService();
+        EventRequest testEventRequest = createTestEventRequest();
+
+        // Log in a user that has update workflow rights
+        UserService userService = new UserService(new UserRepository());
+        userService.login("jack@sep.se", "jack123");
+
+        try
+        {
+            // Initial statuses
+            assert testEventRequest.getWorkflowStatus().equals(EventRequest.WorkflowStatus.Initial);
+            assert testEventRequest.getStatus().equals(EventRequest.Status.Pending);
+
+            // Set workflow status to StaffingDoneAndTaskRequestSent
+            assert service.updateWorkflowStatus(testEventRequest, EventRequest.WorkflowStatus.StaffingDoneTaskRequestsSent);
+            // Workflow status should have been updated and the normal status set to open
+            assert testEventRequest.getWorkflowStatus() == EventRequest.WorkflowStatus.StaffingDoneTaskRequestsSent;
+            assert testEventRequest.getStatus().equals(EventRequest.Status.Open);
+
+            // Set workflow status to AllBudgetAndStaffingIssuesResolved
+            assert service.updateWorkflowStatus(testEventRequest, EventRequest.WorkflowStatus.AllBudgetAndStaffingIssuesResolved);
+            // Workflow status should have been updated and the normal status set to in progress
+            assert testEventRequest.getWorkflowStatus() == EventRequest.WorkflowStatus.AllBudgetAndStaffingIssuesResolved;
+            assert testEventRequest.getStatus().equals(EventRequest.Status.InProgress);
+
+            // Set workflow status to EventFinalized
+            assert service.updateWorkflowStatus(testEventRequest, EventRequest.WorkflowStatus.EventFinalized);
+            // Workflow status should have been updated and the normal status set to closed
+            assert testEventRequest.getWorkflowStatus() == EventRequest.WorkflowStatus.EventFinalized;
+            assert testEventRequest.getStatus().equals(EventRequest.Status.Closed);
+
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testUpdateEventRequestWorkflowStatus() - failed");
             return false;
         }
     }

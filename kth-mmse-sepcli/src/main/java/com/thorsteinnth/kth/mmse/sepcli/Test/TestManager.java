@@ -159,6 +159,14 @@ public class TestManager
 
         AppData.clear();
 
+        if (!EventRequestTest.testUpdateEventRequestWorkflowStatus())
+        {
+            System.out.println("EventRequestTest.testUpdateEventRequestWorkflowStatus FAILED");
+            success = false;
+        }
+
+        AppData.clear();
+
         // Task request test
 
         if(!TaskRequestTest.testCreateTaskRequest())

@@ -39,7 +39,7 @@ public class EventRequest extends Request
         Initial,
         StaffingDoneTaskRequestsSent,           // Set status to open
         AllBudgetAndStaffingIssuesResolved,     // Set status to in progress
-        EventFinalized                          //  Set status to closed or archived
+        EventFinalized                          // Set status to closed or archived
     }
 
     public EventRequest(
