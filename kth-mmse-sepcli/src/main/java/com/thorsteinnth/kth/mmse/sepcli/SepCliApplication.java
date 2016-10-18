@@ -16,13 +16,40 @@ public class SepCliApplication
     {
         new AppData();
 
-        // Run tests
-        // TODO This should be separate from the program
-        TestManager.runTests();
+        int argumentsCount = arguments.length;
 
-        //TODO we could get this from the main arguments list
-        CliHelper.setIsTestMode(false);
-        //AcceptanceTestManager.runAcceptanceTest("2"); //can be access test 1 or 2
+        if (argumentsCount > 0)
+        {
+            String arg1 = arguments[0];
+
+            if(arg1.equals("runUnitTests"))
+            {
+                TestManager.runTests();
+            }
+            else if(arg1.equals("runAcceptanceTest1"))
+            {
+                AcceptanceTestManager.runAcceptanceTest("1");
+                runSepCliApplication(true);
+            }
+            else if (arg1.equals("runAcceptanceTest2"))
+            {
+                AcceptanceTestManager.runAcceptanceTest("2");
+                runSepCliApplication(true);
+            }
+            else
+            {
+                runSepCliApplication(false);
+            }
+        }
+        else
+        {
+            runSepCliApplication(false);
+        }
+    }
+
+    private static void runSepCliApplication(boolean testMode)
+    {
+        CliHelper.setIsTestMode(testMode);
 
         // Add initial data
         new UserService(new UserRepository()).addInitialUsers();
