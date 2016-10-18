@@ -9,7 +9,7 @@ public class TestManager
     {
         boolean success = true;
 
-        // User tests
+        //region User tests
 
         if (!UserTest.testCreateUser())
         {
@@ -99,7 +99,9 @@ public class TestManager
 
         AppData.clear();
 
-        // Client tests
+        //endregion
+
+        //region Client tests
 
         if (!ClientTest.testCreateClient())
         {
@@ -125,7 +127,9 @@ public class TestManager
 
         AppData.clear();
 
-        // Event request test
+        //endregion
+
+        //region Event request test
 
         if (!EventRequestTest.testCreateEventRequest())
         {
@@ -167,7 +171,9 @@ public class TestManager
 
         AppData.clear();
 
-        // Task request test
+        //endregion
+
+        //region Task request test
 
         if(!TaskRequestTest.testCreateTaskRequest())
         {
@@ -193,7 +199,9 @@ public class TestManager
 
         AppData.clear();
 
-        // Financial request test
+        //endregion
+
+        //region Financial request test
 
         if(!FinancialRequestTest.testCreateFinancialRequest())
         {
@@ -211,7 +219,9 @@ public class TestManager
 
         AppData.clear();
 
-        // Recruitment request test
+        //endregion
+
+        //region Recruitment request test
 
         if(!RecruitmentRequestTest.testCreateRecruitmentRequest())
         {
@@ -229,7 +239,9 @@ public class TestManager
 
         AppData.clear();
 
-        // Access control test
+        //endregion
+
+        //region Access control test
 
         if (!AccessTest.testHasAccess())
         {
@@ -247,7 +259,9 @@ public class TestManager
 
         AppData.clear();
 
-        // Request mail test
+        //endregion
+
+        //region Request mail test
 
         if (!RequestMailTest.testSendGetRequestEnvelope())
         {
@@ -264,6 +278,8 @@ public class TestManager
         }
 
         AppData.clear();
+
+        //endregion
 
         // End of tests
 
