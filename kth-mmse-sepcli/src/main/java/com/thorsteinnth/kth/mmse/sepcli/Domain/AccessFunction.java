@@ -8,6 +8,7 @@ public enum AccessFunction
 
     clientManagement,   // Everyone that can do anything with clients has this right
     requestManagement,  // Everyone that can do anything with requests has this right
+    userManagement,     // Everyone that can do anything with users has this right
 
     // LVL2
 
@@ -18,6 +19,10 @@ public enum AccessFunction
 
     createClientRecord,
     browseClientRecords,
+
+    createUser,
+    editUser,
+    deleteUser,
 
     // LVL 3
 

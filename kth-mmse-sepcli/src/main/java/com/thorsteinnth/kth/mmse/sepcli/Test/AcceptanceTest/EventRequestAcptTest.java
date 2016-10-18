@@ -12,8 +12,8 @@ public class EventRequestAcptTest
     public static void runTest()
     {
         operationQueue = new LinkedList<>();
-        operationQueue.add("jack@sep.se");
-        operationQueue.add("jack123");
+        operationQueue.add("sarah@sep.se");
+        operationQueue.add("sarah123");
         operationQueue.add("1"); // select "1. Request management"
         operationQueue.add("2"); // select "2. Event requests"
         operationQueue.add("1"); // select "1. Create event request"

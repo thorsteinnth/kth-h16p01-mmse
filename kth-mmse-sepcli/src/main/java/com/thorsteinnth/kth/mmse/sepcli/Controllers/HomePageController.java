@@ -49,6 +49,12 @@ public class HomePageController extends BaseController
             operations.add(new UIOperation(++operationCount, "Client management", clientManagement));
         }
 
+        if(AccessControlService.hasAccess(AccessFunction.userManagement))
+        {
+            UIOperation.Command userManagement = () -> userManagement();
+            operations.add(new UIOperation(++operationCount, "User management", userManagement));
+        }
+
         UIOperation.Command logout = () -> logout();
         operations.add(new UIOperation(++operationCount, "Logout", logout));
 
@@ -66,6 +72,11 @@ public class HomePageController extends BaseController
     private void clientManagement()
     {
         new ClientController(this).displayPage();
+    }
+
+    private void userManagement()
+    {
+        new UserManagementController(this).displayPage();
     }
 
     private void logout()

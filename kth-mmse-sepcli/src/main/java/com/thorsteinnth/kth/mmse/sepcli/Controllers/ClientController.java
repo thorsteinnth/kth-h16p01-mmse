@@ -54,7 +54,6 @@ class ClientController extends BaseController
         return operations;
     }
 
-    // TODO Restrict access to specific roles
     private void createClient()
     {
         CliHelper.newLine();

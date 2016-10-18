@@ -28,6 +28,7 @@ public class User
         VicePresident,
         ProductionDepartmentSubTeamEmployee,
         ServiceDepartmentSubTeamEmployee,
+        Admin,
         GeneralUser
     }
 
@@ -61,6 +62,8 @@ public class User
                 return "Production department subteam employee";
             case ServiceDepartmentSubTeamEmployee:
                 return "Service department subteam employee";
+            case Admin:
+                return "Admin";
             case GeneralUser:
                 return "General user";
             default:
