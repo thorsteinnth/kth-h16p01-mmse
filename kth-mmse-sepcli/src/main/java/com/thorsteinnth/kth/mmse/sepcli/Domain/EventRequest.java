@@ -21,8 +21,6 @@ public class EventRequest extends Request
     private WorkflowStatus workflowStatus;
     private Date createdDateTime;
 
-    // TODO public ArrayList<FinancialRequest> financialRequests - or not, can lookup the other way around
-
     public Client client;
     public User createdByUser;
 
@@ -35,17 +33,6 @@ public class EventRequest extends Request
         Rejected,
         Approved
     }
-
-    // TODO implement
-    /*
-    Can go to rejected whenever a user has authority to reject
-    Otherwise
-    Pending
-    -> all task requests accepted -> open (both automatic and manual)
-    ->
-    // When we are staffmanager and are viewing an event request we get "edit workflow status"
-    he changes the status of the request
-    */
 
     public enum WorkflowStatus
     {
