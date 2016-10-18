@@ -22,7 +22,7 @@ public class HomePageController extends BaseController
     public void displayPage()
     {
         CliHelper.newLine();
-        CliHelper.write("This is the homepage for user: " + AppData.loggedInUser.email);
+        CliHelper.write("This is the homepage for user: " + AppData.loggedInUser.toDisplayString());
 
         if (requestMailService.userHasIncomingRequests())
             CliHelper.write("You have incoming requests - go to the request management page to view them");
