@@ -238,6 +238,23 @@ public class RequestManagementController extends BaseController
                         addCommentAndForwardToAdministrationDeptManager)
                 );
             }
+            else if (AppData.loggedInUser.role == User.Role.AdministrationDepartmentManager)
+            {
+                // The administration department manager should accept or reject and then forward
+                // the request back to the senior customer service officer
+                UIOperation.Command approveOrRejectAndForwardToSCSO =
+                        () -> approveOrRejectEventRequestAndForwardToSeniorCustomerServiceOfficer(
+                                (EventRequest)request, requestEnvelope);
+                operations.add(new UIOperation(
+                        ++operationCount,
+                        "Approve or reject and forward to senior customer service officer",
+                        approveOrRejectAndForwardToSCSO)
+                );
+            }
+            else
+            {
+                // Do nothing
+            }
         }
 
         //endregion
@@ -525,6 +542,47 @@ public class RequestManagementController extends BaseController
         addCommentToRequest(request, envelope);
         sendEventRequest(request, User.Role.AdministrationDepartmentManager);
         markAsResolved(envelope);
+    }
+
+    private void approveOrRejectEventRequestAndForwardToSeniorCustomerServiceOfficer(EventRequest request, RequestEnvelope envelope)
+    {
+        approveOrRejectEventRequest(request);
+        sendEventRequest(request, User.Role.SeniorCustomerServiceOfficer);
+        markAsResolved(envelope);
+    }
+
+    private void approveOrRejectEventRequest(EventRequest request)
+    {
+        EventRequestService service = new EventRequestService(new EventRequestRepository());
+
+        CliHelper.newLine();
+
+        ArrayList<String> validInputs = new ArrayList<>();
+        validInputs.add("A");
+        validInputs.add("R");
+
+        String decision = CliHelper.getInput("Approve (A) or reject (R) event request:", validInputs);
+
+        if (decision.equals("A"))
+        {
+            boolean success = service.updateEventRequestStatus(request, EventRequest.Status.Approved);
+            if (success)
+                CliHelper.write("Event request status updated. New status: " + request.getStatus().toString());
+            else
+                CliHelper.write("Could not update event request status");
+        }
+        else if (decision.equals("R"))
+        {
+            boolean success = service.updateEventRequestStatus(request, EventRequest.Status.Rejected);
+            if (success)
+                CliHelper.write("Event request status updated. New status: " + request.getStatus().toString());
+            else
+                CliHelper.write("Could not update event request status");
+        }
+        else
+        {
+            System.out.println("ERROR: RequestManagementController.approveOrRejectEventRequest() - invalid decision");
+        }
     }
 
     //endregion

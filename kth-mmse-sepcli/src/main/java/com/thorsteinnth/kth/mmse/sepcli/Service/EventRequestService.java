@@ -71,12 +71,20 @@ public class EventRequestService
         // Possible statuses
         // Pending, Open, InProgress, Closed, Rejected
         // TODO
-        // We only check if the user has authority to reject, for now
+        // We only check if the user has authority to approve or reject, for now
         // It is unclear what users will be responsible for giving the request the other statuses
+        // TODO Just have the system be able to do that? and the staff managers able to set workflow statuses
+        // and then the system updates the actual status based on the workflow status changes?
 
         if (newStatus == EventRequest.Status.Rejected)
         {
             if (!AccessControlService.hasAccess(AccessFunction.rejectEventRequest))
+                return false;
+        }
+
+        if (newStatus == EventRequest.Status.Approved)
+        {
+            if (!AccessControlService.hasAccess(AccessFunction.approveEventRequest))
                 return false;
         }
 
