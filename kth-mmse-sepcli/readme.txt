@@ -20,3 +20,16 @@ write the following command in command line (in the same directory as the .jar f
 
 Run the create client record acceptance test:
 write the following command in command line (in the same directory as the .jar file) ”java -jar kth-mmse-sepcli-1.0-SNAPSHOT.jar runAcceptanceTest2”
+
+---------------
+
+Users in the system:
+
+The emails are the names of the users (name@sep.se). The passwords are the names of the users followed by 123 (name123).
+Example:
+Email:    janet@sep.se
+Password: janet123
+
+There is also an admin account that has access to user management.
+Email:    admin@sep.se
+Password: admin123
