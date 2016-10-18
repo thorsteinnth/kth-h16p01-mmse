@@ -163,15 +163,38 @@ public class EventRequestTest
 
     public static boolean testUpdateEventRequestStatus()
     {
+        // Users are only allowed to update the status to approved or rejected
+        // Other status changes are done automatically
+
         EventRequestService service = getService();
         EventRequest testEventRequest = createTestEventRequest();
 
+        // Log in a user that has approve/reject rights
+        UserService userService = new UserService(new UserRepository());
+        userService.login("mike@sep.se", "mike123");
+
         try
         {
-            // TODO Status progression rules
+            // Initial status
             assert testEventRequest.getStatus().equals(EventRequest.Status.Pending);
-            service.updateEventRequestStatus(testEventRequest, EventRequest.Status.InProgress);
-            assert testEventRequest.getStatus().equals(EventRequest.Status.InProgress);
+
+            // Illegal state changes
+            assert !service.updateEventRequestStatus(testEventRequest, EventRequest.Status.Pending);
+            assert !service.updateEventRequestStatus(testEventRequest, EventRequest.Status.Open);
+            assert !service.updateEventRequestStatus(testEventRequest, EventRequest.Status.InProgress);
+            assert !service.updateEventRequestStatus(testEventRequest, EventRequest.Status.Closed);
+
+            // Status should still be pending
+            assert testEventRequest.getStatus().equals(EventRequest.Status.Pending);
+
+            // Legal state changes
+
+            assert service.updateEventRequestStatus(testEventRequest, EventRequest.Status.Rejected);
+            assert testEventRequest.getStatus().equals(EventRequest.Status.Rejected);
+
+            assert service.updateEventRequestStatus(testEventRequest, EventRequest.Status.Approved);
+            assert testEventRequest.getStatus().equals(EventRequest.Status.Approved);
+
             return true;
         }
         catch (AssertionError ae)
