@@ -31,6 +31,48 @@ public class User
         GeneralUser
     }
 
+    public static String getRoleDisplayString(Role role)
+    {
+        switch (role)
+        {
+            case FinancialManager:
+                return "Financial manager";
+            case CustomerServiceOfficer:
+                return "Customer service officer";
+            case SeniorCustomerServiceOfficer:
+                return "Senior customer service officer";
+            case AdministrationDepartmentManager:
+                return "Administration department manager";
+            case HRAssistant:
+                return "HR assistant";
+            case SeniorHRManager:
+                return "Senior HR manager";
+            case MarketingOfficer:
+                return "Marketing officer";
+            case MarketingAssistant:
+                return "Marketing assistant";
+            case ProductionManager:
+                return "Production manager";
+            case ServiceDepartmentManager:
+                return "Service department manager";
+            case VicePresident:
+                return "Vice president";
+            case ProductionDepartmentSubTeamEmployee:
+                return "Production department subteam employee";
+            case ServiceDepartmentSubTeamEmployee:
+                return "Service department subteam employee";
+            case GeneralUser:
+                return "General user";
+            default:
+                return "Unknown role";
+        }
+    }
+
+    public String toDisplayString()
+    {
+        return this.email + " (" + getRoleDisplayString(this.role) + ")";
+    }
+
     @Override
     public String toString() {
         return "User{" +

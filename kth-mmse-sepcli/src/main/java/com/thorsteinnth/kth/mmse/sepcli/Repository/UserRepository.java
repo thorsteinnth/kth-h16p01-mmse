@@ -53,6 +53,13 @@ public class UserRepository implements  IUserRepository
         return AppData.users;
     }
 
+    public ArrayList<User> getAllUsersByRole(User.Role role)
+    {
+        return AppData.users.stream()
+                .filter(u -> u.role.equals(role))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public User updateUser(User user, String newEmail, String newPassword, User.Role newRole)
     {
         // NOTE:

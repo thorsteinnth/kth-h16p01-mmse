@@ -272,6 +272,64 @@ public class UserTest
         }
     }
 
+    public static boolean testGetAllUsersByRole()
+    {
+        UserService userService = getService();
+
+        ArrayList<User> adminDeptManagers = new ArrayList<>();
+        ArrayList<User> vicePresidents = new ArrayList<>();
+        ArrayList<User> seniorHRManagers = new ArrayList<>();
+
+        User user1 = new User("testemail1", "testpassword1", User.Role.AdministrationDepartmentManager);
+        userService.addUser(user1);
+        adminDeptManagers.add(user1);
+
+        User user2 = new User("testemail2", "testpassword2", User.Role.VicePresident);
+        userService.addUser(user2);
+        vicePresidents.add(user2);
+
+        User user3 = new User("testemail3", "testpassword3", User.Role.SeniorHRManager);
+        userService.addUser(user3);
+        seniorHRManagers.add(user3);
+
+        User user4 = new User("testemail4", "testpassword4", User.Role.SeniorHRManager);
+        userService.addUser(user4);
+        seniorHRManagers.add(user4);
+
+        ArrayList<User> getAllAdminDeptManagers = userService.getAllUsersByRole(User.Role.AdministrationDepartmentManager);
+        ArrayList<User> getAllVPs = userService.getAllUsersByRole(User.Role.VicePresident);
+        ArrayList<User> getAllSeniorHRManagers = userService.getAllUsersByRole(User.Role.SeniorHRManager);
+
+        try
+        {
+            assert adminDeptManagers.size() == getAllAdminDeptManagers.size();
+            assert vicePresidents.size() == getAllVPs.size();
+            assert seniorHRManagers.size() == getAllSeniorHRManagers.size();
+
+            for (User adminDeptManager : adminDeptManagers)
+            {
+                assert getAllAdminDeptManagers.contains(adminDeptManager);
+            }
+
+            for (User vp : vicePresidents)
+            {
+                assert getAllVPs.contains(vp);
+            }
+
+            for (User seniorHRManager : seniorHRManagers)
+            {
+                assert getAllSeniorHRManagers.contains(seniorHRManager);
+            }
+
+            return true;
+        }
+        catch (AssertionError ae)
+        {
+            System.out.println("testGetAllUsersByRole() - failed");
+            return false;
+        }
+    }
+
     public static boolean testEditUser()
     {
         UserService srv = getService();

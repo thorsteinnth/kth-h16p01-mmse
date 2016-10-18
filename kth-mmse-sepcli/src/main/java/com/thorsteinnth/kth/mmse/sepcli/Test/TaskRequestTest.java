@@ -68,6 +68,10 @@ public class TaskRequestTest
         TaskRequestService service = getService();
         TaskRequest testTaskRequest = getTestTaskRequest();
 
+        // Log in user that has authority to do this
+        UserService userService = new UserService(new UserRepository());
+        userService.login("magy@sep.se", "magy123");
+
         String testString1 = "test task request comment 1";
         String testString2 = "test task request comment 2";
 
@@ -96,6 +100,10 @@ public class TaskRequestTest
     {
         TaskRequestService service = getService();
         TaskRequest testTaskRequest = getTestTaskRequest();
+
+        // Log in user that has authority to do this
+        UserService userService = new UserService(new UserRepository());
+        userService.login("jack@sep.se", "jack123");
 
         try
         {
