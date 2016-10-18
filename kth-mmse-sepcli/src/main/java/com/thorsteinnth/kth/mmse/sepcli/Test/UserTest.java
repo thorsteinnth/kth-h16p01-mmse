@@ -36,7 +36,7 @@ public class UserTest
         {
             UserService srv = getService();
             srv.addInitialUsers();
-            assert srv.getAllUsers().size() == 13;
+            assert srv.getAllUsers().size() == 14;
             return true;
         }
         catch (AssertionError ae)

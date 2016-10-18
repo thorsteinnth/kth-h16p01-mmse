@@ -150,6 +150,15 @@ public class AccessControlService
                         AccessFunction.rejectRecruitmentRequest
                 ));
                 break;
+
+            case Admin:
+                accessList.addAll(Arrays.asList(
+                        AccessFunction.userManagement,
+                        AccessFunction.createUser,
+                        AccessFunction.editUser,
+                        AccessFunction.deleteUser
+                ));
+                break;
         }
 
         return accessList;

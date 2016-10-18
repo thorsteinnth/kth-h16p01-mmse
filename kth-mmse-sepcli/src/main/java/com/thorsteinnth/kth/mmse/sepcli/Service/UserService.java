@@ -37,6 +37,7 @@ public class UserService
      */
     public void addInitialUsers()
     {
+        addUser(createUser("admin@sep.se", "admin123", User.Role.Admin));
         addUser(createUser("sarah@sep.se", "sarah123", User.Role.CustomerServiceOfficer));
         addUser(createUser("janet@sep.se", "janet123", User.Role.SeniorCustomerServiceOfficer));
         addUser(createUser("alice@sep.se", "alice123", User.Role.FinancialManager));
